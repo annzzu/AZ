@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/gradiend_background.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.28177083333333336" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_airports.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24230072463768115" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/item_airport.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/layout_airport.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.265625" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.265625" />
       </map>
     </option>
   </component>
