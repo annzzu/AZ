@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
+import com.example.az.extensions.showSnackBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,52 +28,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.bottomNav)
+//        setSupportActionBar(binding.bottomNav)
         navController = findNavController(R.id.navHostFragment)
 
-//        initNav()
+        initNav()
     }
 
-//    private fun initNav(){
-//        val navView: BottomNavigationView = binding.navView
-//
-//        val navController = findNavController(R.id.navHostFragment)
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.navigation_home , R.id.navigation_airports , R.id.navigation_restrictions
-//            )
-//        )
-//        setupActionBarWithNavController(navController , appBarConfiguration)
-//        navView.setupWithNavController(navController)
-//    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                toast("navigation_home is clicked!")
-                navController.navigate(R.id.navigation_home)
-            }
-            R.id.navigation_airports -> {
-                toast("navigation_airports is clicked!")
-                navController.navigate(R.id.navigation_airports)
-            }
-            R.id.navigation_restrictions -> {
-                toast("navigation_restrictions is clicked!")
-                navController.navigate(R.id.navigation_restrictions)
+    private fun initNav(){
+        binding.bottomNav.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+                    binding.root.showSnackBar("\"navigation_home is clicked!\"")
+                    navController.navigate(R.id.navigation_home)
+                    true
+                }
+                R.id.navigation_airports -> {
+                    binding.root.showSnackBar("\"navigation_airports is clicked!\"")
+                    navController.navigate(R.id.navigation_airports)
+                    true
+                }
+                R.id.navigation_restrictions -> {
+                    binding.root.showSnackBar("\"navigation_restrictions is clicked!\"")
+                    navController.navigate(R.id.navigation_restrictions)
+                    true
+                }
+                else -> false
             }
         }
-        return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.bottom_nav_menu, menu)
-        return true
-    }
-
-    private fun toast(test: String) {
-        Toast.makeText(this , test , Toast.LENGTH_SHORT).show()
-    }
 }

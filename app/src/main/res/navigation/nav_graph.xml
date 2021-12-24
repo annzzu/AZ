@@ -31,11 +31,13 @@
         android:name="com.example.az.presentation.auth.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
+
     <fragment
         android:id="@+id/navigation_airports"
         android:name="com.example.az.presentation.airport.AirportsFragment"
         android:label="fragment_airports"
         tools:layout="@layout/fragment_airports" />
+
     <fragment
         android:id="@+id/navigation_restrictions"
         android:name="com.example.az.RestrictionFormFragment"
