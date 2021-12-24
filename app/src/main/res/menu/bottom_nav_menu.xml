@@ -16,4 +16,10 @@
         android:title="Settings"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/navigation_restrictions"
+        android:icon="@drawable/ic_more"
+        android:title="Restrictions"
+        app:showAsAction="ifRoom" />
+
 </menu>

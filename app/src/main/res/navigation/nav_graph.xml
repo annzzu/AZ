@@ -37,7 +37,7 @@
         android:label="fragment_airports"
         tools:layout="@layout/fragment_airports" />
     <fragment
-        android:id="@+id/restrictionFormFragment"
+        android:id="@+id/navigation_restrictions"
         android:name="com.example.az.RestrictionFormFragment"
         android:label="fragment_restriction_form"
         tools:layout="@layout/fragment_restriction_form" />
