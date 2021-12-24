@@ -5,13 +5,13 @@
     tools:ignore="HardcodedText">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/navigation_home"
         android:icon="@mipmap/coronavirus"
         android:title="Home"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/airports"
+        android:id="@+id/navigation_airports"
         android:icon="@drawable/ic_settings"
         android:title="Settings"
         app:showAsAction="ifRoom" />

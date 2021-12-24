@@ -94,5 +94,5 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'np.com.susanthapa:curved_bottom_navigation:latest_version'
+
 }
