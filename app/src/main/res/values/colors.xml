@@ -12,8 +12,10 @@
     <color name="green">#3ED598</color>
 
 
-    <color name="green_l">#3DD598</color>
-    <color name="green_d">#286053</color>
+    <color name="green_l">#568e7f</color>
+    <color name="green_r">#286053</color>
+    <color name="green_d">#00362b</color>
+
     <color name="background">#8CB2C3</color>
     <color name="hint">#90A2AA</color>
     <color name="red_l">#FF565E</color>

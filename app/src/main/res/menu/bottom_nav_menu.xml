@@ -9,16 +9,9 @@
         android:icon="@mipmap/coronavirus"
         android:title="Home"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/navigation_airports"
-        android:icon="@drawable/ic_settings"
-        android:title="Settings"
-        app:showAsAction="ifRoom" />
-
     <item
         android:id="@+id/navigation_restrictions"
-        android:icon="@drawable/ic_more"
+        android:icon="@drawable/ic_settings"
         android:title="Restrictions"
         app:showAsAction="ifRoom" />
 

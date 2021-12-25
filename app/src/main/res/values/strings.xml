@@ -11,4 +11,11 @@
     <string name="city">City</string>
     <string name="code">Code</string>
     <string name="restriction_form">Restriction Form</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="welcome">Welcome!</string>
+    <string name="signup">Signup</string>
+    <string name="vaccine">Vaccine</string>
+    <string name="nationality">Nationality</string>
 </resources>

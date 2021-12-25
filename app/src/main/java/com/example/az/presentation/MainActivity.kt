@@ -32,28 +32,36 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.navHostFragment)
 
         initNav()
+        initFab()
     }
 
-    private fun initNav(){
+    private fun initNav() {
         binding.bottomNav.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_home -> {
-                    binding.root.showSnackBar("\"navigation_home is clicked!\"")
+//                    binding.root.showSnackBar("\"navigation_home is clicked!\"")
                     navController.navigate(R.id.navigation_home)
                     true
                 }
                 R.id.navigation_airports -> {
-                    binding.root.showSnackBar("\"navigation_airports is clicked!\"")
+//                    binding.root.showSnackBar("\"navigation_airports is clicked!\"")
                     navController.navigate(R.id.navigation_airports)
                     true
                 }
                 R.id.navigation_restrictions -> {
-                    binding.root.showSnackBar("\"navigation_restrictions is clicked!\"")
+//                    binding.root.showSnackBar("\"navigation_restrictions is clicked!\"")
                     navController.navigate(R.id.navigation_restrictions)
                     true
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun initFab() {
+        binding.fab.setOnClickListener {
+//            binding.root.showSnackBar("\"navigation_home is clicked!\"")
+            navController.navigate(R.id.navigation_login)
         }
     }
 

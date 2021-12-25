@@ -28,9 +28,9 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_signup"
-        android:name="com.example.az.presentation.auth.SignupFragment"
+        android:name="com.example.az.presentation.auth.SignupTabFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" />
+        tools:layout="@layout/signup_fab_fragment" />
 
     <fragment
         android:id="@+id/navigation_airports"
