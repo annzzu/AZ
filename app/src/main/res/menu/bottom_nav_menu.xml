@@ -6,12 +6,12 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@mipmap/coronavirus"
+        android:icon="@drawable/ic_covid_19"
         android:title="Home"
         app:showAsAction="always" />
     <item
         android:id="@+id/navigation_restrictions"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_plane"
         android:title="Restrictions"
         app:showAsAction="ifRoom" />
 

@@ -12,12 +12,18 @@
     <color name="green">#3ED598</color>
 
 
+    <color name="green_terquoise">#1abc9c</color>
+    <color name="green_l_l">#e5edeb</color>
     <color name="green_l">#568e7f</color>
     <color name="green_r">#286053</color>
     <color name="green_d">#00362b</color>
 
+
     <color name="background">#8CB2C3</color>
     <color name="hint">#90A2AA</color>
-    <color name="red_l">#FF565E</color>
+    <color name="red_l">#816167</color>
     <color name="red_d">#623A42</color>
+
+
+    <color name="green_25">#B6CACO</color>
 </resources>
