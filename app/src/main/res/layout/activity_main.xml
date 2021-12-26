@@ -9,7 +9,6 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         >
 
         <!--        <com.google.android.material.bottomappbar.BottomAppBar-->
@@ -51,7 +50,6 @@
             app:layout_anchor="@id/bottomNav"
             app:srcCompat="@drawable/ic_user"
             app:tint="@color/white" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
