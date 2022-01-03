@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.example.az.presentation.auth.LoginFragment"
+        android:name="com.example.az.presentation.auth.fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

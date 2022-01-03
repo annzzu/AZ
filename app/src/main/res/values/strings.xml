@@ -2,6 +2,7 @@
     <string name="app_name">AZ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="x_session_id">x-session-id</string>
 
 
     <string name="sent_an_attachment">Sent an attachment</string>
@@ -26,4 +27,11 @@
     <string name="about">About</string>
     <string name="about_text">More About Us. How to use AZ</string>
     <string name="my_destinations">My\nTravel\nPlans</string>
+
+    <string name="password_error">Password is not valid.</string>
+    <string name="email_error">Email is not valid.</string>
+    <string name="unsuccessful_login">Login failed.\nTry again</string>
+    <string name="successful_login">Welcome!\nSuccessful Login </string>
+    <string name="successful_sign_up">Signup successful</string>
+    <string name="unsuccessful_sign_up">Unsuccessful Sign up</string>
 </resources>

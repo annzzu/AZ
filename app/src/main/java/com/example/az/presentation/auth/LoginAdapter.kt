@@ -16,6 +16,5 @@ class LoginAdapter(sFM: FragmentManager) :
     fun addFragment(fm: Fragment , title: String) {
         pFragmentList.add(fm)
         pFragmentTitle.add(title)
-        d("anuki", "$fm")
     }
 }
