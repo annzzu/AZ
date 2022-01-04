@@ -57,9 +57,8 @@
         android:background="@color/red_d"
         android:backgroundTint="@color/red_l"
         app:cardCornerRadius="10dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".55"
+        app:layout_constraintHeight_percent=".45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAboutText"
         app:layout_constraintVertical_bias=".1"
@@ -91,47 +90,38 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/comfortaa_regular"
                 android:text="@string/restrictions"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnAirport" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:fontFamily="@font/comfortaa_regular"
-                android:text="@string/restrictions_text"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvRestrictions" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardAbout"
+        android:id="@+id/cardMyTravelPlan"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@color/green_d"
         android:backgroundTint="@color/green_l_l"
         app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardMyTravelPlan"
+        app:layout_constraintBottom_toTopOf="@+id/cardAbout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".25"
         app:layout_constraintStart_toEndOf="@+id/cardRestrictions"
         app:layout_constraintTop_toBottomOf="@+id/tvAboutText"
-        app:layout_constraintVertical_bias=".5"
+        app:layout_constraintVertical_bias=".35"
         app:layout_constraintWidth_percent=".38" >
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp">
+            android:layout_margin="10dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
@@ -144,39 +134,29 @@
                 app:backgroundTint="@color/red_d"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_plane"
+                app:srcCompat="@drawable/ic_user"
                 app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAbout"
+                android:id="@+id/tvPerson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/comfortaa_regular"
-                android:text="@string/about"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:text="@string/my_destinations"
                 android:textColor="@color/green_d"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fab" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/comfortaa_regular"
-                android:text="@string/about_text"
-                android:textColor="@color/green_d"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardMyTravelPlan"
+        android:id="@+id/cardAbout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
@@ -188,15 +168,16 @@
         app:layout_constraintHeight_percent=".15"
         app:layout_constraintStart_toEndOf="@+id/cardRestrictions"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".80"
+        app:layout_constraintVertical_bias=".75"
         app:layout_constraintWidth_percent=".4" >
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btnPerson"
+                android:id="@+id/btnAbout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -206,22 +187,22 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_user"
+                app:srcCompat="@drawable/ic_info"
                 app:tint="@color/green_d" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvPerson"
+                android:id="@+id/tvAbout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comfortaa_regular"
-                android:text="@string/my_destinations"
+                android:text="@string/aboutAZ"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnPerson"
+                app:layout_constraintStart_toEndOf="@+id/btnAbout"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
