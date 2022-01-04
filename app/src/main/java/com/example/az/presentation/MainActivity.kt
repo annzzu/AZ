@@ -56,4 +56,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+//
+//    private fun setUpBottomNavigation() {
+//        binding.run {
+//            findNavController(R.id.navHostFragment).addOnDestinationChangedListener(
+//                this@MainActivity
+//            )
+//        }
+//
+//        binding.bottomAppBar.apply {
+//            setOnMenuItemClickListener(this@MainActivity)
+//        }
+//
+//        binding.fab.apply {
+//            setShowMotionSpecResource(R.animator.fab_show)
+//            setHideMotionSpecResource(R.animator.fab_hide)
+//
+//        }
+//    }
+
 }

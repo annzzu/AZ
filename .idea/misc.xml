@@ -9,7 +9,8 @@
         <entry key="app/src/main/res/drawable/gradiend_background_green.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.2125" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.28177083333333336" />
-        <entry key="app/src/main/res/drawable/ic_covid_19.xml" value="0.37135416666666665" />
+        <entry key="app/src/main/res/drawable/ic_covid_19.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/drawable/ic_covid_19_splash.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/ic_info.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/drawable/ic_plane.xml" value="0.2140625" />
