@@ -2,62 +2,41 @@ package com.example.az.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log.d
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
+import com.example.az.extensions.DRAWABLES
+import com.example.az.extensions.setImageUrl
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
+class MainActivity : AppCompatActivity() , NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-//        setSupportActionBar(binding.bottomNav)
-        navController = findNavController(R.id.navHostFragment)
 
         initFab()
 
-
     }
 
-//    private fun initNav() {
-//        binding.bottomNav.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.navigation_home -> {
-////                    binding.root.showSnackBar("\"navigation_home is clicked!\"")
-//                    navController.navigate(R.id.navigation_home)
-//                    true
-//                }
-//                R.id.navigation_airports -> {
-////                    binding.root.showSnackBar("\"navigation_airports is clicked!\"")
-//                    navController.navigate(R.id.navigation_airports)
-//                    true
-//                }
-//                R.id.navigation_restrictions -> {
-////                    binding.root.showSnackBar("\"navigation_restrictions is clicked!\"")
-//                    navController.navigate(R.id.navigation_restrictions)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
-
     private fun initFab() {
-        binding.fab.setOnClickListener {
-//            binding.root.showSnackBar("\"navigation_home is clicked!\"")
-            navController.navigate(R.id.navigation_login)
+        binding.run {
+            findNavController(R.id.navHostFragment).addOnDestinationChangedListener(
+                this@MainActivity
+            )
         }
     }
 
@@ -66,50 +45,31 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         destination: NavDestination ,
         arguments: Bundle?
     ) {
-        TODO("Not yet implemented")
+        when (destination.id) {
+            R.id.navigation_login -> {
+                setFabForAuth()
+            }
+            R.id.navigation_signup -> {
+                setFabForAuth()
+            }
+            else -> setFabForHome()
+        }
     }
 
+    private fun setFabForAuth() {
+        setFabIconDestination(DRAWABLES.ic_covid_19 , R.id.navigation_home)
+    }
 
-//
-//    private fun setUpBottomNavigation() {
-//        binding.run {
-//            findNavController(R.id.navHostFragment).addOnDestinationChangedListener(
-//                this@MainActivity
-//            )
-//        }
-//
-//        binding.bottomAppBar.apply {
-//            setOnMenuItemClickListener(this@MainActivity)
-//        }
-//
-//        binding.fab.apply {
-//            setShowMotionSpecResource(R.animator.fab_show)
-//            setHideMotionSpecResource(R.animator.fab_hide)
-//
-//        }
-//    }
+    private fun setFabForHome() {
+        setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
+    }
 
-
-//    override fun onDestinationChanged(
-//        controller: NavController,
-//        destination: NavDestination,
-//        arguments: Bundle?
-//    ) {
-//        when (destination.id) {
-//            R.id.miHome -> {
-//                setBottomAppBarForHome(getBottomAppBarMenuForDestination(destination))
-//            }
-//            R.id.miChooseType -> {
-//                setBottomAppBarForHome(getBottomAppBarMenuForDestination(destination))
-//            }
-//            R.id.miSearchCountry -> {
-//                setBottomAppBarForSearchCountries()
-//            }
-//
-//            R.id.miCountryRestrictions -> {
-//                setBottomAppBarForCountryRestrictions()
-//            }
-//        }
-//    }
-
+    private fun setFabIconDestination(icon: Int , navigation: Int) {
+        binding.fab.apply {
+            setImageResource(icon)
+            setOnClickListener {
+                findNavController(R.id.navHostFragment).navigate(navigation)
+            }
+        }
+    }
 }
