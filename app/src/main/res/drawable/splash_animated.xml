@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selected"
+    android:oneshot="true">
+
+    <item
+        android:drawable="@mipmap/ic_mask_layer"
+        android:duration="250" />
+
+   <item
+        android:drawable="@drawable/ic_az_foreground"
+        android:duration="250" />
+
+</animation-list>

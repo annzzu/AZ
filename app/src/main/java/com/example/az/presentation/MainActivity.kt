@@ -2,15 +2,18 @@ package com.example.az.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.navHostFragment)
 
         initFab()
+
+
     }
 
 //    private fun initNav() {
@@ -56,6 +61,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestinationChanged(
+        controller: NavController ,
+        destination: NavDestination ,
+        arguments: Bundle?
+    ) {
+        TODO("Not yet implemented")
+    }
+
 
 //
 //    private fun setUpBottomNavigation() {
@@ -73,6 +86,29 @@ class MainActivity : AppCompatActivity() {
 //            setShowMotionSpecResource(R.animator.fab_show)
 //            setHideMotionSpecResource(R.animator.fab_hide)
 //
+//        }
+//    }
+
+
+//    override fun onDestinationChanged(
+//        controller: NavController,
+//        destination: NavDestination,
+//        arguments: Bundle?
+//    ) {
+//        when (destination.id) {
+//            R.id.miHome -> {
+//                setBottomAppBarForHome(getBottomAppBarMenuForDestination(destination))
+//            }
+//            R.id.miChooseType -> {
+//                setBottomAppBarForHome(getBottomAppBarMenuForDestination(destination))
+//            }
+//            R.id.miSearchCountry -> {
+//                setBottomAppBarForSearchCountries()
+//            }
+//
+//            R.id.miCountryRestrictions -> {
+//                setBottomAppBarForCountryRestrictions()
+//            }
 //        }
 //    }
 
