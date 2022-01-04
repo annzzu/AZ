@@ -1,5 +1,6 @@
 package com.example.az.data.repository
 
+import android.util.Log.d
 import com.example.az.data.remote.DataSource
 import com.example.az.model.airport.AirportResponse
 import com.example.az.model.user.User
@@ -19,15 +20,21 @@ class AuthRepositoryImpl @Inject constructor(private val dataSource: DataSource)
     override suspend fun login(user: User): Flow<Resource<User>> {
         return flow<Resource<User>> {
             val result = handleResponse { dataSource.loginUser(user) }
-            if (result is Resource.Success) "save into dto"
+            if (result is Resource.Success) {
+                d("save into dto", "$result")
+            }
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
 
 
+    override fun logout() {
+//        user = null
+//        dataSource.logout()
+    }
 
 
-        //        { response ->
+    //        { response ->
 //                if (response.isSuccessful && response.code() == 200) {
 //                    response.body()?.let { authTokenDto ->
 //                        val result = saveAuthToken(authTokenDto, authLoginRequest.email)

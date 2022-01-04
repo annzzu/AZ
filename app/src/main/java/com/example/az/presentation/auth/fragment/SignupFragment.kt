@@ -1,12 +1,13 @@
 package com.example.az.presentation.auth.fragment
 
-import android.util.Log.d
+
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.az.databinding.FragmentLoginBinding
-import com.example.az.extensions.*
+import com.example.az.databinding.FragmentSignupBinding
+import com.example.az.extensions.hideKeyboard
+import com.example.az.extensions.showSnackBar
 import com.example.az.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
@@ -16,9 +17,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding::inflate) {
 
     private val viewModel: LoginViewModel by activityViewModels()
 
@@ -29,16 +29,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun listeners() {
         listenerETs()
         formValidation()
-        with(binding){
-
-            btnLogin.setOnClickListener {
+        with (binding) {
+            btnSignup.setOnClickListener {
                 root.hideKeyboard()
-                login()
-                root.showSnackBar("logged")
+                signup()
+                root.showSnackBar("signup")
             }
-
-            btnSignupTab.setOnClickListener{
-                openSingup()
+            btnLoginTab.setOnClickListener{
+                openLogin()
             }
         }
     }
@@ -67,7 +65,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.userForm.collectLatest { userForm ->
                 with(binding) {
-                    btnLogin.isEnabled = userForm.isDataValid
+                    btnSignup.isEnabled = userForm.isDataValid
                     userForm.emailError?.let {
                         etilEmail.error = getString(it)
                     } ?: run {
@@ -83,10 +81,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
     }
 
-    private fun login() {
+    private fun signup() {
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.login(
+                viewModel.signup(
                     User(email = etEmail.text.toString() , password = etPassword.text.toString())
                 )
             }
@@ -97,17 +95,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 when (it) {
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
-                    is Resource.Success -> openHome()
+                    is Resource.Success -> openLogin()
                 }
             }
         }
     }
 
-    private fun openHome() = findNavController().navigate(
-        LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-    )
-
-    private fun openSingup() = findNavController().navigate(
-        LoginFragmentDirections.actionLoginFragmentToSignupFragment()
+    private fun openLogin() = findNavController().navigate(
+        SignupFragmentDirections.actionNavigationSignupToNavigationLogin()
     )
 }

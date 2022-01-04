@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.auth.fragment.LoginFragment">
+    tools:context=".presentation.auth.fragment.SignupFragment">
 
     <TextView
         android:id="@+id/aciv"
@@ -47,78 +47,50 @@
             android:layout_height="wrap_content"
             android:background="@drawable/vie_bg"
             android:fontFamily="@font/comfortaa_regular"
+            android:orientation="horizontal"
+            android:weightSum="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <androidx.appcompat.widget.LinearLayoutCompat
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnLoginTab"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:padding="10dp"
+                android:text="@string/login"
+                android:textAlignment="center"
+                android:textColor="@color/green_r"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/btnSignupTab"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/login"
-                    android:textColor="@color/green_r"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
                     android:padding="10dp"
+                    android:text="@string/signup"
+                    android:textAlignment="center"
+                    android:textColor="@color/green_r"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/green_r"/>
+                    android:background="@color/green_r" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnSignupTab"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:text="@string/signup"
-                android:textColor="@color/green_r"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:textStyle="bold"/>
-
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tabLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@drawable/vie_bg"-->
-<!--            android:fontFamily="@font/comfortaa_regular"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0"-->
-<!--            app:tabGravity="fill"-->
-<!--            app:tabIndicatorColor="@color/green_r"-->
-<!--            app:tabRippleColor="@color/green_r"-->
-<!--            app:tabSelectedTextColor="@color/green_r"-->
-<!--            app:tabTextColor="@color/green_r">-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/btnLoginTab"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/login" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/btnSignupTab"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/signup" />-->
-<!--        </com.google.android.material.tabs.TabLayout>-->
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -138,7 +110,7 @@
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".2"
+            app:layout_constraintVertical_bias=".15"
             app:layout_constraintWidth_percent=".8">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -154,7 +126,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/comfortaa_regular"
             android:hint="@string/password"
             android:textColor="@color/green_d"
@@ -167,7 +139,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@+id/etilEmail"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".8">
@@ -180,13 +151,72 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etilNationality"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comfortaa_regular"
+            android:hint="@string/nationality"
+            android:textColor="@color/green_d"
+            android:textColorHint="@color/green_d"
+            app:boxStrokeColor="@color/green_r"
+            app:boxStrokeErrorColor="@color/red_d"
+            app:hintTextColor="@color/green_d"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etilPassword"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNationality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etilVaccine"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comfortaa_regular"
+            android:hint="@string/vaccine"
+            android:textColor="@color/green_d"
+            android:textColorHint="@color/green_d"
+            app:boxStrokeColor="@color/green_r"
+            app:boxStrokeErrorColor="@color/red_d"
+            app:hintTextColor="@color/green_d"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etilNationality"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVaccine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSignup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_shapes"
             android:fontFamily="@font/comfortaa_regular"
-            android:text="@string/login"
+            android:text="@string/signup"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -194,8 +224,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etilPassword"
-            app:layout_constraintVertical_bias=".3"
+            app:layout_constraintTop_toBottomOf="@+id/etilVaccine"
+            app:layout_constraintVertical_bias=".4"
             app:layout_constraintWidth_percent=".8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
