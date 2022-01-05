@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.21302083333333333" />
         <entry key="../../../../layout/custom_preview.xml" value="0.2125" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/drawable-v24/rounded_shapes_gr.xml" value="0.37135416666666665" />
@@ -12,6 +13,8 @@
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/drawable/ic_az_foreground.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/drawable/ic_covid_19.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/drawable/ic_covid_19_foreground.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/ic_covid_19_red.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/ic_covid_19_splash.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/ic_covid_danger_background.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/ic_info.xml" value="0.2140625" />
@@ -21,6 +24,8 @@
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/drawable/raunded_shapes.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/rounded_shapes.xml" value="0.37135416666666665" />
+        <entry key="app/src/main/res/drawable/rounded_shapes_gr_bottom.xml" value="0.37135416666666665" />
+        <entry key="app/src/main/res/drawable/rounded_shapes_green_light.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/splash_animated.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.21354166666666666" />
@@ -33,7 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_restriction_form.xml" value="0.26614583333333336" />
         <entry key="app/src/main/res/layout/fragment_scrolling.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.19739583333333333" />
-        <entry key="app/src/main/res/layout/fragment_user_home.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_user_home.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_airport.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/layout_airport.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/login_tab_fragment.xml" value="0.35520833333333335" />

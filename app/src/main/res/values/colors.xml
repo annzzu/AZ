@@ -26,4 +26,13 @@
 
 
     <color name="green_25">#B6CACO</color>
+
+
+
+    <color name="green_n_l_light">#c7e4df</color>
+    <color name="green_n_l_l">#dbebe9</color>
+    <color name="green_n_l_r">#a5d5cd</color>
+    <color name="green_n_r">#a5d3cc</color>
+    <color name="green_n_d">#374849</color>
+
 </resources>

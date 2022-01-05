@@ -83,6 +83,11 @@
         android:id="@+id/navigation_userHome"
         android:name="com.example.az.presentation.user.UserHomeFragment"
         android:label="fragment_user_home"
-        tools:layout="@layout/fragment_user_home" />
+        tools:layout="@layout/fragment_user_home" >
+        <action
+            android:id="@+id/action_navigation_userHome_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 </navigation>

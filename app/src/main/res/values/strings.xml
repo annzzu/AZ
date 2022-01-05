@@ -11,12 +11,10 @@
     <string name="code">Code</string>
     <string name="restriction_form">Restriction Form</string>
     <string name="login">Login</string>
-    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="welcome">Welcome!</string>
     <string name="signup">Signup</string>
     <string name="vaccine">Vaccine</string>
-    <string name="nationality">Nationality</string>
     <string name="hello">Hello !</string>
     <string name="welcome_text">Due to the on-going COVID situation countries have implemented travel restrictions. AZ helps you to understand which regulations are affecting your travel plans.</string>
     <string name="search_restrictions">Search Restrictions</string>
@@ -32,5 +30,7 @@
     <string name="successful_login">Welcome!\nSuccessful Login </string>
     <string name="successful_sign_up">Signup successful</string>
     <string name="unsuccessful_sign_up">Unsuccessful Sign up</string>
+    <string name="email">Email</string>
+    <string name="nationality">Nationality</string>
 
 </resources>

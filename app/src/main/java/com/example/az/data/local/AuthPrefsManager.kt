@@ -1,6 +1,7 @@
 package com.example.az.data.local
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -50,13 +51,25 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
             _dataStore[AUTH_USER_TOKEN] = user.token ?: ""
             _dataStore[AUTH_USER_EMAIL] = user.email ?: ""
             _dataStore[AUTH_USER_VACCINE] = user.data?.vaccine ?: ""
-            _dataStore[AUTH_USER_NATIONALITY] = user.data?.vaccine ?: ""
+            _dataStore[AUTH_USER_NATIONALITY] = user.data?.nationality ?: ""
         }
     }
     suspend fun saveAuthOnlyToken(token: String?) {
         context.dataStore.edit { _dataStore ->
             _dataStore[AUTH_USER_TOKEN] = token ?: ""
         }
+    }
+
+    suspend fun logout() {
+        deleteUserDataStore()
+    }
+
+    private suspend fun deleteUserDataStore() {
+        saveAuthToken(User())
+        Log.d(
+            "testing AZ" ,
+            "saved autoAuthPrefsManager saveUserDataStore $preferencesFlow"
+        )
     }
 
     companion object {
