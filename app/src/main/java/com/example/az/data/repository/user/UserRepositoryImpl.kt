@@ -4,6 +4,7 @@ import android.util.Log.d
 import com.example.az.data.local.AuthPrefsManager
 import com.example.az.data.remote.DataSource
 import com.example.az.model.user.User
+import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ class UserRepositoryImpl @Inject constructor(
     private val autoAuthPrefsManager: AuthPrefsManager
 ) : UserRepository {
 
-    override suspend fun getSelf(token: String): Flow<Resource<User>> {
+    override suspend fun getSelf(token: String): Flow<Resource<UserResponse>> {
         return flow {
             val result = handleResponse { dataSource.getSelf(token) }
             emit(result)

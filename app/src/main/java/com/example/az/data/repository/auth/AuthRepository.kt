@@ -1,6 +1,7 @@
 package com.example.az.data.repository.auth
 
 import com.example.az.model.user.User
+import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
@@ -10,8 +11,6 @@ interface AuthRepository {
 
     suspend fun signup(user: User) : Flow<Resource<User>>
 
-    suspend fun getSelf(token: String) : Flow<Resource<User>>
-
-
+    suspend fun getSelf(token: String) : Flow<Resource<UserResponse>>
 
 }

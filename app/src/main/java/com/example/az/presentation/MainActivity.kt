@@ -74,18 +74,19 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     }
 
     private fun setFabForHome(token: String?) {
-        d("testing AZ Fab Testing", "token is $token - ${token?.length}")
         if (token.isNullOrBlank()){
+            d("testing AZ", "Dalogindi - $token")
             setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
         }else{
+            d("testing AZ", "arrrrrrrr - $token")
             setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_userHome)
         }
     }
 
     private fun setFabIconDestination(icon: Int , navigation: Int) {
         binding.fab.apply {
-            setShowMotionSpecResource(R.animator.fab_show)
-            setHideMotionSpecResource(R.animator.fab_hide)
+//            setShowMotionSpecResource(R.animator.fab_show)
+//            setHideMotionSpecResource(R.animator.fab_hide)
             setImageResource(icon)
             setOnClickListener {
                 findNavController(R.id.navHostFragment).navigate(navigation)

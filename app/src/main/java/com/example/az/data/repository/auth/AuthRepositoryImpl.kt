@@ -4,13 +4,12 @@ import android.util.Log.d
 import com.example.az.data.local.AuthPrefsManager
 import com.example.az.data.remote.DataSource
 import com.example.az.model.user.User
+import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -28,19 +27,16 @@ class AuthRepositoryImpl @Inject constructor(
                 val token = result.data!!.token!!
                 withContext(IO) {
                     try {
-                        getSelf(token).collectLatest {
-                            if (it is Resource.Success) {
-                                d(
-                                    "testing AZ" ,
-                                    "gamovida ${it.data!!}"
-                                )
-                                saveUserDataStore(it.data!!)
+                        getSelf(token).collectLatest {getSelf->
+                            if (getSelf is Resource.Success) {
+                                saveUserDataStore(getSelf.data!!.user!!)
+                                saveAuthOnlyToken(token)
                             } else {
-                                saveTokenToDataStore(token)
+                                saveAuthOnlyToken(token)
                             }
                         }
                     } catch (e: Exception) {
-                        saveTokenToDataStore(token)
+                        saveAuthOnlyToken(token)
                     }
                 }
             }
@@ -54,14 +50,16 @@ class AuthRepositoryImpl @Inject constructor(
         }.flowOn(IO)
     }
 
-    override suspend fun getSelf(token: String): Flow<Resource<User>> {
+    override suspend fun getSelf(token: String): Flow<Resource<UserResponse>> {
         return flow {
-            emit(handleResponse { dataSource.getSelf(token) })
+            val result = handleResponse { dataSource.getSelf(token) }
+            emit(result)
         }.flowOn(IO)
     }
 
-    private suspend fun saveTokenToDataStore(token: String) {
-        autoAuthPrefsManager.saveAuthToken(User(token = token))
+
+    private suspend fun saveAuthOnlyToken(token: String) {
+        autoAuthPrefsManager.saveAuthOnlyToken(token)
         d("testing AZ" , "saved autoAuthPrefsManager ${autoAuthPrefsManager.readAuthToken()}")
     }
 

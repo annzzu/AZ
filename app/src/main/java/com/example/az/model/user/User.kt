@@ -4,6 +4,7 @@ package com.example.az.model.user
 import com.squareup.moshi.Json
 
 data class User(
+    val success: Boolean? = null,
     val data: Data? = null,
     val token: String? = null ,
     val email: String? =null,

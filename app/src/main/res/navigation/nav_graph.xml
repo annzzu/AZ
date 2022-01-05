@@ -58,12 +58,6 @@
 
 
     <fragment
-        android:id="@+id/navigation_userHome"
-        android:name="com.example.az.presentation.user.UserHomeFragment"
-        android:label="fragment_user_home"
-        tools:layout="@layout/fragment_user_home" />
-
-    <fragment
         android:id="@+id/navigation_restriction"
         android:name="com.example.az.presentation.restriction.RestrictionFragment"
         android:label="fragment_restriction"
@@ -85,5 +79,10 @@
         android:name="com.example.az.presentation.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/navigation_userHome"
+        android:name="com.example.az.presentation.user.UserHomeFragment"
+        android:label="fragment_user_home"
+        tools:layout="@layout/fragment_user_home" />
 
 </navigation>

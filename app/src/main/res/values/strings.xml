@@ -2,8 +2,6 @@
     <string name="app_name">AZ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="x_session_id">x-session-id</string>
-
 
     <string name="sent_an_attachment">Sent an attachment</string>
     <string name="something_wrong">Something went wrong!</string>

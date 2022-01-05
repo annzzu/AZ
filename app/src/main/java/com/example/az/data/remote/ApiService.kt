@@ -1,13 +1,13 @@
 package com.example.az.data.remote
 
 
-import com.example.az.extensions.STRINGS
 import com.example.az.model.airport.AirportResponse
 import com.example.az.model.nationality.NationalityResponse
 import com.example.az.model.restriction.RestrictionResponse
 import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.user.User
+import com.example.az.model.user.UserResponse
 import com.example.az.model.vaccine.VaccineResponse
 import com.example.az.utils.ApiEndpoints
 import retrofit2.Response
@@ -33,14 +33,14 @@ interface ApiService {
     suspend fun signupUser(@Body user: User): Response<User>
 
     @GET(ApiEndpoints.SELF)
-    suspend fun getSelf(@Header(ApiEndpoints.TOKEN) token: String): Response<User>
+    suspend fun getSelf(@Header(ApiEndpoints.TOKEN) token: String): Response<UserResponse>
 
     @GET(ApiEndpoints.TRAVEL_PLAN)
     suspend fun getTravelPlan(@Header(ApiEndpoints.TOKEN) token: String): Response<TravelPlanResponse>
 
     @POST(ApiEndpoints.TRAVEL_PLAN)
     suspend fun createTravelPlan(
-        @Header(STRINGS.x_session_id.toString()) token: String ,
+        @Header(ApiEndpoints.TOKEN) token: String ,
         @Body travelPlan: TravelPlan
     ): Response<ApiResponse>
 

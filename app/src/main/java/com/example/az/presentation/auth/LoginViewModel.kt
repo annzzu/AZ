@@ -9,6 +9,7 @@ import com.example.az.extensions.emailValid
 import com.example.az.extensions.passwordValid
 import com.example.az.model.user.User
 import com.example.az.model.user.UserFormState
+import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -32,15 +33,6 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
 
     fun signup(user: User) = viewModelScope.launch {
         repository.signup(user)
-    }
-
-    private val _getSelf = MutableSharedFlow<Resource<User>>()
-    val getSelf: SharedFlow<Resource<User>> = _getSelf
-
-    fun getSelf(token: String) = viewModelScope.launch {
-        repository.getSelf(token).collectLatest { values ->
-            _getSelf.emit(values)
-        }
     }
 
     private val _userForm = MutableSharedFlow<UserFormState>()
