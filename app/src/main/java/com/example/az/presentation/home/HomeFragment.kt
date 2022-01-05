@@ -25,17 +25,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun listeners() {
         with(binding) {
-            cardAbout.setOnClickListener{
+            cardAbout.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToNavigationAbout()
                 )
             }
-            cardMyTravelPlan.setOnClickListener{
+            cardMyTravelPlan.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToNavigationRestrictions()
                 )
             }
-            cardRestrictions.setOnClickListener{
+            cardRestrictions.setOnClickListener {
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToNavigationRestrictionForm()
                 )
@@ -43,14 +43,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun setUser(){
+    private fun setUser() {
         viewLifecycleOwner.lifecycleScope.launch {
-            authPrefsManager.preferencesFlow.collectLatest { user->
+            authPrefsManager.preferencesFlow.collectLatest { user ->
                 with(binding) {
-                    if (user.email.isNullOrBlank()){
+                    if (user.email.isNullOrBlank()) {
                         tvHello.textSize = 30.0F
                         tvHello.text = getString(STRINGS.hello)
-                    }else{
+                    } else {
                         tvHello.textSize = 20.0F
                         tvHello.text = getString(STRINGS.hello_next_line).plus(user.email)
                     }

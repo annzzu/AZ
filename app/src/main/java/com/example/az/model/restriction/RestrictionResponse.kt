@@ -29,28 +29,28 @@ data class RestrictionResponse(
         )
 
         data class RIX(
-            val type: String?,
+            val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
             val restrictionsByVaccination: RestrictionsByVaccination ,
             val restrictionsByNationality: RestrictionsByNationality ,
         )
 
         data class TLL(
-            val type: String?,
+            val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
             val restrictionsByVaccination: RestrictionsByVaccination ,
             val restrictionsByNationality: RestrictionsByNationality ,
         )
 
         data class BER(
-            val type: String?,
+            val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
             val restrictionsByVaccination: RestrictionsByVaccination ,
             val restrictionsByNationality: RestrictionsByNationality ,
         )
 
         data class GVA(
-            val type: String?,
+            val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
             val restrictionsByVaccination: RestrictionsByVaccination ,
             val restrictionsByNationality: RestrictionsByNationality ,

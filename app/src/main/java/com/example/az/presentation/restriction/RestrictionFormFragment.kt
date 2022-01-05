@@ -6,7 +6,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class RestrictionFormFragment : BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
+class RestrictionFormFragment :
+    BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
     override fun init() {
     }
 }

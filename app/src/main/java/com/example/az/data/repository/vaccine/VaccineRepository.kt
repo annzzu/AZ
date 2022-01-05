@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface VaccineRepository {
 
-    suspend fun getVaccines() : Flow<Resource<VaccineResponse>>
+    suspend fun getVaccines(): Flow<Resource<VaccineResponse>>
 
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
 
-    suspend fun getSelf(token: String) : Flow<Resource<UserResponse>>
+    suspend fun getSelf(token: String): Flow<Resource<UserResponse>>
     suspend fun logout()
     suspend fun getUserInfo(): Flow<User>
     suspend fun getUserToken(): String

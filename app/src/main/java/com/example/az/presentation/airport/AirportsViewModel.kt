@@ -1,10 +1,9 @@
 package com.example.az.presentation.airport
 
 
-import android.util.Log
+import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.az.data.repository.airport.AirportRepository
 import com.example.az.data.repository.airport.AirportRepositoryImpl
 import com.example.az.model.airport.Airport
 import com.example.az.utils.Resource
@@ -23,14 +22,19 @@ class AirportsViewModel @Inject constructor(private val repository: AirportRepos
     val uiState: StateFlow<UiState<Airport>> = _uiState
 
     fun getAirportsResponse() = viewModelScope.launch {
-        repository.getAirports().collectLatest { value->
+        repository.getAirports().collectLatest { value ->
             when (value) {
                 is Resource.Success<*> -> {
-                    Log.d("coronavirus" , "${value.data}")
-                    _uiState.value =  value.data?.airports?.let { UiState(data = value.data.airports, isLoading = false) }!!
+                    d("coronavirus" , "${value.data}")
+                    _uiState.value = value.data?.airports?.let {
+                        UiState(
+                            data = value.data.airports ,
+                            isLoading = false
+                        )
+                    }!!
                 }
                 is Resource.Error<*> -> {
-                    _uiState.value = UiState(error = UiState.Error.API_ERROR, isLoading = false)
+                    _uiState.value = UiState(error = UiState.Error.API_ERROR , isLoading = false)
                 }
             }
         }

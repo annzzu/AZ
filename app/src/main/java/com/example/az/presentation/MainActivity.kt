@@ -74,11 +74,11 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     }
 
     private fun setFabForHome(token: String?) {
-        if (token.isNullOrBlank()){
-            d("testing AZ", "Dalogindi - $token")
+        if (token.isNullOrBlank()) {
+            d("testing AZ" , "Dalogindi - $token")
             setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
-        }else{
-            d("testing AZ", "arrrrrrrr - $token")
+        } else {
+            d("testing AZ" , "arrrrrrrr - $token")
             setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_userHome)
         }
     }

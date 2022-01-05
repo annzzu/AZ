@@ -27,7 +27,7 @@ class AuthRepositoryImpl @Inject constructor(
                 val token = result.data!!.token!!
                 withContext(IO) {
                     try {
-                        getSelf(token).collectLatest {getSelf->
+                        getSelf(token).collectLatest { getSelf ->
                             if (getSelf is Resource.Success) {
                                 saveUserDataStore(getSelf.data!!.user!!)
                                 saveAuthOnlyToken(token)

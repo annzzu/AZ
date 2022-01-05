@@ -54,6 +54,7 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
             _dataStore[AUTH_USER_NATIONALITY] = user.data?.nationality ?: ""
         }
     }
+
     suspend fun saveAuthOnlyToken(token: String?) {
         context.dataStore.edit { _dataStore ->
             _dataStore[AUTH_USER_TOKEN] = token ?: ""

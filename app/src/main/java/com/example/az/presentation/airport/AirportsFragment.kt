@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AirportsFragment  : BaseFragment<FragmentAirportsBinding>(FragmentAirportsBinding::inflate) {
+class AirportsFragment : BaseFragment<FragmentAirportsBinding>(FragmentAirportsBinding::inflate) {
     private lateinit var airportAdapter: AirportAdapter
     private val viewModel: AirportsViewModel by viewModels()
 
@@ -24,9 +24,11 @@ class AirportsFragment  : BaseFragment<FragmentAirportsBinding>(FragmentAirports
         initRV()
         observer()
     }
+
     private fun getResponse() {
         viewModel.getAirportsResponse()
     }
+
     private fun initRV() {
         binding.rvAirports.apply {
             airportAdapter = AirportAdapter()
@@ -35,6 +37,7 @@ class AirportsFragment  : BaseFragment<FragmentAirportsBinding>(FragmentAirports
                 LinearLayoutManager(view?.context , LinearLayoutManager.HORIZONTAL , false)
         }
     }
+
     private fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collectLatest { state ->
@@ -45,6 +48,7 @@ class AirportsFragment  : BaseFragment<FragmentAirportsBinding>(FragmentAirports
             }
         }
     }
+
     private fun getStatus(data: List<Airport>? , state: Boolean) {
         with(binding) {
             if (state) {

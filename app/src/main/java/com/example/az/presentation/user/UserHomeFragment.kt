@@ -22,29 +22,30 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         getUserTravelInfo()
     }
 
-    private fun listeners(){
-        with(binding){
-            btnLogout.setOnClickListener{
+    private fun listeners() {
+        with(binding) {
+            btnLogout.setOnClickListener {
                 logout()
             }
-            btnBack.setOnClickListener{
+            btnBack.setOnClickListener {
                 openHome()
             }
         }
     }
-    private fun setUserInfo(){
+
+    private fun setUserInfo() {
         viewLifecycleOwner.lifecycleScope.launch {
-            authPrefsManager.preferencesFlow.collectLatest { user->
+            authPrefsManager.preferencesFlow.collectLatest { user ->
                 with(binding) {
-                  tvEmail.text = user.email
-                  tvNationality.text = user.data?.nationality
-                  tvVaccine.text =  user.data?.vaccine
+                    tvEmail.text = user.email
+                    tvNationality.text = user.data?.nationality
+                    tvVaccine.text = user.data?.vaccine
                 }
             }
         }
     }
 
-    private fun logout(){
+    private fun logout() {
         viewLifecycleOwner.lifecycleScope.launch {
             binding.root.showSnackBar(getString(STRINGS.logout))
             authPrefsManager.logout()
@@ -56,7 +57,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         UserHomeFragmentDirections.actionNavigationUserHomeToNavigationHome()
     )
 
-    private fun getUserTravelInfo(){
+    private fun getUserTravelInfo() {
 
     }
 }

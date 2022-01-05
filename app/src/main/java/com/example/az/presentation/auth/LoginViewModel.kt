@@ -30,6 +30,7 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
             _login.emit(values)
         }
     }
+
     private val _signup = MutableSharedFlow<Resource<User>>()
     val signup: SharedFlow<Resource<User>> = _signup
 

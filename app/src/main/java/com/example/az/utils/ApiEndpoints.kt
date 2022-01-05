@@ -24,8 +24,5 @@ object ApiEndpoints {
     const val SELF = "v1_private/self"
 
 
-
-
-
     const val TOKEN = "x-session-id"
 }

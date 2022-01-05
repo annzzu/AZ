@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface RestrictionRepository {
 
-    suspend fun getRestriction(restrictionRequest: RestrictionRequest) : Flow<Resource<RestrictionResponse>>
+    suspend fun getRestriction(restrictionRequest: RestrictionRequest): Flow<Resource<RestrictionResponse>>
 
 }

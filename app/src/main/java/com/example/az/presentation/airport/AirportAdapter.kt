@@ -16,8 +16,8 @@ class AirportAdapter() : RecyclerView.Adapter<AirportAdapter.ViewHolder>() {
         ViewHolder(
 
             ItemAirportBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
+                LayoutInflater.from(parent.context) ,
+                parent ,
                 false
             )
         )

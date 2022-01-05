@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AirportRepository {
 
-    suspend fun getAirports() : Flow<Resource<AirportResponse>>
+    suspend fun getAirports(): Flow<Resource<AirportResponse>>
 
 }

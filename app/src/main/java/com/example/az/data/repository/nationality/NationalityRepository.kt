@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface NationalityRepository {
 
-    suspend fun getNationalities() : Flow<Resource<NationalityResponse>>
+    suspend fun getNationalities(): Flow<Resource<NationalityResponse>>
 
 }

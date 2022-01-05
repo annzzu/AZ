@@ -28,14 +28,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun listeners() {
         listenerETs()
         formValidation()
-        with(binding){
+        with(binding) {
 
             btnLogin.setOnClickListener {
                 root.hideKeyboard()
                 login()
             }
 
-            btnSignupTab.setOnClickListener{
+            btnSignupTab.setOnClickListener {
                 openSingup()
             }
         }

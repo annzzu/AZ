@@ -89,8 +89,8 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
                         email = etEmail.text.toString() ,
                         password = etPassword.text.toString() ,
                         data = User.Data(
-                            vaccine = etVaccine.text.toString(),
-                            nationality = etNationality.text.toString(),
+                            vaccine = etVaccine.text.toString() ,
+                            nationality = etNationality.text.toString() ,
                         )
                     )
                 )
