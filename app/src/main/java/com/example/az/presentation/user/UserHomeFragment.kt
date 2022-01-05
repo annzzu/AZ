@@ -4,6 +4,8 @@ package com.example.az.presentation.user
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentUserHomeBinding
+import com.example.az.extensions.STRINGS
+import com.example.az.extensions.showSnackBar
 import com.example.az.presentation.auth.fragment.LoginFragmentDirections
 import com.example.az.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,11 +42,11 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                 }
             }
         }
-        authPrefsManager.preferencesFlow
     }
 
     private fun logout(){
         viewLifecycleOwner.lifecycleScope.launch {
+            binding.root.showSnackBar(getString(STRINGS.logout))
             authPrefsManager.logout()
             openHome()
         }

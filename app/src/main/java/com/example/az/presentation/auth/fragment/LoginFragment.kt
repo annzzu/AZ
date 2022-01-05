@@ -1,6 +1,5 @@
 package com.example.az.presentation.auth.fragment
 
-import android.util.Log.d
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +33,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             btnLogin.setOnClickListener {
                 root.hideKeyboard()
                 login()
-                root.showSnackBar("logged")
             }
 
             btnSignupTab.setOnClickListener{
@@ -98,6 +96,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
+                        binding.root.showSnackBar(getString(STRINGS.successful_login))
                         openHome()
                     }
                 }

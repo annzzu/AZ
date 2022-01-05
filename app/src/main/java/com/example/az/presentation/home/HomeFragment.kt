@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.az.R
 import com.example.az.databinding.FragmentHomeBinding
+import com.example.az.extensions.STRINGS
 import com.example.az.presentation.auth.fragment.LoginFragmentDirections
 import com.example.az.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,8 +45,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun setUser(){
         viewLifecycleOwner.lifecycleScope.launch {
-            authPrefsManager.preferencesFlow.collectLatest {
-                d("testing AZ home", "$it")
+            authPrefsManager.preferencesFlow.collectLatest { user->
+                with(binding) {
+                    if (user.email.isNullOrBlank()){
+                        tvHello.textSize = 30.0F
+                        tvHello.text = getString(STRINGS.hello)
+                    }else{
+                        tvHello.textSize = 20.0F
+                        tvHello.text = getString(STRINGS.hello_next_line).plus(user.email)
+                    }
+
+
+                }
             }
         }
     }

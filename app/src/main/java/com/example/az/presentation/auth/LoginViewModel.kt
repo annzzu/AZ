@@ -30,9 +30,13 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
             _login.emit(values)
         }
     }
+    private val _signup = MutableSharedFlow<Resource<User>>()
+    val signup: SharedFlow<Resource<User>> = _signup
 
     fun signup(user: User) = viewModelScope.launch {
-        repository.signup(user)
+        repository.signup(user).collectLatest { values ->
+            _signup.emit(values)
+        }
     }
 
     private val _userForm = MutableSharedFlow<UserFormState>()

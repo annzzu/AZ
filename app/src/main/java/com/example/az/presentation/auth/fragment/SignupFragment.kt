@@ -6,6 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentSignupBinding
+import com.example.az.extensions.STRINGS
 import com.example.az.extensions.hideKeyboard
 import com.example.az.extensions.showSnackBar
 import com.example.az.model.user.User
@@ -29,13 +30,12 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
     private fun listeners() {
         listenerETs()
         formValidation()
-        with (binding) {
+        with(binding) {
             btnSignup.setOnClickListener {
                 root.hideKeyboard()
                 signup()
-                root.showSnackBar("signup")
             }
-            btnLoginTab.setOnClickListener{
+            btnLoginTab.setOnClickListener {
                 openLogin()
             }
         }
@@ -85,17 +85,28 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.signup(
-                    User(email = etEmail.text.toString() , password = etPassword.text.toString())
+                    User(
+                        email = etEmail.text.toString() ,
+                        password = etPassword.text.toString() ,
+                        data = User.Data(
+                            vaccine = etVaccine.text.toString(),
+                            nationality = etNationality.text.toString(),
+                        )
+                    )
                 )
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.login.collect {
+            viewModel.signup.collect {
                 when (it) {
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
-                    is Resource.Success -> openLogin()
+                    is Resource.Success -> {
+                        binding.root.hideKeyboard()
+                        binding.root.showSnackBar(getString(STRINGS.successful_sign_up))
+                        openLogin()
+                    }
                 }
             }
         }
