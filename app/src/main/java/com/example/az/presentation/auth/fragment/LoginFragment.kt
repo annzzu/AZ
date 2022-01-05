@@ -97,7 +97,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 when (it) {
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
-                    is Resource.Success -> openHome()
+                    is Resource.Success -> {
+                        openHome()
+                    }
                 }
             }
         }

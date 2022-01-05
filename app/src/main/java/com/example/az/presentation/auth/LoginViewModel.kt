@@ -28,10 +28,6 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
     suspend fun login(user: User) = viewModelScope.launch {
         repository.login(user).collectLatest { values ->
             _login.emit(values)
-            when (values) {
-                is Resource.Success -> "do dao save"
-                else -> "do not do dao save"
-            }
         }
     }
 
@@ -55,7 +51,7 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
         viewModelScope.launch {
             when {
                 !email.emailValid() && !password.passwordValid() -> {
-                    d("anuki viewmodel" , "email, password")
+                    d("testing AZ viewmodel" , "email, password")
                     _userForm.emit(
                         UserFormState(
                             emailError = STRINGS.email_error ,
@@ -64,11 +60,11 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
                     )
                 }
                 !email.emailValid() -> {
-                    d("anuki viewmodel" , "email, password - $password")
+                    d("testing AZ viewmodel" , "email, password - $password")
                     _userForm.emit(UserFormState(emailError = STRINGS.email_error))
                 }
                 !password.passwordValid() -> {
-                    d("anuki viewmodel" , "password")
+                    d("testing AZ viewmodel" , "password")
                     _userForm.emit(UserFormState(passwordError = STRINGS.password_error))
                 }
 
@@ -80,10 +76,10 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
 
 //            if (!email.emailValid() || email.isNotEmpty()) {
 //                if (!email.emailValid()) {
-//                    d("anuki viewmodel" , "email")
+//                    d("testing AZ viewmodel" , "email")
 //                    _userForm.emit(UserFormState(emailError = STRINGS.email_error))
 //                } else if (email.isNotEmpty()) {
-//                    d("anuki viewmodel" , "password")
+//                    d("testing AZ viewmodel" , "password")
 //                    _userForm.emit(UserFormState(passwordError = STRINGS.password_error))
 //
 //                } else {

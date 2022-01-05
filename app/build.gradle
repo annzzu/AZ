@@ -94,5 +94,10 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    // splash screen
     implementation "androidx.core:core-splashscreen:1.0.0-alpha02"
+
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
 }

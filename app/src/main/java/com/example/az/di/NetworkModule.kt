@@ -1,4 +1,4 @@
-package com.example.az.utils
+package com.example.az.di
 
 import com.example.az.BuildConfig
 import com.example.az.data.remote.ApiService

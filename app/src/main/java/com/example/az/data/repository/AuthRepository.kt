@@ -12,6 +12,6 @@ interface AuthRepository {
 
     suspend fun getSelf(token: String) : Flow<Resource<User>>
 
-    fun logout()
+    suspend fun logout()
 
 }
