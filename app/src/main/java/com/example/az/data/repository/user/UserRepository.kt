@@ -1,17 +1,15 @@
-package com.example.az.data.repository
+package com.example.az.data.repository.user
 
+import android.util.Log
 import com.example.az.model.user.User
 import com.example.az.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
-interface AuthRepository {
-
-    suspend fun login(user: User) : Flow<Resource<User>>
-
-    suspend fun signup(user: User) : Flow<Resource<User>>
+interface UserRepository {
 
     suspend fun getSelf(token: String) : Flow<Resource<User>>
-
     suspend fun logout()
+    suspend fun getUserInfo(): Flow<User>
+    suspend fun getUserToken(): String
 
 }

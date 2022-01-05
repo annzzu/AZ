@@ -2,9 +2,6 @@ package com.example.az.di
 
 import android.content.Context
 import com.example.az.data.local.AuthPrefsManager
-import com.example.az.data.remote.DataSource
-import com.example.az.data.repository.AuthRepository
-import com.example.az.data.repository.AuthRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

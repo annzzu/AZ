@@ -4,7 +4,8 @@ package com.example.az.presentation.airport
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.az.data.repository.AirportRepository
+import com.example.az.data.repository.airport.AirportRepository
+import com.example.az.data.repository.airport.AirportRepositoryImpl
 import com.example.az.model.airport.Airport
 import com.example.az.utils.Resource
 import com.example.az.presentation.UiState
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AirportsViewModel @Inject constructor(private val repository: AirportRepository) :
+class AirportsViewModel @Inject constructor(private val repository: AirportRepositoryImpl) :
     ViewModel() {
     private val _uiState: MutableStateFlow<UiState<Airport>> = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState<Airport>> = _uiState

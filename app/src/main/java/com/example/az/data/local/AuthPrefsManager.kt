@@ -30,7 +30,6 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
             }
         }
         .map {
-        // შესამოწმებელი თუ საინაფდება სხვანაირად
             User(
                 token = it[AUTH_USER_TOKEN] ?: "" ,
                 email = it[AUTH_USER_EMAIL] ?: "" ,
@@ -41,14 +40,14 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
             )
         }
 
-    suspend fun readAuthToken(): String? {
+    suspend fun readAuthToken(): String {
         val preferences = context.dataStore.data.first()
-        return preferences[AUTH_USER_TOKEN]
+        return preferences[AUTH_USER_TOKEN] ?: ""
     }
 
     suspend fun saveAuthToken(user: User) {
         context.dataStore.edit { _dataStore ->
-            _dataStore[AUTH_USER_TOKEN] = user.token!!
+            _dataStore[AUTH_USER_TOKEN] = user.token ?: ""
             _dataStore[AUTH_USER_EMAIL] = user.email ?: ""
             _dataStore[AUTH_USER_VACCINE] = user.data?.vaccine ?: ""
             _dataStore[AUTH_USER_NATIONALITY] = user.data?.vaccine ?: ""

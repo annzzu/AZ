@@ -34,4 +34,5 @@
     <string name="successful_login">Welcome!\nSuccessful Login </string>
     <string name="successful_sign_up">Signup successful</string>
     <string name="unsuccessful_sign_up">Unsuccessful Sign up</string>
+
 </resources>

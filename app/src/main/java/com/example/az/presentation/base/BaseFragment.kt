@@ -5,11 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
+import com.example.az.data.local.AuthPrefsManager
+import com.example.az.presentation.user.UserViewModel
+import javax.inject.Inject
 
 typealias  Inflate<T> = (LayoutInflater , ViewGroup , Boolean) -> T
 
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
+
+    @Inject
+    lateinit var authPrefsManager: AuthPrefsManager
 
     private var _binding: VB? = null
     val binding

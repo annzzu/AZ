@@ -3,8 +3,7 @@ package com.example.az.presentation.auth
 import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.az.data.repository.AuthRepository
-import com.example.az.data.repository.AuthRepositoryImpl
+import com.example.az.data.repository.auth.AuthRepositoryImpl
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.emailValid
 import com.example.az.extensions.passwordValid
@@ -72,20 +71,6 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
                     _userForm.emit(UserFormState(isDataValid = true))
                 }
             }
-
-
-//            if (!email.emailValid() || email.isNotEmpty()) {
-//                if (!email.emailValid()) {
-//                    d("testing AZ viewmodel" , "email")
-//                    _userForm.emit(UserFormState(emailError = STRINGS.email_error))
-//                } else if (email.isNotEmpty()) {
-//                    d("testing AZ viewmodel" , "password")
-//                    _userForm.emit(UserFormState(passwordError = STRINGS.password_error))
-//
-//                } else {
-//                    _userForm.emit(UserFormState(isDataValid = true))
-//                }
-//            }
         }
     }
 }

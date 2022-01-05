@@ -1,24 +1,21 @@
 package com.example.az.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.DRAWABLES
-import com.example.az.extensions.setImageUrl
+import com.example.az.presentation.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() , NavController.OnDestinationChangedListener {
+class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -52,7 +49,23 @@ class MainActivity : AppCompatActivity() , NavController.OnDestinationChangedLis
             R.id.navigation_signup -> {
                 setFabForAuth()
             }
-            else -> setFabForHome()
+            R.id.navigation_userHome -> {
+                setFabForAuth()
+            }
+            R.id.navigation_restrictions -> {
+                setFabForAuth()
+            }
+            R.id.navigation_restrictionForm -> {
+                setFabForAuth()
+            }
+            R.id.navigation_about -> {
+                setFabForAuth()
+            }
+            else -> {
+                lifecycleScope.launch {
+                    setFabForHome(authPrefsManager.readAuthToken())
+                }
+            }
         }
     }
 
@@ -60,12 +73,19 @@ class MainActivity : AppCompatActivity() , NavController.OnDestinationChangedLis
         setFabIconDestination(DRAWABLES.ic_covid_19 , R.id.navigation_home)
     }
 
-    private fun setFabForHome() {
-        setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
+    private fun setFabForHome(token: String?) {
+        d("testing AZ Fab Testing", "token is $token - ${token?.length}")
+        if (token.isNullOrBlank()){
+            setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
+        }else{
+            setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_userHome)
+        }
     }
 
     private fun setFabIconDestination(icon: Int , navigation: Int) {
         binding.fab.apply {
+            setShowMotionSpecResource(R.animator.fab_show)
+            setHideMotionSpecResource(R.animator.fab_hide)
             setImageResource(icon)
             setOnClickListener {
                 findNavController(R.id.navHostFragment).navigate(navigation)

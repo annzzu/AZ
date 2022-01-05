@@ -11,12 +11,22 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_airportsFragment"
-            app:destination="@id/navigation_airports" />
-        <action
             android:id="@+id/action_navigation_home_to_navigation_login"
             app:destination="@id/navigation_login" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_restrictions"
+            app:destination="@id/navigation_restrictions" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_restriction"
+            app:destination="@id/navigation_restriction" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_about"
+            app:destination="@id/navigation_about" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_restrictionForm"
+            app:destination="@id/navigation_restrictionForm" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_login"
         android:name="com.example.az.presentation.auth.fragment.LoginFragment"
@@ -34,7 +44,7 @@
         android:id="@+id/navigation_signup"
         android:name="com.example.az.presentation.auth.fragment.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_navigation_signup_to_navigation_login"
             app:destination="@id/navigation_login" />
@@ -46,11 +56,34 @@
         android:label="fragment_airports"
         tools:layout="@layout/fragment_airports" />
 
+
     <fragment
-        android:id="@+id/navigation_restrictions"
-        android:name="com.example.az.RestrictionFormFragment"
+        android:id="@+id/navigation_userHome"
+        android:name="com.example.az.presentation.user.UserHomeFragment"
+        android:label="fragment_user_home"
+        tools:layout="@layout/fragment_user_home" />
+
+    <fragment
+        android:id="@+id/navigation_restriction"
+        android:name="com.example.az.presentation.restriction.RestrictionFragment"
+        android:label="fragment_restriction"
+        tools:layout="@layout/fragment_restriction" />
+
+    <fragment
+        android:id="@+id/navigation_restrictionForm"
+        android:name="com.example.az.presentation.restriction.RestrictionFormFragment"
         android:label="fragment_restriction_form"
         tools:layout="@layout/fragment_restriction_form" />
 
+    <fragment
+        android:id="@+id/navigation_restrictions"
+        android:name="com.example.az.presentation.restriction.RestrictionsFragment"
+        android:label="fragment_restrictions"
+        tools:layout="@layout/fragment_restrictions" />
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.example.az.presentation.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 
 </navigation>
