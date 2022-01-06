@@ -42,14 +42,14 @@ interface ApiService {
     suspend fun createTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Body travelPlan: TravelPlan
-    ): Response<ApiResponse>
+    ): Response<TravelPlan>
 
     @PUT(ApiEndpoints.TRAVEL_PLAN)
     suspend fun updateTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Path("id") id: String ,
         @Body travelPlan: TravelPlan
-    ): Response<ApiResponse>
+    ): Response<TravelPlan>
 
     @DELETE(ApiEndpoints.TRAVEL_PLAN)
     suspend fun deleteTravelPlan(
