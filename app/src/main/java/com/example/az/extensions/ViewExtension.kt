@@ -1,12 +1,18 @@
 package com.example.az.extensions
 
 import android.content.Context
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.example.az.R
 import com.google.android.material.snackbar.Snackbar
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 
 fun View.showSnackBar(title: String) =
@@ -20,6 +26,25 @@ fun View.hideKeyboard() {
 fun View.gone() = View.GONE.also { visibility = it }
 
 fun View.visible() = View.VISIBLE.also { visibility = it }
+
+fun String.getTime(boolean: Boolean) =
+    if (boolean){
+        this.substringBefore('T')
+    }else{
+        this.substringAfter('T')
+    }
+
+fun String.getTimeNextLine() =
+        this.replace("-","\n")
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun String.getDuration(): Long {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    val modelDate = LocalDate.parse(this.getTime(true) , formatter)
+    val now = LocalDate.now(ZoneId.of("+4"))
+    return ChronoUnit.DAYS.between(now , modelDate)
+}
+
 
 fun ImageView.setImageUrl(url: String?) {
     if (!url.isNullOrEmpty())

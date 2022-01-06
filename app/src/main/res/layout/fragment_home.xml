@@ -10,7 +10,7 @@
         android:id="@+id/tvHello"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rounded_shapes_gr"
+        android:background="@drawable/rounded_shapes_gr_bottom"
         android:fontFamily="@font/comfortaa_regular"
         android:padding="30dp"
         android:text="@string/hello"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        android:tint="@color/green_d"
+        android:tint="@color/green_n_l_light"
         app:layout_constraintBottom_toBottomOf="@+id/tvHello"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -161,7 +161,7 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_marginStart="18dp"
-        android:backgroundTint="@color/green_l"
+        android:backgroundTint="@color/green_n_d"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +188,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_info"
-                app:tint="@color/green_d" />
+                app:tint="@color/green_n_d" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAbout"
