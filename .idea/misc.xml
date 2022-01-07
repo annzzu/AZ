@@ -7,6 +7,7 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.2125" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/drawable-v24/rounded_shapes_gr.xml" value="0.37135416666666665" />
+        <entry key="app/src/main/res/drawable-v24/rounded_shapes_light_all.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/gradiend_background.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/gradiend_background_green.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.2125" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/drawable/rounded_shapes.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/rounded_shapes_gr_bottom.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/rounded_shapes_green_light.xml" value="0.2140625" />
+        <entry key="app/src/main/res/drawable/rounded_shapes_light.xml" value="0.2140625" />
         <entry key="app/src/main/res/drawable/splash_animated.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.21354166666666666" />

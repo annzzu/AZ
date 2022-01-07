@@ -1,6 +1,8 @@
 package com.example.az.presentation.user
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,6 +15,7 @@ import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 import com.example.az.utils.Resource
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -25,6 +28,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
     private lateinit var travelPlanAdapter: TravelPlanAdapter
     private val userViewModel: UserViewModel by activityViewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun init() {
         listeners()
         setUserInfo()
@@ -84,6 +88,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         UserHomeFragmentDirections.actionNavigationUserHomeToNavigationHome()
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getUserTravelPlans() {
         binding.rvTravelPlan.apply {
             travelPlanAdapter = TravelPlanAdapter()
@@ -96,7 +101,12 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun openTravelPlan(travelPlan: TravelPlan) {
+        val frag = TravelPlanBottomSheetFragment()
 
+//        sortRecipesBottomSheet.tag
+        frag.show(childFragmentManager , "AndroidCenter")
+        frag.bottomSheetFragment(travelPlan)
     }
 }

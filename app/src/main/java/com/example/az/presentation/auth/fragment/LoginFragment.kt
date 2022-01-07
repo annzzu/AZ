@@ -1,5 +1,6 @@
 package com.example.az.presentation.auth.fragment
 
+import android.util.Log.d
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -94,7 +95,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             viewModel.login.collect {
                 when (it) {
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
-                    is Resource.Loading -> TODO()
+                    is Resource.Loading -> {
+                        d("testing AZ", "Loading")
+                        TODO()
+                    }
                     is Resource.Success -> {
                         binding.root.showSnackBar(getString(STRINGS.successful_login))
                         openHome()

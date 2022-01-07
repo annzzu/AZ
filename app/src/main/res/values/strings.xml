@@ -19,6 +19,7 @@
     <string name="hello_next_line">Hello !\n</string>
     <string name="welcome_text">Due to the on-going COVID situation countries have implemented travel restrictions. AZ helps you to understand which regulations are affecting your travel plans.</string>
     <string name="search_restrictions">Search Restrictions</string>
+    <string name="search_restrictions_next_line">Search\nRestrictions</string>
     <string name="restrictions">Restrictions</string>
     <string name="restrictions_text">Search Restrictions With Airports And Preferred Destinations</string>
     <string name="aboutAZ">About\nAZ</string>
@@ -40,5 +41,8 @@
     <string name="my_travel_plans">My Travel Plans</string>
     <string name="up_to_date">Up to date</string>
     <string name="days_left"> Days Left!</string>
+    <string name="transfer">Transfer</string>
+    <string name="click_to_choose">Click to Choose</string>
+    <string name="search">SEARCH</string>
 
 </resources>
