@@ -36,209 +36,138 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvSource"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:src="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/red_l_l"
-        app:layout_constraintHeight_percent=".25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRestrictionForm"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintWidth_percent=".35">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvSource"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaa_regular"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:textColor="@color/red_d"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/source" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvSourceName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaa_regular"
-                android:lines="4"
-                android:textAlignment="center"
-                android:textColor="@color/red_d"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSource"
-                tools:text="@string/click_to_choose" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivPlanetTwo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:tint="@color/green_n_d"
-        app:layout_constraintBottom_toBottomOf="@+id/cvSource"
-        app:layout_constraintEnd_toStartOf="@+id/cvDestination"
-        app:layout_constraintStart_toEndOf="@+id/cvSource"
-        app:layout_constraintTop_toBottomOf="@+id/tvRestrictionForm"
-        app:layout_constraintWidth_percent=".15"
-        app:srcCompat="@drawable/ic_plane" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvDestination"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:src="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/red_l"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".25"
-        app:layout_constraintTop_toBottomOf="@+id/tvRestrictionForm"
-        app:layout_constraintWidth_percent=".35">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            tools:ignore="UnusedAttribute">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvDestination"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaa_regular"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/destination" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvDestinationName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/comfortaa_regular"
-                android:lines="4"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/click_to_choose" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvTransfer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:src="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/red_l"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvSource"
-        app:layout_constraintWidth_percent=".7">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            tools:ignore="UnusedAttribute">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvTransfer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaa_regular"
-                android:padding="8dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/transfer" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvTransferName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/comfortaa_regular"
-                android:lines="4"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/click_to_choose" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!--    <androidx.appcompat.widget.AppCompatTextView-->
-    <!--        android:id="@+id/btnSearch"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginTop="56dp"-->
-    <!--        android:background="@drawable/rounded_shapes_light"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHeight_percent=".1"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/cvTransfer"-->
-    <!--        app:layout_constraintWidth_percent=".4"-->
-    <!--        android:textColor="@color/green_n_d"-->
-    <!--        android:text="@string/search"-->
-    <!--        android:textAlignment="center"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:fontFamily="@font/comfortaa_regular"/>-->
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSearch"
-        android:layout_width="0dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSource"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_shapes_light_all"
-        android:fontFamily="@font/comfortaa_regular"
-        android:text="@string/search"
-        android:textColor="@color/green_n_d"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/red_d"
+        android:contentDescription="@string/app_name"
+        android:foregroundTint="@color/white"
+        android:text="@string/from"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/red_d"
+        app:layout_constraintBottom_toBottomOf="@+id/cardSource"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardSource"
+        app:layout_constraintTop_toTopOf="@+id/cardSource"
+        app:layout_constraintWidth_percent=".3" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDestination"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/red_d"
+        android:backgroundTint="@color/red_l"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".1"
+        app:layout_constraintTop_toBottomOf="@+id/cardSource"
+        app:layout_constraintWidth_percent=".65">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDestination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:padding="10dp"
+            android:text="@string/to_text"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:lines="2"
+            android:textStyle="bold" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/red_d"
+        android:contentDescription="@string/app_name"
+        android:foregroundTint="@color/white"
+        android:text="@string/to"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/red_d"
+        app:layout_constraintBottom_toBottomOf="@+id/cardDestination"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardDestination"
+        app:layout_constraintWidth_percent=".3" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSource"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@color/red_d"
+        android:backgroundTint="@color/red_l"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent=".1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRestrictionForm"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintWidth_percent=".65">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSource"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:padding="10dp"
+            android:lines="2"
+            android:text="@string/source_text"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTransfer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="50dp"
+        android:background="@color/red_d"
+        android:backgroundTint="@color/red_l"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardDestination"
+        app:layout_constraintWidth_percent=".65">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTransfer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:padding="10dp"
+            android:text="@string/transfer_text"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:lines="2"
+            android:textStyle="bold" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAirportSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red_d"
+        android:contentDescription="@string/app_name"
+        android:foregroundTint="@color/white"
+        app:backgroundTint="@color/red_d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvTransfer"
-        app:layout_constraintVertical_bias=".6"
-        app:layout_constraintWidth_percent=".8" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_plane"
+        app:layout_constraintVertical_bias=".875"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

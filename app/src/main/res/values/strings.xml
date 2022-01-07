@@ -44,5 +44,10 @@
     <string name="transfer">Transfer</string>
     <string name="click_to_choose">Click to Choose</string>
     <string name="search">SEARCH</string>
+    <string name="from">from</string>
+    <string name="to">to</string>
+    <string name="source_text">From\nSwitzerland/Geneva</string>
+    <string name="to_text">To\nGermany/Berlin</string>
+    <string name="transfer_text">Transfer\nGeorgia/Tbilisi</string>
 
 </resources>
