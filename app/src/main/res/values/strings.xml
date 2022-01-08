@@ -46,8 +46,13 @@
     <string name="search">SEARCH</string>
     <string name="from">from</string>
     <string name="to">to</string>
-    <string name="source_text">From\nSwitzerland/Geneva</string>
-    <string name="to_text">To\nGermany/Berlin</string>
-    <string name="transfer_text">Transfer\nGeorgia/Tbilisi</string>
+    <string name="source_text">Switzerland\nGeneva</string>
+    <string name="to_text">Germany\nBerlin</string>
+    <string name="transfer_text">Georgia\nTbilisi</string>
+    <string name="airports">Airports</string>
+    <string name="ber_text">BER</string>
+    <string name="gva_text">GVA</string>
+    <string name="see_more">See More</string>
+    <string name="indicate_first">Indicate Source And Destination First!</string>
 
 </resources>

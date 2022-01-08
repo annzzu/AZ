@@ -36,123 +36,144 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSource"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:backgroundTint="@color/red_d"
-        android:contentDescription="@string/app_name"
-        android:foregroundTint="@color/white"
-        android:text="@string/from"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/red_d"
-        app:layout_constraintBottom_toBottomOf="@+id/cardSource"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardSource"
-        app:layout_constraintTop_toTopOf="@+id/cardSource"
-        app:layout_constraintWidth_percent=".3" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardDestination"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/red_d"
-        android:backgroundTint="@color/red_l"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".1"
-        app:layout_constraintTop_toBottomOf="@+id/cardSource"
-        app:layout_constraintWidth_percent=".65">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDestination"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/comfortaa_regular"
-            android:padding="10dp"
-            android:text="@string/to_text"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:lines="2"
-            android:textStyle="bold" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:backgroundTint="@color/red_d"
-        android:contentDescription="@string/app_name"
-        android:foregroundTint="@color/white"
-        android:text="@string/to"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/red_d"
-        app:layout_constraintBottom_toBottomOf="@+id/cardDestination"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardDestination"
-        app:layout_constraintWidth_percent=".3" />
-
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardSource"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:background="@color/red_d"
-        android:backgroundTint="@color/red_l"
-        app:cardCornerRadius="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shapes_green_d_r"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRestrictionForm"
         app:layout_constraintVertical_bias=".1"
-        app:layout_constraintWidth_percent=".65">
+        app:layout_constraintWidth_percent=".80">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSource"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/comfortaa_regular"
-            android:padding="10dp"
             android:lines="2"
+            android:textAlignment="center"
+            android:padding="10dp"
             android:text="@string/source_text"
-            android:textColor="@color/white"
+            android:textColor="@color/green_n_d"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".6" />
 
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_n_d"
+            android:contentDescription="@string/app_name"
+            android:foregroundTint="@color/white"
+            android:text="@string/from"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/red_d"
+            app:icon="@drawable/ic_plane"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvSource"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardDestination"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shapes_green_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".1"
+        app:layout_constraintTop_toBottomOf="@+id/cardSource"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintWidth_percent=".80">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDestination"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:lines="2"
+            android:padding="10dp"
+            android:text="@string/to_text"
+            android:textColor="@color/green_n_d"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".6" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_n_d"
+            android:contentDescription="@string/app_name"
+            android:foregroundTint="@color/white"
+            android:text="@string/to"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/red_d"
+            app:icon="@drawable/ic_plane"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvDestination"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardTransfer"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="50dp"
-        android:background="@color/red_d"
-        android:backgroundTint="@color/red_l"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shapes_green_d_r"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardDestination"
-        app:layout_constraintWidth_percent=".65">
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintWidth_percent=".90">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTransfer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/comfortaa_regular"
+            android:lines="2"
+            android:textAlignment="center"
             android:padding="10dp"
             android:text="@string/transfer_text"
-            android:textColor="@color/white"
+            android:textColor="@color/green_n_d"
             android:textSize="18sp"
-            android:lines="2"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".55" />
 
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_n_d"
+            android:contentDescription="@string/app_name"
+            android:foregroundTint="@color/white"
+            android:text="@string/transfer"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/red_d"
+            app:icon="@drawable/ic_plane"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTransfer"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAirportSearch"
@@ -166,8 +187,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plane"
         app:layout_constraintVertical_bias=".875"
+        app:srcCompat="@drawable/ic_plane"
         app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

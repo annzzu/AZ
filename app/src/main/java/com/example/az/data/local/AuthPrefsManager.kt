@@ -8,12 +8,14 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.viewModelScope
+import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.user.User
+import com.example.az.model.vaccine.VaccineResponse
+import com.example.az.utils.Resource
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
 
@@ -44,6 +46,16 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
     suspend fun readAuthToken(): String {
         val preferences = context.dataStore.data.first()
         return preferences[AUTH_USER_TOKEN] ?: ""
+    }
+    
+    suspend fun readNationality(): String {
+        val preferences = context.dataStore.data.first()
+        return preferences[AUTH_USER_NATIONALITY] ?: ""
+    }
+
+    suspend fun readVaccine(): String {
+        val preferences = context.dataStore.data.first()
+        return preferences[AUTH_USER_VACCINE] ?: ""
     }
 
     suspend fun saveAuthToken(user: User) {

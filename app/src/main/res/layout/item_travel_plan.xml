@@ -118,6 +118,7 @@
                 app:layout_constraintWidth_percent=".6"
                 app:trackColor="@color/green_l_l" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView

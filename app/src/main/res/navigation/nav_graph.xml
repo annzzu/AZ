@@ -17,14 +17,14 @@
             android:id="@+id/action_navigation_home_to_navigation_restrictions"
             app:destination="@id/navigation_restrictions" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_restriction"
-            app:destination="@id/navigation_restriction" />
-        <action
             android:id="@+id/action_navigation_home_to_navigation_about"
             app:destination="@id/navigation_about" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_restrictionForm"
             app:destination="@id/navigation_restrictionForm" />
+        <action
+            android:id="@+id/action_navigation_home_to_travelPlanEditFragment"
+            app:destination="@id/navigation_travelPlanEdit" />
     </fragment>
 
     <fragment
@@ -56,29 +56,41 @@
         android:label="fragment_airports"
         tools:layout="@layout/fragment_airports" />
 
-
     <fragment
         android:id="@+id/navigation_restriction"
         android:name="com.example.az.presentation.restriction.RestrictionFragment"
         android:label="fragment_restriction"
-        tools:layout="@layout/fragment_restriction" />
+        tools:layout="@layout/fragment_restriction" >
+        <action
+            android:id="@+id/action_navigation_restriction_to_navigation_restrictionForm"
+            app:destination="@id/navigation_restrictionForm" />
+        <argument
+            android:name="restrictionRequest"
+            app:argType="com.example.az.model.restriction.RestrictionRequest" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_restrictionForm"
         android:name="com.example.az.presentation.restriction.RestrictionFormFragment"
         android:label="fragment_restriction_form"
-        tools:layout="@layout/fragment_restriction_form" />
+        tools:layout="@layout/fragment_restriction_form" >
+        <action
+            android:id="@+id/action_navigation_restrictionForm_to_navigation_restriction"
+            app:destination="@id/navigation_restriction" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_restrictions"
         android:name="com.example.az.presentation.restriction.RestrictionsFragment"
         android:label="fragment_restrictions"
         tools:layout="@layout/fragment_restrictions" />
+
     <fragment
         android:id="@+id/navigation_about"
         android:name="com.example.az.presentation.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+
     <fragment
         android:id="@+id/navigation_userHome"
         android:name="com.example.az.presentation.user.UserHomeFragment"
@@ -88,6 +100,33 @@
             android:id="@+id/action_navigation_userHome_to_navigation_home"
             app:destination="@id/navigation_home"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_userHome_to_travelPlanFragment"
+            app:destination="@id/navigation_travelPlan"
+            app:enterAnim="@animator/nav_default_pop_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_travelPlan"
+        android:name="com.example.az.presentation.user.travel_plans.TravelPlanFragment"
+        android:label="fragment_travel_plan"
+        tools:layout="@layout/fragment_travel_plan" >
+        <action
+            android:id="@+id/action_travelPlanFragment_to_travelPlanEditFragment"
+            app:destination="@id/navigation_travelPlanEdit" />
+        <argument
+            android:name="travelPlan"
+            app:argType="com.example.az.model.travel_plan.TravelPlan" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_travelPlanEdit"
+        android:name="com.example.az.presentation.user.travel_plans.TravelPlanEditFragment"
+        android:label="fragment_travel_plan_edit"
+        tools:layout="@layout/fragment_travel_plan_edit" >
+        <action
+            android:id="@+id/action_travelPlanEditFragment_to_navigation_userHome"
+            app:destination="@id/navigation_userHome" />
     </fragment>
 
 </navigation>

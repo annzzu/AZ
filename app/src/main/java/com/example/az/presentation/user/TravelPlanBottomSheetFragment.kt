@@ -2,10 +2,14 @@ package com.example.az.presentation.user
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.az.R
 import com.example.az.databinding.ItemTravelPlanBinding
 //import com.example.az.databinding.ItemTravelPlanBinding
@@ -15,59 +19,30 @@ import com.example.az.extensions.getTimeNextLine
 import com.example.az.extensions.gone
 import com.example.az.model.travel_plan.TravelPlan
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
+
+typealias ClickSeeMore = (model: TravelPlan) -> Unit
 
 class TravelPlanBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private var _binding: ItemTravelPlanBinding? = null
-    private val binding: ItemTravelPlanBinding get() = _binding!!
+    var clickSeeMore: ClickSeeMore? = null
 
-    //    private var binding: ItemTravelPlanBinding
-//        binding = ItemTravelPlanBinding.inflate(inflater , container , false)
-//        return binding.root
     override fun onCreateView(
         inflater: LayoutInflater ,
         container: ViewGroup? ,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ItemTravelPlanBinding.inflate(inflater , container , false)
-        return binding.root
-//        return
-        //        inflater.inflate(R.layout.item_travel_plan , container , false)
+        return inflater.inflate(R.layout.bottom_sheet_travel_plan, container, false)
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun bottomSheetFragment(model: TravelPlan) {
-        binding.tvSource.text = "Ana"
-//        with(binding) {
-//            tvSource.text = model.source
-//            tvDestination.text = model.destination
-//            if (!model.date.isNullOrBlank()) {
-//                tvDate.text = model.date.getTime(true).getTimeNextLine()
-//                tvDateTime.text = model.date.getTime(false)
-//                val days = model.date.getDuration().toInt()
-//                if (days <= 0){
-//                    pbDateLeft.progress = 100
-//                }else{
-//                    pbDateLeft.progress = 100 / days
-//                    pbDateLeft.max = days + 1
-//                    tvDaysLeft.text = "$days Days Left"
-//                }
-//            }else{
-//                pbDateLeft.progress = 100
-//                pbDateLeft.gone()
-//                tvDaysLeft.gone()
-//            }
-//            cvTravelPlan.setOnClickListener {
-//                clickTravelPlan?.invoke(model)
-//            }
+    fun bottomSheetFragment(model: TravelPlan){
+        d("testing AZ", "daawira tavidan $model")
+        view?.findViewById<AppCompatTextView>(R.id.tvFromBottomSheet)?.text = model.source
+        view?.findViewById<AppCompatTextView>(R.id.tvToBottomSheet)?.text = model.destination
+        view?.findViewById<AppCompatTextView>(R.id.btnSeeMoreBottomSheet)?.setOnClickListener{
+            clickSeeMore?.invoke(model)
+        }
     }
-
-
-//        private lateinit var binding: ItemTravelPlanBinding
-//        binding = ItemTravelPlanBinding.inflate(inflater , container , false)
-//        return binding.root
-
 
 }

@@ -7,6 +7,8 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.2125" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/drawable-v24/rounded_shapes_gr.xml" value="0.37135416666666665" />
+        <entry key="app/src/main/res/drawable-v24/rounded_shapes_green_d.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable-v24/rounded_shapes_green_d_r.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable-v24/rounded_shapes_light_all.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/gradiend_background.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/gradiend_background_green.xml" value="0.37135416666666665" />
@@ -34,6 +36,8 @@
         <entry key="app/src/main/res/drawable/splash_screen_transition.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/vie_bg.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/bottom_sheet_travel_plan.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/btn_sheet_travel_plan.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_airports.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19739583333333333" />

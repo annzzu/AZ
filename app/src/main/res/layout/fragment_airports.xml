@@ -4,19 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/lAirport"
     tools:context=".presentation.airport.AirportsFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvStatus"
+        android:id="@+id/hAirports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shapes_gr_bottom"
+        android:fontFamily="@font/comfortaa_regular"
+        android:padding="25sp"
+        android:text="@string/airports"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAirports"
@@ -26,7 +31,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".ui.airport.AirportsFragment"/>
+        app:layout_constraintTop_toBottomOf="@+id/hAirports"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

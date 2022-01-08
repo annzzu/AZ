@@ -50,15 +50,15 @@ class AirportsFragment : BaseFragment<FragmentAirportsBinding>(FragmentAirportsB
     }
 
     private fun getStatus(data: List<Airport>? , state: Boolean) {
-        with(binding) {
-            if (state) {
-                tvStatus.gone()
-                airportAdapter.setData(data!!)
-            } else {
-                tvStatus.visible()
-                tvStatus.text = getString(STRINGS.notifications_is_empty)
-            }
-        }
+//        with(binding) {
+//            if (state) {
+//                tvStatus.gone()
+//                airportAdapter.setData(data!!)
+//            } else {
+//                tvStatus.visible()
+//                tvStatus.text = getString(STRINGS.notifications_is_empty)
+//            }
+//        }
 
     }
 

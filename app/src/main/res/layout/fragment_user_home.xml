@@ -149,4 +149,5 @@
         app:lottie_scale="0.2"
         app:lottie_speed="3"
         app:tint="@color/white" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

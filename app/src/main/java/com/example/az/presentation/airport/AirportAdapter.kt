@@ -14,7 +14,6 @@ class AirportAdapter() : RecyclerView.Adapter<AirportAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int) =
         ViewHolder(
-
             ItemAirportBinding.inflate(
                 LayoutInflater.from(parent.context) ,
                 parent ,
@@ -31,9 +30,7 @@ class AirportAdapter() : RecyclerView.Adapter<AirportAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemAirportBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(model: Airport) {
-            binding.tvCity.text = model.city
-            binding.tvCountry.text = model.country
-            binding.tvCode.text = model.code
+            binding.tvAirport.text = "${model.country}\n${model.city}\n${model.code}"
             binding.root.setOnClickListener {
                 clickAirportCallBack?.invoke(model.code!!)
             }

@@ -2,11 +2,15 @@ package com.example.az.presentation.user
 
 
 import android.os.Build
+import android.util.Log.d
+import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.az.R
 import com.example.az.databinding.FragmentUserHomeBinding
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.getName
@@ -15,6 +19,7 @@ import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 import com.example.az.utils.Resource
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -84,9 +89,6 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         }
     }
 
-    private fun openHome() = findNavController().navigate(
-        UserHomeFragmentDirections.actionNavigationUserHomeToNavigationHome()
-    )
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getUserTravelPlans() {
@@ -97,16 +99,28 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                 LinearLayoutManager(view?.context , LinearLayoutManager.VERTICAL , false)
         }
         travelPlanAdapter.clickTravelPlan = {
-            openTravelPlan(it)
+            openTravelPlanDetails(it)
+//            for dialog
+//            openTravelPlan(it)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun openTravelPlan(travelPlan: TravelPlan) {
-        val frag = TravelPlanBottomSheetFragment()
-
-//        sortRecipesBottomSheet.tag
-        frag.show(childFragmentManager , "AndroidCenter")
-        frag.bottomSheetFragment(travelPlan)
+        //        for dialog
+        val dialog = TravelPlanBottomSheetFragment()
+        dialog.bottomSheetFragment(travelPlan)
+        dialog.show(childFragmentManager , "AndroidCenter")
+        dialog.clickSeeMore = {
+            d("testing AZ" , "daaWira ashkarad \n $travelPlan")
+            openTravelPlanDetails(it)
+        }
     }
+
+    private fun openHome() = findNavController().navigate(
+        UserHomeFragmentDirections.actionNavigationUserHomeToNavigationHome()
+    )
+
+    private fun openTravelPlanDetails(travelPlan: TravelPlan) = findNavController().navigate(
+        UserHomeFragmentDirections.actionNavigationUserHomeToTravelPlanFragment(travelPlan)
+    )
 }
