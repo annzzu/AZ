@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.ListAdapter
 import com.example.az.databinding.ItemRestrictionBinding
+import com.example.az.model.restriction.RestrictionKotlin
 
 typealias ClickRestriction = (click: Boolean) -> Unit
 

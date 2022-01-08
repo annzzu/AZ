@@ -11,50 +11,22 @@ data class RestrictionResponse(
     // its strange to have model like this, ask backend
     data class Restrictions(
         @Json(name = "TBS")
-        val tbs: TBS? ,
+        var tbs: RestrictionKotlin? ,
         @Json(name = "RIX")
-        val rix: RIX? ,
+        var rix: RestrictionKotlin? ,
         @Json(name = "TLL")
-        val tll: TLL? ,
+        var tll: RestrictionKotlin? ,
         @Json(name = "BER")
-        val ber: BER? ,
+        var ber: RestrictionKotlin? ,
         @Json(name = "GVA")
-        val gva: GVA?
-    ) {
-        data class TBS(
-            val type: String? ,
-            val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination? ,
-            val restrictionsByNationality: List<RestrictionsByNationality>? ,
-        )
-
-        data class RIX(
-            val type: String? ,
-            val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination? ,
-            val restrictionsByNationality: List<RestrictionsByNationality>? ,
-        )
-
-        data class TLL(
-            val type: String? ,
-            val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination? ,
-            val restrictionsByNationality: List<RestrictionsByNationality>? ,
-        )
-
-        data class BER(
-            val type: String? ,
-            val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination? ,
-            val restrictionsByNationality: List<RestrictionsByNationality>? ,
-        )
-
-        data class GVA(
-            val type: String? ,
-            val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination? ,
-            val restrictionsByNationality: List<RestrictionsByNationality>? ,
-
-        )
-    }
+        var gva: RestrictionKotlin?
+    )
 }
+
+data class RestrictionKotlin(
+    var code: String? ,
+    val type: String? ,
+    val generalRestrictions: GeneralRestrictions? ,
+    val restrictionsByVaccination: RestrictionsByVaccination? ,
+    val restrictionsByNationality: List<RestrictionsByNationality>? ,
+)

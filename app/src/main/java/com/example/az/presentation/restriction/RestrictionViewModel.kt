@@ -1,6 +1,7 @@
 package com.example.az.presentation.restriction
 
 import android.util.Log
+import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.restriction.RestrictionRepositoryImpl
@@ -13,7 +14,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
+
 
 @HiltViewModel
 class RestrictionViewModel @Inject constructor(private val repository: RestrictionRepositoryImpl) :
@@ -27,70 +30,60 @@ class RestrictionViewModel @Inject constructor(private val repository: Restricti
 
     suspend fun getRestriction(restrictionRequest: RestrictionRequest) = viewModelScope.launch {
         repository.getRestriction(restrictionRequest).collectLatest { values ->
-            values.data?.restrictions?.let { _restrictionList.emit(convertData(it)) }
+//            values.data?.restrictions?.let { _restrictionList.emit(convertData(it)) }
+
+            values.data?.restrictions?.apply {
+                convertData(this)
+            }
+            values.data?.restrictions?.let { _restrictionList.emit(getData(it)) }
             _restriction.emit(values)
         }
     }
 }
 
 
-data class RestrictionKotlin(
-    val code: String? ,
-    val type: String? ,
-    val generalRestrictions: GeneralRestrictions? ,
-    val restrictionsByVaccination: RestrictionsByVaccination? ,
-    val restrictionsByNationality: List<RestrictionsByNationality>? ,
-)
-
 interface ConvertToRestrictionKotlin {
 
-    fun convertData(it: RestrictionResponse.Restrictions): List<RestrictionKotlin> {
+    fun convertData(it: RestrictionResponse.Restrictions) {
+        it.tbs?.apply {
+            convert("TBS" , it.tbs!!)
+        }
+        it.gva?.apply {
+            convert("GVA" , it.gva!!)
+        }
+        it.ber?.apply {
+            convert("BER" , it.ber!!)
+        }
+        it.tll?.apply {
+            convert("TLL" , it.tll!!)
+        }
+        it.rix?.apply {
+            convert("RIX" , it.rix!!)
+        }
+    }
+
+    fun getData(it: RestrictionResponse.Restrictions): List<RestrictionKotlin> {
         var listRestrictions: List<RestrictionKotlin> = listOf()
         it.tbs?.let {
-            listRestrictions += RestrictionKotlin(
-                code = "TBS" ,
-                type = it.type ,
-                generalRestrictions = it.generalRestrictions ,
-                restrictionsByVaccination = it.restrictionsByVaccination ,
-                restrictionsByNationality = it.restrictionsByNationality
-            )
+            listRestrictions += it
         }
         it.gva?.let {
-            listRestrictions += RestrictionKotlin(
-                code = "GVA" ,
-                type = it.type ,
-                generalRestrictions = it.generalRestrictions ,
-                restrictionsByVaccination = it.restrictionsByVaccination ,
-                restrictionsByNationality = it.restrictionsByNationality
-            )
+            listRestrictions += it
         }
         it.ber?.let {
-            listRestrictions += RestrictionKotlin(
-                code = "BER" ,
-                type = it.type ,
-                generalRestrictions = it.generalRestrictions ,
-                restrictionsByVaccination = it.restrictionsByVaccination ,
-                restrictionsByNationality = it.restrictionsByNationality
-            )
+            listRestrictions += it
         }
         it.tll?.let {
-            listRestrictions += RestrictionKotlin(
-                code = "GVA" ,
-                type = it.type ,
-                generalRestrictions = it.generalRestrictions ,
-                restrictionsByVaccination = it.restrictionsByVaccination ,
-                restrictionsByNationality = it.restrictionsByNationality
-            )
+            listRestrictions += it
         }
         it.rix?.let {
-            listRestrictions += RestrictionKotlin(
-                code = "RIX" ,
-                type = it.type ,
-                generalRestrictions = it.generalRestrictions ,
-                restrictionsByVaccination = it.restrictionsByVaccination ,
-                restrictionsByNationality = it.restrictionsByNationality
-            )
+            listRestrictions += it
         }
         return listRestrictions
+    }
+
+    fun convert(code: String , data: RestrictionKotlin): RestrictionKotlin {
+        data.code = code
+        return data
     }
 }

@@ -70,6 +70,7 @@ class RestrictionFragment :
                     }
                     is Resource.Success -> {
                         d("testing AZ" , "ar vici ra xdeba \n ${it}")
+//                        restrictionAdapter.submitList(it.data!!.restrictions!!)
 //                        it.data?.restrictions?.let { restrictionList ->
 //                            if (list.isNotEmpty()) {
 //                                d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
@@ -84,9 +85,9 @@ class RestrictionFragment :
                 d("testing AZ" , "ar vici ra xdeba arada vici \n $it")
                 it.let { list ->
                     restrictionAdapter.submitList(list)
-//                    if (list.isNotEmpty()) {
-//                        d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
-//                    }
+                    if (list.isNotEmpty()) {
+                        d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
+                    }
                 }
             }
         }
