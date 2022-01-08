@@ -59,7 +59,7 @@ interface ApiService {
 
     //postRestriction
     //TBS/GVA?nationality=georgian&vaccine=pfizer&transfer=BER
-    @GET(ApiEndpoints.RESTRICTIONS)
+    @GET(ApiEndpoints.RESTRICTION)
     suspend fun getRestriction(
         @Path("from") from: String ,
         @Path("to") to: String ,

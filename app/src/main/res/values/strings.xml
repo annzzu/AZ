@@ -54,5 +54,6 @@
     <string name="gva_text">GVA</string>
     <string name="see_more">See More</string>
     <string name="indicate_first">Indicate Source And Destination First!</string>
+    <string name="nothing_found">Nothing Found</string>
 
 </resources>

@@ -16,9 +16,6 @@ import kotlinx.coroutines.launch
 class RestrictionFormFragment :
     BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
 
-    private var _from = "GVA"
-    private var _to = "BER"
-    private var _transfer: String? = "TBS"
     var nationality = ""
     var vaccine = ""
 
@@ -50,7 +47,6 @@ class RestrictionFormFragment :
             nationality ,
             vaccine
         )
-        d("testing AZ" , "qartveli xar? $restriction")
 
         findNavController().navigate(
             RestrictionFormFragmentDirections.actionNavigationRestrictionFormToNavigationRestriction(

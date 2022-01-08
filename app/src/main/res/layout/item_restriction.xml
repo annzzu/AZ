@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardRestriction"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp25"
+    android:layout_marginEnd="@dimen/dp25"
+    android:background="@drawable/rounded_shapes_green_d_r">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa_regular"
+        android:padding="10dp"
+        android:text="@string/gva_text"
+        android:textAlignment="center"
+        android:textColor="@color/green_n_d"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".6" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnOne"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".1"
+        app:srcCompat="@drawable/ic_next"
+        app:tint="@color/green_n_d" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

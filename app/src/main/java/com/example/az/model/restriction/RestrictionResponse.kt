@@ -24,36 +24,37 @@ data class RestrictionResponse(
         data class TBS(
             val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination ,
-            val restrictionsByNationality: RestrictionsByNationality ,
+            val restrictionsByVaccination: RestrictionsByVaccination? ,
+            val restrictionsByNationality: List<RestrictionsByNationality>? ,
         )
 
         data class RIX(
             val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination ,
-            val restrictionsByNationality: RestrictionsByNationality ,
+            val restrictionsByVaccination: RestrictionsByVaccination? ,
+            val restrictionsByNationality: List<RestrictionsByNationality>? ,
         )
 
         data class TLL(
             val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination ,
-            val restrictionsByNationality: RestrictionsByNationality ,
+            val restrictionsByVaccination: RestrictionsByVaccination? ,
+            val restrictionsByNationality: List<RestrictionsByNationality>? ,
         )
 
         data class BER(
             val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination ,
-            val restrictionsByNationality: RestrictionsByNationality ,
+            val restrictionsByVaccination: RestrictionsByVaccination? ,
+            val restrictionsByNationality: List<RestrictionsByNationality>? ,
         )
 
         data class GVA(
             val type: String? ,
             val generalRestrictions: GeneralRestrictions? ,
-            val restrictionsByVaccination: RestrictionsByVaccination ,
-            val restrictionsByNationality: RestrictionsByNationality ,
+            val restrictionsByVaccination: RestrictionsByVaccination? ,
+            val restrictionsByNationality: List<RestrictionsByNationality>? ,
+
         )
     }
 }

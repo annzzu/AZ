@@ -63,10 +63,12 @@
         tools:layout="@layout/fragment_restriction" >
         <action
             android:id="@+id/action_navigation_restriction_to_navigation_restrictionForm"
-            app:destination="@id/navigation_restrictionForm" />
+            app:destination="@id/navigation_restrictionForm"
+            app:popUpTo="@id/navigation_restriction"
+            app:popUpToInclusive="true" />
         <argument
             android:name="restrictionRequest"
-            app:argType="com.example.az.model.restriction.RestrictionRequest" />
+            app:argType="com.example.az.model.restriction.RestrictionRequest"/>
     </fragment>
 
     <fragment

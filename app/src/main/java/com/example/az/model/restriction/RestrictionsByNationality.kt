@@ -9,12 +9,7 @@ data class RestrictionsByNationality(
     val type: String?
 ) {
     data class Data(
-        val allowsBusinessVisit: Boolean? ,
         val allowsTourists: Boolean? ,
-        val biometricPassportRequired: Boolean? ,
-        val covidPassportRequired: Boolean? ,
-        val fastTestRequired: Boolean? ,
-        val locatorFormRequired: Boolean? ,
-        val pcrRequired: Boolean?
+        val allowsBusinessVisit: Boolean? ,
     )
 }

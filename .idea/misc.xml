@@ -46,8 +46,10 @@
         <entry key="app/src/main/res/layout/fragment_restrictions.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_scrolling.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_travel_plan.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/fragment_user_home.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/item_airport.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/item_restriction.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/item_travel_plan.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_airport.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/login_tab_fragment.xml" value="0.35520833333333335" />

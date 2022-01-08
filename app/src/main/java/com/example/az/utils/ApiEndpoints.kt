@@ -16,7 +16,7 @@ object ApiEndpoints {
     const val TRAVEL_PLAN = "v1_private/travelplan"
 
     // Fetch Restrictions
-    const val RESTRICTIONS = "v1/restrictions"
+    const val RESTRICTION = "v1/restriction/{from}/{to}"
 
     // auth  +
     const val LOGIN = "v1/login"

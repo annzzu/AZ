@@ -61,6 +61,9 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             R.id.navigation_about -> {
                 setFabForAuth()
             }
+            R.id.navigation_restriction -> {
+                setFabForAuth()
+            }
             else -> {
                 lifecycleScope.launch {
                     setFabForHome(authPrefsManager.readAuthToken())
