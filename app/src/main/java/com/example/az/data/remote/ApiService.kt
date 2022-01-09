@@ -6,6 +6,7 @@ import com.example.az.model.nationality.NationalityResponse
 import com.example.az.model.restriction.RestrictionResponse
 import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.model.travel_plan.TravelPlanResponse
+import com.example.az.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.model.user.User
 import com.example.az.model.user.UserResponse
 import com.example.az.model.vaccine.VaccineResponse
@@ -42,14 +43,14 @@ interface ApiService {
     suspend fun createTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Body travelPlan: TravelPlan
-    ): Response<TravelPlan>
+    ): Response<TravelPlanSingleResponse>
 
     @PUT(ApiEndpoints.TRAVEL_PLAN)
     suspend fun updateTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Path("id") id: String ,
         @Body travelPlan: TravelPlan
-    ): Response<TravelPlan>
+    ): Response<TravelPlanSingleResponse>
 
     @DELETE(ApiEndpoints.TRAVEL_PLAN)
     suspend fun deleteTravelPlan(

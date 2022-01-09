@@ -122,6 +122,21 @@
             app:trackColor="@color/green_l_l" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNothingFound"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa_regular"
+        android:padding="10dp"
+        android:text="@string/nothing_found"
+        android:textAlignment="center"
+        android:textColor="@color/green_n_d"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lTravelPlan" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRestrictions"
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import com.example.az.data.remote.DataSource
 import com.example.az.model.airport.AirportResponse
 import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.model.travel_plan.TravelPlanResponse
+import com.example.az.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.model.user.User
 import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
@@ -33,7 +34,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun createTravelPlan(
         travelPlan: TravelPlan
-    ): Flow<Resource<TravelPlan>> {
+    ): Flow<Resource<TravelPlanSingleResponse>> {
         return flow {
             emit(handleResponse { dataSource.createTravelPlan(autoAuthPrefsManager.readAuthToken(), travelPlan) })
         }.flowOn(Dispatchers.IO)
@@ -42,7 +43,7 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun updateTravelPlan(
         id: String ,
         travelPlan: TravelPlan
-    ): Flow<Resource<TravelPlan>> {
+    ): Flow<Resource<TravelPlanSingleResponse>> {
         return flow {
             emit(handleResponse { dataSource.updateTravelPlan(autoAuthPrefsManager.readAuthToken(), id, travelPlan) })
         }.flowOn(Dispatchers.IO)

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentRestrictionBinding
 import com.example.az.extensions.getName
 import com.example.az.extensions.showSnackBar
+import com.example.az.extensions.visible
 import com.example.az.model.airport.Airport
 import com.example.az.model.restriction.GeneralRestrictions
 import com.example.az.model.restriction.RestrictionResponse
@@ -52,7 +53,7 @@ class RestrictionFragment :
         }
         restrictionAdapter.click = {
 //            openTravelPlanDetails(it)
-            d("testing AZ", "davawire")
+            d("testing AZ" , "davawire")
         }
     }
 
@@ -87,6 +88,8 @@ class RestrictionFragment :
                     restrictionAdapter.submitList(list)
                     if (list.isNotEmpty()) {
                         d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
+                    } else {
+                        binding.tvNothingFound.visible()
                     }
                 }
             }

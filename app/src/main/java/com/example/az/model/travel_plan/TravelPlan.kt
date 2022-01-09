@@ -7,11 +7,17 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TravelPlan(
-    val success: Boolean?,
-    val date: String? ,
+    var source: String?,
     val destination: String? ,
+    val date: String? ,
     @Json(name = "_id")
-    val id: String? ,
-    val source: String?,
-    var days: Int?
+    val id: String? = null,
+    var days: Int?= null,
+    val success: Boolean? = null,
 ) : Parcelable
+
+
+data class TravelPlanSingleResponse(
+    var source: String?,
+    var travelPlan: TravelPlan?,
+)
