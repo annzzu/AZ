@@ -40,6 +40,9 @@ fun String.getTimeNextLine() =
 fun String.getDateNextLine() =
         this.replace("T","\n").replace("-","/")
 
+fun String.reformatDate() =
+        this.replace("\n","T").replace("/","-")
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun String.getDuration(): Long {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

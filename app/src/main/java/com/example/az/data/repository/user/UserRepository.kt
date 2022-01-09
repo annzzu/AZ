@@ -15,11 +15,7 @@ interface UserRepository {
 
     suspend fun getTravelPlan(): Flow<Resource<TravelPlanResponse>>
     suspend fun createTravelPlan(travelPlan: TravelPlan): Flow<Resource<TravelPlanSingleResponse>>
-    suspend fun updateTravelPlan(
-        id: String ,
-        travelPlan: TravelPlan
-    ): Flow<Resource<TravelPlanSingleResponse>>
-
+    suspend fun updateTravelPlan(travelPlan: TravelPlan): Flow<Resource<TravelPlanSingleResponse>>
     suspend fun deleteTravelPlan(id: String): Flow<Resource<ApiResponse>>
 
 }

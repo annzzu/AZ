@@ -8,8 +8,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class TravelPlan(
     var source: String?,
-    val destination: String? ,
-    val date: String? ,
+    var destination: String? ,
+    var date: String? ,
     @Json(name = "_id")
     val id: String? = null,
     var days: Int?= null,
@@ -18,6 +18,6 @@ data class TravelPlan(
 
 
 data class TravelPlanSingleResponse(
-    var source: String?,
+    var success: Boolean?,
     var travelPlan: TravelPlan?,
 )

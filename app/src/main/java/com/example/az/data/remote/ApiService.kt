@@ -45,14 +45,14 @@ interface ApiService {
         @Body travelPlan: TravelPlan
     ): Response<TravelPlanSingleResponse>
 
-    @PUT(ApiEndpoints.TRAVEL_PLAN)
+    @PUT(ApiEndpoints.TRAVEL_PLAN_ID)
     suspend fun updateTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Path("id") id: String ,
         @Body travelPlan: TravelPlan
     ): Response<TravelPlanSingleResponse>
 
-    @DELETE(ApiEndpoints.TRAVEL_PLAN)
+    @DELETE(ApiEndpoints.TRAVEL_PLAN_ID)
     suspend fun deleteTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Path("id") id: String

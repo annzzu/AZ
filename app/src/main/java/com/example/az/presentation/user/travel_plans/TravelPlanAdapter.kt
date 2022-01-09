@@ -41,10 +41,11 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
             tvSource.text = model.source
             tvDestination.text = model.destination
             var days: Int? = null
+            val date: String = model.date ?: ""
             if (!model.date.isNullOrBlank()) {
-                tvDate.text = model.date.getTime(true).getTimeNextLine()
-                tvDateTime.text = model.date.getTime(false)
-                days = model.date.getDuration().toInt()
+                tvDate.text = date.getTime(true).getTimeNextLine()
+                tvDateTime.text = date.getTime(false)
+                days = date.getDuration().toInt()
                 if (days <= 0){
                     pbDateLeft.progress = 100
                 }else{

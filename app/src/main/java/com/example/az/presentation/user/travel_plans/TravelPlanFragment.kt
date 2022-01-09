@@ -55,6 +55,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
             }
 
             initRestrictions(it.source!! , it.destination!!)
+
         }
     }
 
@@ -97,7 +98,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                     restrictionAdapter.submitList(list)
                     if (list.isNotEmpty()) {
                         Log.d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
-                    }else{
+                    } else {
                         binding.tvNothingFound.visible()
                     }
                 }
@@ -127,7 +128,6 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
         }
         btnDelete.setOnClickListener {
             btnDelete()
-            TODO()
         }
     }
 
@@ -140,7 +140,22 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     )
 
     private fun btnDelete() {
-        openUserHome()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.deleteTravelPlan(args.travelPlan!!.id!!)
+            viewModel.delete.collectLatest { it ->
+                when (it) {
+                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
+                    is Resource.Loading -> TODO()
+                    is Resource.Success -> {
+                        Log.d("testing AZ" , "delete ${it.data!!}")
+                        it.data.success?.let {
+                            binding.root.showSnackBar("success")
+                            openUserHome()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun btnEdit() = findNavController().navigate(

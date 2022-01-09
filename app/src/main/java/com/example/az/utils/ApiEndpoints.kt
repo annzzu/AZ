@@ -14,6 +14,7 @@ object ApiEndpoints {
 
     // Travel Plan
     const val TRAVEL_PLAN = "v1_private/travelplan"
+    const val TRAVEL_PLAN_ID = "v1_private/travelplan/{id}"
 
     // Fetch Restrictions
     const val RESTRICTION = "v1/restriction/{from}/{to}"
