@@ -37,6 +37,9 @@ fun String.getTime(boolean: Boolean) =
 fun String.getTimeNextLine() =
         this.replace("-","\n")
 
+fun String.getDateNextLine() =
+        this.replace("T","\n").replace("-","/")
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun String.getDuration(): Long {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

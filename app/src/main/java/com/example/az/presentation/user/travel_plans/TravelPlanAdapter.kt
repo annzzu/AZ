@@ -40,10 +40,11 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
         fun onBind(model: TravelPlan) = with(binding) {
             tvSource.text = model.source
             tvDestination.text = model.destination
+            var days: Int? = null
             if (!model.date.isNullOrBlank()) {
                 tvDate.text = model.date.getTime(true).getTimeNextLine()
                 tvDateTime.text = model.date.getTime(false)
-                val days = model.date.getDuration().toInt()
+                days = model.date.getDuration().toInt()
                 if (days <= 0){
                     pbDateLeft.progress = 100
                 }else{
@@ -52,10 +53,10 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
                     tvDaysLeft.text = "$days Days Left"
                 }
             }else{
-                pbDateLeft.progress = 100
                 pbDateLeft.gone()
                 tvDaysLeft.gone()
             }
+            model.days = days
             cvTravelPlan.setOnClickListener {
                 clickTravelPlan?.invoke(model)
             }

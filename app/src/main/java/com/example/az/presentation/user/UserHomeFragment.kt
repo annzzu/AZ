@@ -3,7 +3,6 @@ package com.example.az.presentation.user
 
 import android.os.Build
 import android.util.Log.d
-import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.activityViewModels

@@ -14,9 +14,6 @@
             android:id="@+id/action_navigation_home_to_navigation_login"
             app:destination="@id/navigation_login" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_restrictions"
-            app:destination="@id/navigation_restrictions" />
-        <action
             android:id="@+id/action_navigation_home_to_navigation_about"
             app:destination="@id/navigation_about" />
         <action
@@ -82,12 +79,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_restrictions"
-        android:name="com.example.az.presentation.restriction.RestrictionsFragment"
-        android:label="fragment_restrictions"
-        tools:layout="@layout/fragment_restrictions" />
-
-    <fragment
         android:id="@+id/navigation_about"
         android:name="com.example.az.presentation.about.AboutFragment"
         android:label="fragment_about"
@@ -101,7 +92,8 @@
         <action
             android:id="@+id/action_navigation_userHome_to_navigation_home"
             app:destination="@id/navigation_home"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+            app:enterAnim="@animator/nav_default_pop_enter_anim" />
         <action
             android:id="@+id/action_navigation_userHome_to_travelPlanFragment"
             app:destination="@id/navigation_travelPlan"
@@ -119,6 +111,9 @@
         <argument
             android:name="travelPlan"
             app:argType="com.example.az.model.travel_plan.TravelPlan" />
+        <action
+            android:id="@+id/action_navigation_travelPlan_to_navigation_userHome"
+            app:destination="@id/navigation_userHome" />
     </fragment>
 
     <fragment
@@ -129,6 +124,11 @@
         <action
             android:id="@+id/action_travelPlanEditFragment_to_navigation_userHome"
             app:destination="@id/navigation_userHome" />
+        <argument
+            android:name="travelPlan"
+            app:argType="com.example.az.model.travel_plan.TravelPlan"
+            app:nullable="true" />
+
     </fragment>
 
 </navigation>

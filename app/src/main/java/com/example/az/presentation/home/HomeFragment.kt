@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+
     override fun init() {
         listeners()
         setUser()
@@ -33,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             cardMyTravelPlan.setOnClickListener {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToNavigationRestrictions()
+                    HomeFragmentDirections.actionNavigationHomeToTravelPlanEditFragment(null)
                 )
             }
             cardRestrictions.setOnClickListener {

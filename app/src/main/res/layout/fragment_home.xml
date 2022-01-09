@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/comfortaa_regular"
-                android:text="@string/my_destinations"
+                android:text="@string/add_travel_plan"
                 android:textColor="@color/green_d"
                 android:textSize="18sp"
                 android:textStyle="bold"

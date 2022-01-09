@@ -39,6 +39,7 @@
     <string name="source">Source</string>
     <string name="destination">Destination</string>
     <string name="my_travel_plans">My Travel Plans</string>
+    <string name="my_travel_plan">My Travel Plan</string>
     <string name="up_to_date">Up to date</string>
     <string name="days_left"> Days Left!</string>
     <string name="transfer">Transfer</string>
@@ -55,5 +56,8 @@
     <string name="see_more">See More</string>
     <string name="indicate_first">Indicate Source And Destination First!</string>
     <string name="nothing_found">Nothing Found</string>
+    <string name="date">Date</string>
+    <string name="add_travel_plan">Add\nTravel\nPlan</string>
+    <string name="about_info">A mobile application where users can quickly and efficiently check covid regulations worldwide and plan save travel route</string>
 
 </resources>
