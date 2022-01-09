@@ -31,7 +31,6 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     override fun init() {
         setInfo()
         listeners()
-        observers()
     }
 
     private fun setInfo() = with(binding) {
@@ -129,10 +128,6 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
         btnDelete.setOnClickListener {
             btnDelete()
         }
-    }
-
-    private fun observers() = with(binding) {
-        rvRestrictions
     }
 
     private fun openUserHome() = findNavController().navigate(

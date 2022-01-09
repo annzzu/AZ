@@ -2,15 +2,19 @@ package com.example.az.presentation.airport
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemAirportBinding
 import com.example.az.model.airport.Airport
+import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 
 typealias ClickAirportCallBack = (airportCity: String) -> Unit
 
-class AirportAdapter() : RecyclerView.Adapter<AirportAdapter.ViewHolder>() {
+class AirportAdapter() :
+    ListAdapter<Airport , AirportAdapter.ViewHolder>(DiffCallback()) {
     var clickAirportCallBack: ClickAirportCallBack? = null
-    private var airports = mutableListOf<Airport>()
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int) =
         ViewHolder(
@@ -24,8 +28,7 @@ class AirportAdapter() : RecyclerView.Adapter<AirportAdapter.ViewHolder>() {
     override fun onBindViewHolder(
         holder: AirportAdapter.ViewHolder ,
         position: Int
-    ) =
-        holder.onBind(airports[position])
+    ) = holder.onBind(getItem(position))
 
     inner class ViewHolder(private val binding: ItemAirportBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -37,10 +40,11 @@ class AirportAdapter() : RecyclerView.Adapter<AirportAdapter.ViewHolder>() {
         }
     }
 
-    override fun getItemCount() = airports.size
+    class DiffCallback : DiffUtil.ItemCallback<Airport>() {
+        override fun areItemsTheSame(oldItem: Airport , newItem: Airport): Boolean =
+            oldItem.code == newItem.code
 
-    fun setData(movies: List<Airport>) {
-        this.airports = movies.toMutableList()
-        notifyDataSetChanged()
+        override fun areContentsTheSame(oldItem: Airport , newItem: Airport): Boolean =
+            oldItem == newItem
     }
 }

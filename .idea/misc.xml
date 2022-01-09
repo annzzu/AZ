@@ -43,6 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_airports.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_nationalities.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_restriction.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/fragment_restriction_form.xml" value="0.26614583333333336" />
         <entry key="app/src/main/res/layout/fragment_restrictions.xml" value="0.19791666666666666" />
@@ -52,6 +53,7 @@
         <entry key="app/src/main/res/layout/fragment_travel_plan_edit.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_user_home.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/item_airport.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/item_nationality.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/item_restriction.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/item_travel_plan.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_airport.xml" value="0.35520833333333335" />

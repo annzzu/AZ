@@ -19,6 +19,7 @@ import com.example.az.databinding.FragmentTravelPlanEditBinding
 import com.example.az.databinding.FragmentUserHomeBinding
 import com.example.az.extensions.*
 import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.presentation.airport.AirportsFragment
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.user.UserViewModel
 import com.example.az.utils.Resource
@@ -75,9 +76,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         }
     }
 
-    private fun openAirportDialog() {
 
-    }
 
     private fun checkChoose() {
         args.travelPlan?.let {
@@ -161,23 +160,9 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         }
     }
 
-    private fun openDateDialog() {
-        getDatePicker()
-        getTimePicker()
-    }
+    private fun openDateDialog() = getDatePicker()
 
     private fun getDatePicker() {
-        val cal = Calendar.getInstance()
-        DatePickerDialog(
-            this.requireContext() ,
-            this ,
-            cal.get(Calendar.YEAR) ,
-            cal.get(Calendar.MONTH) ,
-            cal.get(Calendar.DAY_OF_MONTH)
-        ).show()
-    }
-
-    private fun getTimePicker() {
         val cal = Calendar.getInstance()
         DatePickerDialog(
             this.requireContext() ,
@@ -202,8 +187,12 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
 
     override fun onTimeSet(p0: TimePicker? , hour: Int , minute: Int) {
-        viewModel.date+="${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
+        viewModel.date += "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
         binding.tvDate.text = viewModel.date.getDateNextLine()
-
     }
+
+    private fun openAirportDialog() {
+//        AirportsFragment().show
+    }
+
 }

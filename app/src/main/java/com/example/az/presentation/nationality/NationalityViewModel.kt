@@ -1,12 +1,14 @@
-package com.example.az.presentation.airport
+package com.example.az.presentation.nationality
 
 
 import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.airport.AirportRepositoryImpl
+import com.example.az.data.repository.nationality.NationalityRepositoryImpl
 import com.example.az.model.airport.Airport
 import com.example.az.model.airport.AirportResponse
+import com.example.az.model.nationality.NationalityResponse
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.utils.Resource
 import com.example.az.presentation.UiState
@@ -16,22 +18,21 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AirportsViewModel @Inject constructor(private val repository: AirportRepositoryImpl) :
+class NationalityViewModel @Inject constructor(private val repository: NationalityRepositoryImpl) :
     ViewModel() {
 
-    private val _airportList = MutableSharedFlow<Resource<AirportResponse>>()
-    val airportList: SharedFlow<Resource<AirportResponse>> = _airportList
+    private val _nationalities = MutableSharedFlow<Resource<NationalityResponse>>()
+    val nationalities: SharedFlow<Resource<NationalityResponse>> = _nationalities
 
-    private suspend fun getAirports() = viewModelScope.launch {
-        repository.getAirports().collectLatest { values ->
-            _airportList.emit(values)
+    private suspend fun getNationalities() = viewModelScope.launch {
+        repository.getNationalities().collectLatest { values ->
+            _nationalities.emit(values)
         }
     }
 
     init {
         viewModelScope.launch {
-            getAirports()
+            getNationalities()
         }
-
     }
 }

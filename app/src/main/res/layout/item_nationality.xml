@@ -12,7 +12,7 @@
     app:layout_constraintWidth_percent=".80">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAirport"
+        android:id="@+id/btnNationality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -23,25 +23,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plane"
+        app:srcCompat="@drawable/ic_flag"
         app:tint="@color/white" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvAirport"
+        android:id="@+id/tvNationality"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/comfortaa_regular"
         android:lines="3"
         android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:text="@string/source_text"
+        android:text="@string/georgian"
         android:textAlignment="center"
         android:textColor="@color/green_n_d"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAirport"
+        app:layout_constraintTop_toBottomOf="@+id/btnNationality"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

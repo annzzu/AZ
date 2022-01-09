@@ -61,5 +61,6 @@
     <string name="about_info">A mobile application where users can quickly and efficiently check covid regulations worldwide and plan save travel route</string>
     <string name="change_data_first">Change Data First</string>
     <string name="choose_data_first">Choose Data First</string>
+    <string name="georgian">georgian</string>
 
 </resources>
