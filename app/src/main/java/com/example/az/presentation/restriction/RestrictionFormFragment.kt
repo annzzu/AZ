@@ -16,16 +16,8 @@ import kotlinx.coroutines.launch
 class RestrictionFormFragment :
     BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
 
-    var nationality = ""
-    var vaccine = ""
-
     override fun init() {
         listeners()
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            nationality = authPrefsManager.readNationality()
-            vaccine = authPrefsManager.readVaccine()
-        }
     }
 
     private fun listeners() = with(binding) {
@@ -44,10 +36,7 @@ class RestrictionFormFragment :
             from ,
             to ,
             transfer ,
-            nationality ,
-            vaccine
         )
-
         findNavController().navigate(
             RestrictionFormFragmentDirections.actionNavigationRestrictionFormToNavigationRestriction(
                 restriction

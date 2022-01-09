@@ -1,15 +1,20 @@
 package com.example.az.presentation.user.travel_plans
 
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.az.databinding.FragmentTravelPlanBinding
 import com.example.az.extensions.getDateNextLine
 import com.example.az.extensions.getTimeNextLine
 import com.example.az.extensions.gone
+import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.presentation.base.BaseFragment
+import com.example.az.presentation.restriction.RestrictionAdapter
+import com.example.az.presentation.restriction.RestrictionViewModel
 import com.example.az.presentation.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -18,7 +23,8 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
 ) {
     private val args: TravelPlanFragmentArgs by navArgs()
     private val viewModel: UserViewModel by activityViewModels()
-
+    private val restrictionViewModel: RestrictionViewModel by activityViewModels()
+    private lateinit var restrictionAdapter: RestrictionAdapter
 
     override fun init() {
         setInfo()
@@ -38,36 +44,62 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                 } else {
                     pbDateLeft.progress = 100 / days
                     pbDateLeft.max = days + 1
-                    tvDaysLeft.text = "$it Days Left"
+                    tvDaysLeft.text = "$days Days Left"
                 }
             } ?: run {
                 pbDateLeft.gone()
                 tvDaysLeft.gone()
             }
+
+            initRestrictions(it.source!! , it.destination!!)
         }
+    }
+
+    private fun initRestrictions(from: String , to: String) {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            restrictionViewModel.getRestriction(
+                RestrictionRequest(
+                    from = from ,
+                    to = to ,
+                    nationality = "" ,
+                    vaccine = ""
+                )
+            )
+        }
+    }
+
+    private fun initRV() {
 
     }
 
     private fun listeners() = with(binding) {
         btnBack.setOnClickListener {
-            findNavController().navigate(
-                TravelPlanFragmentDirections.actionNavigationTravelPlanToNavigationUserHome()
-            )
+            openUserHome()
         }
         btnEdit.setOnClickListener {
-            findNavController().navigate(
-                TravelPlanFragmentDirections.actionTravelPlanFragmentToTravelPlanEditFragment(args.travelPlan)
-            )
+            btnEdit()
         }
         btnDelete.setOnClickListener {
-            findNavController().navigate(
-                TravelPlanFragmentDirections.actionNavigationTravelPlanToNavigationUserHome()
-            )
+            btnDelete()
+            TODO()
         }
     }
 
     private fun observers() = with(binding) {
-
+        rvRestrictions
     }
+
+    private fun openUserHome() = findNavController().navigate(
+        TravelPlanFragmentDirections.actionNavigationTravelPlanToNavigationUserHome()
+    )
+
+    private fun btnDelete() {
+        openUserHome()
+    }
+
+    private fun btnEdit() = findNavController().navigate(
+        TravelPlanFragmentDirections.actionTravelPlanFragmentToTravelPlanEditFragment(args.travelPlan)
+    )
 
 }

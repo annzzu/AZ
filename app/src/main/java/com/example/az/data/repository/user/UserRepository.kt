@@ -12,14 +12,13 @@ import retrofit2.Response
 
 interface UserRepository {
 
-    suspend fun getTravelPlan(token: String): Flow<Resource<TravelPlanResponse>>
-    suspend fun createTravelPlan(token: String , travelPlan: TravelPlan): Flow<Resource<TravelPlan>>
+    suspend fun getTravelPlan(): Flow<Resource<TravelPlanResponse>>
+    suspend fun createTravelPlan(travelPlan: TravelPlan): Flow<Resource<TravelPlan>>
     suspend fun updateTravelPlan(
-        token: String ,
         id: String ,
         travelPlan: TravelPlan
     ): Flow<Resource<TravelPlan>>
 
-    suspend fun deleteTravelPlan(token: String , id: String): Flow<Resource<ApiResponse>>
+    suspend fun deleteTravelPlan(id: String): Flow<Resource<ApiResponse>>
 
 }

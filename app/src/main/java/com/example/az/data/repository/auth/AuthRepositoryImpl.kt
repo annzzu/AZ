@@ -27,7 +27,7 @@ class AuthRepositoryImpl @Inject constructor(
                 val token = result.data!!.token!!
                 withContext(IO) {
                     try {
-                        getSelf(token).collectLatest { getSelf ->
+                        getSelf().collectLatest { getSelf ->
                             if (getSelf is Resource.Success) {
                                 saveUserDataStore(getSelf.data!!.user!!)
                                 saveAuthOnlyToken(token)
@@ -50,9 +50,9 @@ class AuthRepositoryImpl @Inject constructor(
         }.flowOn(IO)
     }
 
-    override suspend fun getSelf(token: String): Flow<Resource<UserResponse>> {
+    override suspend fun getSelf(): Flow<Resource<UserResponse>> {
         return flow {
-            val result = handleResponse { dataSource.getSelf(token) }
+            val result = handleResponse { dataSource.getSelf(autoAuthPrefsManager.readAuthToken()) }
             emit(result)
         }.flowOn(IO)
     }

@@ -59,7 +59,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                     tvVaccine.text = user.data?.vaccine
                 }
                 if (!user.token.isNullOrBlank()) {
-                    userViewModel.getTravelPlan(user.token)
+                    userViewModel.getTravelPlan()
                     observeTravelPlan()
                 }
             }

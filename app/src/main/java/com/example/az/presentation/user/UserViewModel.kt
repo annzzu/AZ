@@ -16,8 +16,8 @@ class UserViewModel @Inject constructor(private val repository: UserRepositoryIm
     private val _travelPlans = MutableSharedFlow<Resource<TravelPlanResponse>>()
     val travelPlans: SharedFlow<Resource<TravelPlanResponse>> = _travelPlans
 
-    suspend fun getTravelPlan(token: String) = viewModelScope.launch {
-        repository.getTravelPlan(token).collectLatest { values ->
+    suspend fun getTravelPlan() = viewModelScope.launch {
+        repository.getTravelPlan().collectLatest { values ->
             _travelPlans.emit(values)
         }
     }

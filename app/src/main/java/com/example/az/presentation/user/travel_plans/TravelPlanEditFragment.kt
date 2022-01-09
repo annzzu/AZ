@@ -40,18 +40,10 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                 tvDestination.text = it.destination
                 tvDate.text = it.date?.getDateNextLine()
                 btnBack.setOnClickListener {
-                    findNavController().navigate(
-                        TravelPlanEditFragmentDirections.actionNavigationTravelPlanEditToNavigationTravelPlan(
-                            args.travelPlan
-                        )
-                    )
+                    openBack(args.travelPlan!!)
                 }
                 btnTravelPlanSave.setOnClickListener {
-                    findNavController().navigate(
-                        TravelPlanEditFragmentDirections.actionNavigationTravelPlanEditToNavigationTravelPlan(
-                            args.travelPlan
-                        )
-                    )
+                    btnTravelPlanSave(args.travelPlan!!)
                 }
             } ?: run {
                 btnBack.gone()
@@ -65,5 +57,16 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     private fun observers() {
 
+    }
+
+    private fun openBack(travelPlan: TravelPlan){
+        findNavController().navigate(
+            TravelPlanEditFragmentDirections.actionNavigationTravelPlanEditToNavigationTravelPlan(
+                travelPlan
+            )
+        )
+    }
+    private fun btnTravelPlanSave(travelPlan: TravelPlan){
+        openBack(travelPlan)
     }
 }

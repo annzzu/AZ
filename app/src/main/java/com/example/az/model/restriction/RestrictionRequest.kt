@@ -8,6 +8,6 @@ data class RestrictionRequest(
     val from: String ,
     val to: String ,
     val transfer: String? = "" ,
-    val nationality: String? = "" ,
-    val vaccine: String? = ""
+    var nationality: String? = "" ,
+    var vaccine: String? = ""
 ) : Parcelable

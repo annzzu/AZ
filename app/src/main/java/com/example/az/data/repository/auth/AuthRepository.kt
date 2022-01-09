@@ -11,6 +11,6 @@ interface AuthRepository {
 
     suspend fun signup(user: User): Flow<Resource<User>>
 
-    suspend fun getSelf(token: String): Flow<Resource<UserResponse>>
+    suspend fun getSelf(): Flow<Resource<UserResponse>>
 
 }

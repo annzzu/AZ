@@ -25,34 +25,32 @@ class UserRepositoryImpl @Inject constructor(
     private val autoAuthPrefsManager: AuthPrefsManager
 ) : UserRepository {
 
-    override suspend fun getTravelPlan(token: String): Flow<Resource<TravelPlanResponse>> {
+    override suspend fun getTravelPlan(): Flow<Resource<TravelPlanResponse>> {
         return flow {
-            emit(handleResponse { dataSource.getTravelPlan(token) })
+            emit(handleResponse { dataSource.getTravelPlan( autoAuthPrefsManager.readAuthToken()) })
         }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun createTravelPlan(
-        token: String ,
         travelPlan: TravelPlan
     ): Flow<Resource<TravelPlan>> {
         return flow {
-            emit(handleResponse { dataSource.createTravelPlan(token, travelPlan) })
+            emit(handleResponse { dataSource.createTravelPlan(autoAuthPrefsManager.readAuthToken(), travelPlan) })
         }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun updateTravelPlan(
-        token: String ,
         id: String ,
         travelPlan: TravelPlan
     ): Flow<Resource<TravelPlan>> {
         return flow {
-            emit(handleResponse { dataSource.updateTravelPlan(token, id, travelPlan) })
+            emit(handleResponse { dataSource.updateTravelPlan(autoAuthPrefsManager.readAuthToken(), id, travelPlan) })
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun deleteTravelPlan(token: String , id: String): Flow<Resource<ApiResponse>> {
+    override suspend fun deleteTravelPlan( id: String): Flow<Resource<ApiResponse>> {
         return flow {
-            emit(handleResponse { dataSource.deleteTravelPlan(token, id) })
+            emit(handleResponse { dataSource.deleteTravelPlan(autoAuthPrefsManager.readAuthToken(), id) })
         }.flowOn(Dispatchers.IO)
     }
 
