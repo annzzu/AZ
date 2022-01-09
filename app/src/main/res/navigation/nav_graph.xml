@@ -21,7 +21,11 @@
             app:destination="@id/navigation_restrictionForm" />
         <action
             android:id="@+id/action_navigation_home_to_travelPlanEditFragment"
-            app:destination="@id/navigation_travelPlanEdit" />
+            app:destination="@id/navigation_travelPlanEdit"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@animator/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -110,7 +114,8 @@
             app:destination="@id/navigation_travelPlanEdit" />
         <argument
             android:name="travelPlan"
-            app:argType="com.example.az.model.travel_plan.TravelPlan" />
+            app:argType="com.example.az.model.travel_plan.TravelPlan"
+            app:nullable="true" />
         <action
             android:id="@+id/action_navigation_travelPlan_to_navigation_userHome"
             app:destination="@id/navigation_userHome" />
@@ -123,11 +128,24 @@
         tools:layout="@layout/fragment_travel_plan_edit" >
         <action
             android:id="@+id/action_travelPlanEditFragment_to_navigation_userHome"
-            app:destination="@id/navigation_userHome" />
+            app:destination="@id/navigation_userHome"
+            app:popUpTo="@id/navigation_travelPlanEdit"
+            app:popUpToInclusive="true"/>
         <argument
             android:name="travelPlan"
             app:argType="com.example.az.model.travel_plan.TravelPlan"
-            app:nullable="true" />
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_navigation_travelPlanEdit_to_navigation_travelPlan"
+            app:destination="@id/navigation_travelPlan"
+            app:popUpTo="@id/navigation_travelPlanEdit"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_travelPlanEdit_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_travelPlanEdit"
+            app:popUpToInclusive="true"/>
 
     </fragment>
 

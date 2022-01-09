@@ -123,3 +123,5 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         UserHomeFragmentDirections.actionNavigationUserHomeToTravelPlanFragment(travelPlan)
     )
 }
+
+//HomeFragmentDirections.actionNavigationHomeToTravelPlanEditFragment()

@@ -27,22 +27,25 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     }
 
     private fun setInfo() = with(binding) {
-        tvSource.text = args.travelPlan.source
-        tvDestination.text = args.travelPlan.destination
-        args.travelPlan.date?.getDateNextLine().also { tvDateTime.text = it }
+        args.travelPlan?.let {
+            tvSource.text = it.source
+            tvDestination.text = it.destination
+            it.date?.getDateNextLine().also { tvDateTime.text = it }
 
-        args.travelPlan.days?.let {
-            if (it <= 0) {
-                pbDateLeft.progress = 100
-            } else {
-                pbDateLeft.progress = 100 / it
-                pbDateLeft.max = it + 1
-                tvDaysLeft.text = "$it Days Left"
+            it.days?.let { days ->
+                if (days <= 0) {
+                    pbDateLeft.progress = 100
+                } else {
+                    pbDateLeft.progress = 100 / days
+                    pbDateLeft.max = days + 1
+                    tvDaysLeft.text = "$it Days Left"
+                }
+            } ?: run {
+                pbDateLeft.gone()
+                tvDaysLeft.gone()
             }
-        } ?: run {
-            pbDateLeft.gone()
-            tvDaysLeft.gone()
         }
+
     }
 
     private fun listeners() = with(binding) {

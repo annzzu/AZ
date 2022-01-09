@@ -34,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             cardMyTravelPlan.setOnClickListener {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToTravelPlanEditFragment(null)
+                    HomeFragmentDirections.actionNavigationHomeToTravelPlanEditFragment()
                 )
             }
             cardRestrictions.setOnClickListener {
