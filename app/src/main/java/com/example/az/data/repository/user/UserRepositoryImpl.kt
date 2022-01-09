@@ -37,7 +37,6 @@ class UserRepositoryImpl @Inject constructor(
     ): Flow<Resource<TravelPlanSingleResponse>> {
         return flow {
             val response = dataSource.createTravelPlan(autoAuthPrefsManager.readAuthToken(), travelPlan)
-            response
             emit(handleResponse {response })
         }.flowOn(Dispatchers.IO)
     }

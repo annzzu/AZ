@@ -28,20 +28,23 @@ fun View.gone() = View.GONE.also { visibility = it }
 fun View.visible() = View.VISIBLE.also { visibility = it }
 
 fun String.getTime(boolean: Boolean) =
-    if (boolean){
+    if (boolean) {
         this.substringBefore('T')
-    }else{
+    } else {
         this.substringAfter('T')
     }
 
 fun String.getTimeNextLine() =
-        this.replace("-","\n")
+    this.replace("-" , "\n")
 
 fun String.getDateNextLine() =
-        this.replace("T","\n").replace("-","/")
+    this.replace("T" , "\n").replace("-" , "/")
 
 fun String.reformatDate() =
-        this.replace("\n","T").replace("/","-")
+    this.replace("\n" , "T").replace("/" , "-")
+
+fun Int.putFirstZero() = this.toString().padStart(2, '0')
+fun Int.plusOnePutFirstZero() = this.plus(1).toString().padStart(2, '0')
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun String.getDuration(): Long {

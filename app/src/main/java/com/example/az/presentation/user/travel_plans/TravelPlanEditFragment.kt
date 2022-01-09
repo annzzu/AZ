@@ -1,5 +1,7 @@
 package com.example.az.presentation.user.travel_plans
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
@@ -7,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.TimePicker
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,12 +25,13 @@ import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.*
 
 
 @AndroidEntryPoint
 class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     FragmentTravelPlanEditBinding::inflate
-) {
+) , DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener {
     private val args: TravelPlanFragmentArgs by navArgs()
     private val viewModel: UserViewModel by activityViewModels()
 
@@ -55,10 +60,23 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         }
     }
 
-    private fun listeners() {
-        binding.btnTravelPlanSave.setOnClickListener {
+    private fun listeners() = with(binding) {
+        btnTravelPlanSave.setOnClickListener {
             checkChoose()
         }
+        cardDate.setOnClickListener {
+            openDateDialog()
+        }
+        cardSource.setOnClickListener {
+            openAirportDialog()
+        }
+        cardDestination.setOnClickListener {
+            openAirportDialog()
+        }
+    }
+
+    private fun openAirportDialog() {
+
     }
 
     private fun checkChoose() {
@@ -75,7 +93,6 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
             if (viewModel.source.isBlank() || viewModel.destination.isBlank() || viewModel.date.isBlank()) {
                 binding.root.showSnackBar(getString(STRINGS.choose_data_first))
             } else {
-                d("testing AZ" , "aq tu shemova")
                 btnTravelPlanSave(
                     TravelPlan(
                         source = viewModel.source ,
@@ -87,11 +104,6 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         }
     }
 
-    //    TravelPlan(
-//    source = "TBS" ,
-//    destination = "BER" ,
-//    date = "2022-07-25T00:00:00"
-//    )
     private fun observers() {
 
     }
@@ -108,7 +120,6 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         if (update) {
             update(travelPlan)
         } else {
-            d("testing AZ" , "aq tu shemova 2")
             create(travelPlan)
         }
 
@@ -120,14 +131,11 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
             viewModel.createPlan.collectLatest {
                 when (it) {
                     is Resource.Error -> {
-                        d("testing AZ" , "aq tu shemova errrr")
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
-                        d("testing AZ" , "aq tu shemova 3")
-                        d("testing AZ" , "aaxlaaaaa ${it.data!!}")
-                        it.data.travelPlan?.let { travelPlan ->
+                        it.data?.travelPlan?.let { travelPlan ->
                             openBack(travelPlan)
                         }
                     }
@@ -144,13 +152,58 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
-                        d("testing AZ" , "aaxlaaaaa ${it.data!!}")
-                        it.data.travelPlan?.let { travelPlan ->
+                        it.data?.travelPlan?.let { travelPlan ->
                             openBack(travelPlan)
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun openDateDialog() {
+        getDatePicker()
+        getTimePicker()
+    }
+
+    private fun getDatePicker() {
+        val cal = Calendar.getInstance()
+        DatePickerDialog(
+            this.requireContext() ,
+            this ,
+            cal.get(Calendar.YEAR) ,
+            cal.get(Calendar.MONTH) ,
+            cal.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
+    private fun getTimePicker() {
+        val cal = Calendar.getInstance()
+        DatePickerDialog(
+            this.requireContext() ,
+            this ,
+            cal.get(Calendar.YEAR) ,
+            cal.get(Calendar.MONTH) ,
+            cal.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
+    override fun onDateSet(p0: DatePicker? , year: Int , month: Int , dayOfMonth: Int) {
+        val cal = Calendar.getInstance()
+        viewModel.date = "$year-${month.plusOnePutFirstZero()}-${dayOfMonth.putFirstZero()}T"
+        TimePickerDialog(
+            this.requireContext() ,
+            this ,
+            cal.get(Calendar.HOUR) ,
+            cal.get(Calendar.MINUTE) ,
+            true
+        ).show()
+    }
+
+
+    override fun onTimeSet(p0: TimePicker? , hour: Int , minute: Int) {
+        viewModel.date+="${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
+        binding.tvDate.text = viewModel.date.getDateNextLine()
+
     }
 }
