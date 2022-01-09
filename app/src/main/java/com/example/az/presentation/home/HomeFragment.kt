@@ -3,16 +3,13 @@ package com.example.az.presentation.home
 
 import android.util.Log.d
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.az.R
 import com.example.az.databinding.FragmentHomeBinding
 import com.example.az.extensions.STRINGS
+import com.example.az.extensions.getName
 import com.example.az.extensions.gone
-import com.example.az.presentation.auth.fragment.LoginFragmentDirections
 import com.example.az.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -49,6 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewLifecycleOwner.lifecycleScope.launch {
             authPrefsManager.preferencesFlow.collectLatest { user ->
                 with(binding) {
+                    d("testing AZ", "$user")
                     if (user.token.isNullOrBlank()) {
                         cardMyTravelPlan.gone()
                     }
@@ -57,7 +55,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         tvHello.text = getString(STRINGS.hello)
                     } else {
                         tvHello.textSize = 20.0F
-                        tvHello.text = getString(STRINGS.hello_next_line).plus(user.email)
+                        tvHello.text = getString(STRINGS.hello_next_line).plus(user.email.getName().uppercase())
                     }
                 }
             }

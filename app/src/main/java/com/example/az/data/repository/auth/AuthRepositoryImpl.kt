@@ -7,7 +7,6 @@ import com.example.az.model.user.User
 import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
@@ -27,7 +26,7 @@ class AuthRepositoryImpl @Inject constructor(
                 val token = result.data!!.token!!
                 withContext(IO) {
                     try {
-                        getSelf().collectLatest { getSelf ->
+                        getSelf(token).collectLatest { getSelf ->
                             if (getSelf is Resource.Success) {
                                 saveUserDataStore(getSelf.data!!.user!!)
                                 saveAuthOnlyToken(token)
@@ -50,10 +49,9 @@ class AuthRepositoryImpl @Inject constructor(
         }.flowOn(IO)
     }
 
-    override suspend fun getSelf(): Flow<Resource<UserResponse>> {
+    override suspend fun getSelf(token: String): Flow<Resource<UserResponse>> {
         return flow {
-            val result = handleResponse { dataSource.getSelf(autoAuthPrefsManager.readAuthToken()) }
-            emit(result)
+            emit(handleResponse { dataSource.getSelf(token) })
         }.flowOn(IO)
     }
 

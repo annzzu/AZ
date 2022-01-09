@@ -1,16 +1,12 @@
 package com.example.az.presentation.user
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.remote.ApiResponse
 import com.example.az.data.repository.user.UserRepositoryImpl
-import com.example.az.extensions.emailValid
-import com.example.az.extensions.passwordValid
 import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.travel_plan.TravelPlanSingleResponse
-import com.example.az.model.user.UserFormState
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -69,12 +65,8 @@ class UserViewModel @Inject constructor(private val repository: UserRepositoryIm
         }
     }
 
-//    var source = ""
-//    var destination = ""
-//    var date = ""
-
-
     var source = "TBS"
     var destination = "BER"
     var date = "2022-07-25T00:00:00"
+
 }

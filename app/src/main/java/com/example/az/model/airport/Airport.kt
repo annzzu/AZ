@@ -5,3 +5,7 @@ data class Airport(
     val code: String? ,
     val country: String?
 )
+
+enum class AirportChooseType {
+    FROM, TO, TRANSITION
+}

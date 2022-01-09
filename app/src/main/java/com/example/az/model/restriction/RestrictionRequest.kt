@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RestrictionRequest(
-    val from: String ,
-    val to: String ,
-    val transfer: String? = "" ,
+    var from: String?  = null ,
+    var to: String? = null ,
+    var transfer: String? = "" ,
     var nationality: String? = "" ,
     var vaccine: String? = ""
 ) : Parcelable

@@ -34,4 +34,8 @@ class AirportsViewModel @Inject constructor(private val repository: AirportRepos
         }
 
     }
+
+    var source = "TBS"
+    var destination = "BER"
+    var transition = "BER"
 }

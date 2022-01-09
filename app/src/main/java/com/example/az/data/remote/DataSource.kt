@@ -39,8 +39,8 @@ class DataSource @Inject constructor(private val api: ApiService) {
     //Restriction
     suspend fun getRestriction(restrictionRequest: RestrictionRequest) =
         api.getRestriction(
-            from = restrictionRequest.from ,
-            to = restrictionRequest.to ,
+            from = restrictionRequest.from!! ,
+            to = restrictionRequest.to!! ,
             nationality = restrictionRequest.nationality ?: "" ,
             vaccine = restrictionRequest.vaccine ?: "" ,
             transfer = restrictionRequest.transfer ?: ""
