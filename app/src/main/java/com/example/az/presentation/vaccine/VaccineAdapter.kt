@@ -1,4 +1,4 @@
-package com.example.az.presentation.nationality
+package com.example.az.presentation.vaccine
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemNationalityBinding
+import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.ClickCallBack
 
-
-class NationalityAdapter() :
-    ListAdapter<String , NationalityAdapter.ViewHolder>(DiffCallback()) {
+class VaccineAdapter() :
+    ListAdapter<String , VaccineAdapter.ViewHolder>(DiffCallback()) {
     var clickCallBack: ClickCallBack? = null
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int) =
@@ -23,16 +23,17 @@ class NationalityAdapter() :
         )
 
     override fun onBindViewHolder(
-        holder: NationalityAdapter.ViewHolder ,
+        holder: VaccineAdapter.ViewHolder ,
         position: Int
     ) = holder.onBind(getItem(position))
 
     inner class ViewHolder(private val binding: ItemNationalityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(nationality: String) = with(binding) {
-            tvNationality.text = nationality.uppercase()
+        fun onBind(vaccine: String) =with(binding){
+            btnNationality.setImageResource(DRAWABLES.ic_vaccine)
+            tvNationality.text = vaccine.uppercase()
             root.setOnClickListener {
-                clickCallBack?.invoke(nationality)
+                clickCallBack?.invoke(vaccine)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.az.presentation.restriction
+package com.example.az.presentation.restriction.fragment
 
 
 import android.util.Log.d
@@ -8,17 +8,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentRestrictionBinding
-import com.example.az.extensions.getName
 import com.example.az.extensions.showSnackBar
 import com.example.az.extensions.visible
-import com.example.az.model.airport.Airport
-import com.example.az.model.restriction.GeneralRestrictions
-import com.example.az.model.restriction.RestrictionResponse
-import com.example.az.model.restriction.RestrictionsByNationality
-import com.example.az.model.restriction.RestrictionsByVaccination
-import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
-import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
+import com.example.az.presentation.restriction.ConvertToRestrictionKotlin
+import com.example.az.presentation.restriction.RestrictionViewModel
+import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

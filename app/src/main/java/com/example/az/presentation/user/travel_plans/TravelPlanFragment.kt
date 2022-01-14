@@ -10,7 +10,7 @@ import com.example.az.databinding.FragmentTravelPlanBinding
 import com.example.az.extensions.*
 import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.presentation.base.BaseFragment
-import com.example.az.presentation.restriction.RestrictionAdapter
+import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.presentation.restriction.RestrictionViewModel
 import com.example.az.presentation.user.UserViewModel
 import com.example.az.utils.Resource

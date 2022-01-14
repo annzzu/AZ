@@ -12,6 +12,8 @@ import com.example.az.extensions.showSnackBar
 import com.example.az.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
+import com.example.az.presentation.nationality.NationalityFragmentDialog
+import com.example.az.presentation.vaccine.VaccinesFragmentDialog
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -48,6 +50,22 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
             }
             etPassword.doAfterTextChanged {
                 observeFields()
+            }
+            btnNationality.setOnClickListener {
+                openNationalityDialog()
+            }
+            btnVaccine.setOnClickListener {
+                openVaccineDialog()
+            }
+            btnNationality.setOnLongClickListener {
+                btnNationality.text = getString(STRINGS.nationality)
+                nationality = ""
+                true
+            }
+            btnVaccine.setOnLongClickListener {
+                btnVaccine.text = getString(STRINGS.vaccine)
+                vaccine = ""
+                true
             }
         }
     }
@@ -89,8 +107,8 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
                         email = etEmail.text.toString() ,
                         password = etPassword.text.toString() ,
                         data = User.Data(
-                            vaccine = etVaccine.text.toString() ,
-                            nationality = etNationality.text.toString() ,
+                            vaccine = vaccine ,
+                            nationality = nationality ,
                         )
                     )
                 )
@@ -115,4 +133,25 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
     private fun openLogin() = findNavController().navigate(
         SignupFragmentDirections.actionNavigationSignupToNavigationLogin()
     )
+
+    private var vaccine = ""
+    private var nationality = ""
+
+
+    private fun openNationalityDialog() {
+        val dialog = NationalityFragmentDialog()
+        dialog.show(childFragmentManager , null)
+        dialog.clickCallBack = {
+            nationality = it
+            binding.btnNationality.text = it
+        }
+    }
+    private fun openVaccineDialog() {
+        val dialog = VaccinesFragmentDialog()
+        dialog.show(childFragmentManager , null)
+        dialog.clickCallBack = {
+            vaccine = it
+            binding.btnVaccine.text = it
+        }
+    }
 }

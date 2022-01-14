@@ -1,15 +1,15 @@
-package com.example.az.presentation.airport
+package com.example.az.presentation.nationality
 
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentAirportsBinding
+import com.example.az.databinding.FragmentNationalitiesBinding
 import com.example.az.extensions.showSnackBar
 import com.example.az.presentation.base.BaseFragmentDialog
 import com.example.az.utils.Resource
@@ -19,13 +19,13 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class AirportsFragmentDialog : BaseFragmentDialog() {
+class NationalityFragmentDialog : BaseFragmentDialog()  {
 
-    private lateinit var airportAdapter: AirportAdapter
+    private lateinit var nationalityAdapter: NationalityAdapter
 
-    private val viewModel by viewModels<AirportsViewModel>()
+    private val viewModel by viewModels<NationalityViewModel>()
 
-    private var _binding: FragmentAirportsBinding? = null
+    private var _binding: FragmentNationalitiesBinding? = null
     val binding
         get() = _binding!!
 
@@ -34,18 +34,18 @@ class AirportsFragmentDialog : BaseFragmentDialog() {
         container: ViewGroup? ,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAirportsBinding.inflate(inflater , container , false)
+        _binding = FragmentNationalitiesBinding.inflate(inflater , container , false)
         return binding.root
     }
 
     override fun initRV() {
-        binding.rvAirports.apply {
-            airportAdapter = AirportAdapter()
-            adapter = airportAdapter
+        binding.rvNationality.apply {
+            nationalityAdapter = NationalityAdapter()
+            adapter = nationalityAdapter
             layoutManager =
                 LinearLayoutManager(view?.context , LinearLayoutManager.HORIZONTAL , false)
         }
-        airportAdapter.clickCallBack = {
+        nationalityAdapter.clickCallBack = {
             clickCallBack?.invoke(it)
             dismiss()
         }
@@ -53,12 +53,12 @@ class AirportsFragmentDialog : BaseFragmentDialog() {
 
     override fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.airportList.collectLatest {
+            viewModel.nationalities.collectLatest {
                 when (it) {
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
-                        airportAdapter.submitList(it.data?.airports)
+                        nationalityAdapter.submitList(it.data?.nationalities)
                     }
                 }
             }
@@ -69,5 +69,4 @@ class AirportsFragmentDialog : BaseFragmentDialog() {
         super.onDestroyView()
         _binding = null
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.az.presentation.restriction
+package com.example.az.presentation.restriction.adapter
 
 
 import android.view.LayoutInflater

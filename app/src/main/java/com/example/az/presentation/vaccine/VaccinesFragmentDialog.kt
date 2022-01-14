@@ -1,4 +1,4 @@
-package com.example.az.presentation.nationality
+package com.example.az.presentation.vaccine
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,6 +20,8 @@ import com.example.az.extensions.visible
 import com.example.az.presentation.airport.AirportAdapter
 import com.example.az.presentation.airport.AirportsViewModel
 import com.example.az.presentation.base.BaseFragment
+import com.example.az.presentation.base.BaseFragmentDialog
+import com.example.az.presentation.nationality.NationalityAdapter
 import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,35 +29,49 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NationalitiesFragment : BaseFragment<FragmentNationalitiesBinding>(FragmentNationalitiesBinding::inflate) {
-    private lateinit var nationalityAdapter: NationalityAdapter
-    private val viewModel: NationalityViewModel by viewModels()
+class VaccinesFragmentDialog : BaseFragmentDialog() {
+    private lateinit var vaccineAdapter: VaccineAdapter
+    private val viewModel: VaccineViewModel by viewModels()
 
-    override fun init() {
-        initRV()
-        observer()
+    private var _binding: FragmentNationalitiesBinding? = null
+    val binding
+        get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater ,
+        container: ViewGroup? ,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentNationalitiesBinding.inflate(inflater , container , false)
+        return binding.root
     }
 
-    private fun initRV() {
+    private fun changeView() = with(binding) {
+        hNationality.text = getString(STRINGS.vaccines)
+    }
+
+    override fun initRV() {
+        changeView()
         binding.rvNationality.apply {
-            nationalityAdapter = NationalityAdapter()
-            adapter = nationalityAdapter
+            vaccineAdapter = VaccineAdapter()
+            adapter = vaccineAdapter
             layoutManager =
                 LinearLayoutManager(view?.context , LinearLayoutManager.HORIZONTAL , false)
         }
-        nationalityAdapter.clickNationalityCallBack = {
-            d("testing AZ" , "daawira $it")
+        vaccineAdapter.clickCallBack = {
+            clickCallBack?.invoke(it)
+            dismiss()
         }
     }
 
-    private fun observer() {
+    override fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.nationalities.collectLatest {
+            viewModel.vaccines.collectLatest {
                 when (it) {
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
-                        nationalityAdapter.submitList(it.data?.nationalities)
+                        vaccineAdapter.submitList(it.data?.vaccines)
                     }
                 }
             }

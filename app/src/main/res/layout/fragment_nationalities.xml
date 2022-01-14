@@ -1,36 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".presentation.nationality.NationalitiesFragment">
-
-<androidx.appcompat.widget.AppCompatTextView
-    android:id="@+id/hNationality"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_shapes_gr_bottom"
-    android:fontFamily="@font/comfortaa_regular"
-    android:padding="25sp"
-    android:text="@string/nationality"
-    android:textAlignment="center"
-    android:textColor="@color/white"
-    android:textSize="20sp"
-    android:textStyle="bold"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHeight_percent=".25"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    tools:context=".presentation.nationality.NationalitiesFragment">
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rvNationality"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    tools:listitem="@layout/item_nationality"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/hNationality"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/hNationality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shapes_gr_bottom"
+        android:fontFamily="@font/comfortaa_regular"
+        android:padding="25sp"
+        android:text="@string/nationality"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNothingFound"
+        android:layout_width="0dp"
+        android:layout_height="215dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:padding="10dp"
+        android:text="@string/nothing_found"
+        android:textAlignment="center"
+        android:textColor="@color/green_n_d"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/rvNationality"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hNationality" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNationality"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hNationality"
+        tools:listitem="@layout/item_nationality" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

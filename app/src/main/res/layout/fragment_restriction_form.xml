@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_n_d"
-    tools:context=".presentation.restriction.RestrictionFormFragment">
+    tools:context=".presentation.restriction.fragment.RestrictionFormFragment">
 
     <TextView
         android:id="@+id/tvRestrictionFormBackground"

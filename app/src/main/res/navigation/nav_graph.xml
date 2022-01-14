@@ -52,14 +52,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_airports"
-        android:name="com.example.az.presentation.airport.AirportsFragment"
-        android:label="fragment_airports"
-        tools:layout="@layout/fragment_airports" />
-
-    <fragment
         android:id="@+id/navigation_restriction"
-        android:name="com.example.az.presentation.restriction.RestrictionFragment"
+        android:name="com.example.az.presentation.restriction.fragment.RestrictionFragment"
         android:label="fragment_restriction"
         tools:layout="@layout/fragment_restriction" >
         <action
@@ -74,7 +68,7 @@
 
     <fragment
         android:id="@+id/navigation_restrictionForm"
-        android:name="com.example.az.presentation.restriction.RestrictionFormFragment"
+        android:name="com.example.az.presentation.restriction.fragment.RestrictionFormFragment"
         android:label="fragment_restriction_form"
         tools:layout="@layout/fragment_restriction_form" >
         <action
@@ -87,13 +81,6 @@
         android:name="com.example.az.presentation.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" >
-        <action
-            android:id="@+id/action_navigation_about_to_navigation_airports"
-            app:destination="@id/navigation_airports" />
-        <action
-            android:id="@+id/action_navigation_about_to_navigation_Nationalities"
-            app:destination="@id/navigation_Nationalities" />
-
     </fragment>
 
     <fragment
@@ -156,10 +143,5 @@
             app:popUpToInclusive="true"/>
 
     </fragment>
-    <fragment
-        android:id="@+id/navigation_Nationalities"
-        android:name="com.example.az.presentation.nationality.NationalitiesFragment"
-        android:label="fragment_nationalities"
-        tools:layout="@layout/fragment_nationalities" />
 
 </navigation>

@@ -1,7 +1,5 @@
-package com.example.az.presentation.restriction
+package com.example.az.presentation.restriction.fragment
 
-import android.util.Log.d
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentRestrictionFormBinding
 import com.example.az.extensions.STRINGS
@@ -11,12 +9,13 @@ import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.presentation.airport.AirportsFragmentDialog
 import com.example.az.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class RestrictionFormFragment :
     BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
+
+    private val restriction = RestrictionRequest()
 
     override fun init() {
         listeners()
@@ -48,12 +47,12 @@ class RestrictionFormFragment :
             )
         )
     }
-    private val restriction = RestrictionRequest()
+
 
     private fun openAirportDialog(type: AirportChooseType) {
         val dialog = AirportsFragmentDialog()
         dialog.show(childFragmentManager , null)
-        dialog.clickAirport = {
+        dialog.clickCallBack = {
             when (type) {
                 AirportChooseType.FROM -> {
                     restriction.from = it

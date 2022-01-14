@@ -15,6 +15,7 @@
     <string name="welcome">Welcome!</string>
     <string name="signup">Signup</string>
     <string name="vaccine">Vaccine</string>
+    <string name="vaccines">Vaccines</string>
     <string name="hello">Hello !</string>
     <string name="hello_next_line">Hello !\n</string>
     <string name="welcome_text">Due to the on-going COVID situation countries have implemented travel restrictions. AZ helps you to understand which regulations are affecting your travel plans.</string>

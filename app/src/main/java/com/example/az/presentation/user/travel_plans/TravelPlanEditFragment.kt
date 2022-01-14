@@ -150,8 +150,9 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     is Resource.Error -> binding.root.showSnackBar(it.message!!)
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
-                        it.data?.travelPlan?.let { travelPlan ->
-                            openBack(travelPlan)
+                        it.data?.travelPlan?.let { travelPlanResponse ->
+                            travelPlanResponse.id = travelPlan.id
+                            openBack(travelPlanResponse)
                         }
                     }
                 }
@@ -193,7 +194,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     private fun openAirportDialog(type: AirportChooseType) {
         val dialog = AirportsFragmentDialog()
         dialog.show(childFragmentManager , null)
-        dialog.clickAirport = {
+        dialog.clickCallBack = {
             when (type) {
                 AirportChooseType.FROM -> {
                     viewModel.source = it
@@ -203,27 +204,13 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     viewModel.destination = it
                     binding.tvDestination.text = it
                 }
-                AirportChooseType.TRANSITION ->{
-                    transition()
+                AirportChooseType.TRANSITION -> {
                 }
             }
         }
     }
-    private fun transition(){
-
-    }
 }
 
-interface AirportDialogOpener {
-
-    fun openAirportDialog(fm:FragmentManager, type: AirportChooseType){
-
-    }
-
-    private fun transition(){
-
-    }
-}
 //abstract fun openAirportDialog(fm:FragmentManager, type: AirportChooseType) {
 //    val dialog = AirportsFragmentDialog()
 //    dialog.show(fm , null)

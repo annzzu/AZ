@@ -11,7 +11,7 @@ data class TravelPlan(
     var destination: String? ,
     var date: String? ,
     @Json(name = "_id")
-    val id: String? = null,
+    var id: String? = null,
     var days: Int?= null,
     val success: Boolean? = null,
 ) : Parcelable

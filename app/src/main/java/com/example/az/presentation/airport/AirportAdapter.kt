@@ -1,6 +1,5 @@
 package com.example.az.presentation.airport
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,14 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemAirportBinding
 import com.example.az.model.airport.Airport
-import com.example.az.model.travel_plan.TravelPlan
-import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
+import com.example.az.presentation.base.ClickCallBack
 
-typealias ClickAirportCallBack = (airportCity: String) -> Unit
 
 class AirportAdapter() :
     ListAdapter<Airport , AirportAdapter.ViewHolder>(DiffCallback()) {
-    var clickAirportCallBack: ClickAirportCallBack? = null
+
+    var clickCallBack: ClickCallBack? = null
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int) =
         ViewHolder(
@@ -36,7 +34,7 @@ class AirportAdapter() :
         fun onBind(model: Airport) {
             binding.tvAirport.text = "${model.country}\n${model.city}\n${model.code}"
             binding.root.setOnClickListener {
-                clickAirportCallBack?.invoke(model.code!!)
+                clickCallBack?.invoke(model.code!!)
             }
         }
     }
