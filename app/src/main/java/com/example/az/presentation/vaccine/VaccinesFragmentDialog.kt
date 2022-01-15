@@ -14,7 +14,7 @@ import com.example.az.databinding.FragmentAirportsBinding
 import com.example.az.databinding.FragmentNationalitiesBinding
 import com.example.az.model.airport.Airport
 import com.example.az.extensions.STRINGS
-import com.example.az.extensions.gone
+import com.example.az.extensions.invisible
 import com.example.az.extensions.showSnackBar
 import com.example.az.extensions.visible
 import com.example.az.presentation.airport.AirportAdapter
@@ -68,10 +68,22 @@ class VaccinesFragmentDialog : BaseFragmentDialog() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.vaccines.collectLatest {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
-                    is Resource.Loading -> TODO()
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBar.visible()
+                    }
                     is Resource.Success -> {
-                        vaccineAdapter.submitList(it.data?.vaccines)
+                        binding.progressBar.invisible()
+                        val data = it.data?.vaccines
+                        if (data!!.isNotEmpty()) {
+                            binding.tvNothingFound.invisible()
+                            vaccineAdapter.submitList(data)
+                        } else {
+                            binding.tvNothingFound.visible()
+                        }
                     }
                 }
             }

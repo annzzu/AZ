@@ -49,8 +49,8 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                     tvDaysLeft.text = "$days Days Left"
                 }
             } ?: run {
-                pbDateLeft.gone()
-                tvDaysLeft.gone()
+                pbDateLeft.invisible()
+                tvDaysLeft.invisible()
             }
 
             initRestrictions(it.source!! , it.destination!!)
@@ -72,19 +72,15 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
         viewLifecycleOwner.lifecycleScope.launch {
             restrictionViewModel.restriction.collectLatest {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
                     is Resource.Loading -> {
-                        Log.d("testing AZ" , "Loading")
-                        TODO()
+                        binding.progressBar.visible()
                     }
                     is Resource.Success -> {
-                        Log.d("testing AZ" , "ar vici ra xdeba \n ${it}")
-//                        restrictionAdapter.submitList(it.data!!.restrictions!!)
-//                        it.data?.restrictions?.let { restrictionList ->
-//                            if (list.isNotEmpty()) {
-//                                d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
-//                            }
-//                        }
+                        binding.progressBar.invisible()
                     }
                 }
             }
@@ -92,11 +88,10 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
 
         viewLifecycleOwner.lifecycleScope.launch {
             restrictionViewModel.restrictionList.collectLatest {
-                Log.d("testing AZ" , "ar vici ra xdeba arada vici \n $it")
                 it.let { list ->
-                    restrictionAdapter.submitList(list)
                     if (list.isNotEmpty()) {
-                        Log.d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
+                        restrictionAdapter.submitList(list)
+                        binding.tvNothingFound.invisible()
                     } else {
                         binding.tvNothingFound.visible()
                     }
@@ -137,13 +132,18 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     private fun btnDelete() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.deleteTravelPlan(args.travelPlan!!.id!!)
-            viewModel.delete.collectLatest { it ->
+            viewModel.delete.collectLatest {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
-                    is Resource.Loading -> TODO()
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBar.visible()
+                    }
                     is Resource.Success -> {
-                        Log.d("testing AZ" , "delete ${it.data!!}")
-                        it.data.success?.let {
+                        binding.progressBar.invisible()
+                        it.data?.success?.let {
                             binding.root.showSnackBar("success")
                             openUserHome()
                         }

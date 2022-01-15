@@ -16,7 +16,6 @@ import com.example.az.databinding.ItemTravelPlanBinding
 import com.example.az.extensions.getDuration
 import com.example.az.extensions.getTime
 import com.example.az.extensions.getTimeNextLine
-import com.example.az.extensions.gone
 import com.example.az.model.travel_plan.TravelPlan
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

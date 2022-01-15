@@ -54,8 +54,8 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
                     tvDaysLeft.text = "$days Days Left"
                 }
             }else{
-                pbDateLeft.gone()
-                tvDaysLeft.gone()
+                pbDateLeft.invisible()
+                tvDaysLeft.invisible()
             }
             model.days = days
             cvTravelPlan.setOnClickListener {

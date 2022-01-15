@@ -21,3 +21,9 @@ data class TravelPlanSingleResponse(
     var success: Boolean?,
     var travelPlan: TravelPlan?,
 )
+
+data class TravelPlanRequest(
+    var source: String?,
+    var destination: String? ,
+    var date: String? ,
+)

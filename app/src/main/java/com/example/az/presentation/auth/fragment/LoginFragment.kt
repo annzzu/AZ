@@ -94,12 +94,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.login.collect {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
                     is Resource.Loading -> {
-                        d("testing AZ", "Loading")
-                        TODO()
+                        binding.progressBar.visible()
                     }
                     is Resource.Success -> {
+                        binding.progressBar.invisible()
                         binding.root.showSnackBar(getString(STRINGS.successful_login))
                         openHome()
                     }

@@ -176,5 +176,16 @@
         app:srcCompat="@drawable/ic_back"
         app:tint="@color/white" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stateListAnimator="@layout/item_restriction"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvRestrictionFormBackground"
+        app:layout_constraintTop_toTopOf="@+id/btnTravelPlanSave" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

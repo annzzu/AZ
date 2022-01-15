@@ -2,6 +2,8 @@ package com.example.az.data.remote
 
 import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlanRequest
+import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.user.User
 import javax.inject.Inject
 
@@ -30,8 +32,8 @@ class DataSource @Inject constructor(private val api: ApiService) {
     suspend fun createTravelPlan(token: String , travelPlan: TravelPlan) =
         api.createTravelPlan(token , travelPlan)
 
-    suspend fun updateTravelPlan(token: String , id: String , travelPlan: TravelPlan) =
-        api.updateTravelPlan(token , id , travelPlan)
+    suspend fun updateTravelPlan(token: String , id: String , travelPlanRequest: TravelPlanRequest) =
+        api.updateTravelPlan(token , id , travelPlanRequest)
 
     suspend fun deleteTravelPlan(token: String , id: String) =
         api.deleteTravelPlan(token , id)

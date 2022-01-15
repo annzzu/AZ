@@ -45,29 +45,37 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         when (destination.id) {
             R.id.navigation_login -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             R.id.navigation_signup -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             R.id.navigation_userHome -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             R.id.navigation_restrictions -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             R.id.navigation_restrictionForm -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             R.id.navigation_about -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             R.id.navigation_restriction -> {
                 setFabForAuth()
+                controller.popBackStack()
             }
             else -> {
                 lifecycleScope.launch {
                     setFabForHome(authPrefsManager.readAuthToken())
                 }
+                controller.popBackStack()
             }
         }
     }

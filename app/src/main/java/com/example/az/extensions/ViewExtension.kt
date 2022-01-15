@@ -23,7 +23,7 @@ fun View.hideKeyboard() {
     imm.hideSoftInputFromWindow(windowToken , 0)
 }
 
-fun View.gone() = View.GONE.also { visibility = it }
+fun View.invisible() = View.INVISIBLE.also { visibility = it }
 
 fun View.visible() = View.VISIBLE.also { visibility = it }
 

@@ -21,6 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun login(user: User): Flow<Resource<User>> {
         return flow {
+            emit(Resource.Loading())
             val result = handleResponse { dataSource.loginUser(user) }
             if (result is Resource.Success) {
                 val token = result.data!!.token!!
@@ -45,12 +46,14 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun signup(user: User): Flow<Resource<User>> {
         return flow {
+            emit(Resource.Loading())
             emit(handleResponse { dataSource.signupUser(user) })
         }.flowOn(IO)
     }
 
     override suspend fun getSelf(token: String): Flow<Resource<UserResponse>> {
         return flow {
+            emit(Resource.Loading())
             emit(handleResponse { dataSource.getSelf(token) })
         }.flowOn(IO)
     }

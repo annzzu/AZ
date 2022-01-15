@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentHomeBinding
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.getName
-import com.example.az.extensions.gone
+import com.example.az.extensions.invisible
 import com.example.az.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 with(binding) {
                     d("testing AZ", "$user")
                     if (user.token.isNullOrBlank()) {
-                        cardMyTravelPlan.gone()
+                        cardMyTravelPlan.invisible()
                     }
                     if (user.email.isNullOrBlank()) {
                         tvHello.textSize = 30.0F

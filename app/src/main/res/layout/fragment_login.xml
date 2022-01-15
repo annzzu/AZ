@@ -90,37 +90,6 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tabLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@drawable/vie_bg"-->
-<!--            android:fontFamily="@font/comfortaa_regular"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0"-->
-<!--            app:tabGravity="fill"-->
-<!--            app:tabIndicatorColor="@color/green_r"-->
-<!--            app:tabRippleColor="@color/green_r"-->
-<!--            app:tabSelectedTextColor="@color/green_r"-->
-<!--            app:tabTextColor="@color/green_r">-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/btnLoginTab"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/login" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:id="@+id/btnSignupTab"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/signup" />-->
-<!--        </com.google.android.material.tabs.TabLayout>-->
-
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etilEmail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -167,7 +136,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@+id/etilEmail"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".8">
@@ -198,6 +166,16 @@
             app:layout_constraintVertical_bias=".3"
             app:layout_constraintWidth_percent=".8" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

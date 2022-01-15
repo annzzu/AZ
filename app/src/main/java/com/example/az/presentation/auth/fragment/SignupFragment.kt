@@ -6,9 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentSignupBinding
-import com.example.az.extensions.STRINGS
-import com.example.az.extensions.hideKeyboard
-import com.example.az.extensions.showSnackBar
+import com.example.az.extensions.*
 import com.example.az.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
@@ -118,9 +116,15 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.signup.collect {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
-                    is Resource.Loading -> TODO()
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBar.visible()
+                    }
                     is Resource.Success -> {
+                        binding.progressBar.invisible()
                         binding.root.hideKeyboard()
                         binding.root.showSnackBar(getString(STRINGS.successful_sign_up))
                         openLogin()

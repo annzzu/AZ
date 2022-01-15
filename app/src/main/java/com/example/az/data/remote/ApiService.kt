@@ -5,6 +5,7 @@ import com.example.az.model.airport.AirportResponse
 import com.example.az.model.nationality.NationalityResponse
 import com.example.az.model.restriction.RestrictionResponse
 import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlanRequest
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.model.user.User
@@ -49,7 +50,7 @@ interface ApiService {
     suspend fun updateTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
         @Path("id") id: String ,
-        @Body travelPlan: TravelPlan
+        @Body travelPlanRequest: TravelPlanRequest
     ): Response<TravelPlanSingleResponse>
 
     @DELETE(ApiEndpoints.TRAVEL_PLAN_ID)

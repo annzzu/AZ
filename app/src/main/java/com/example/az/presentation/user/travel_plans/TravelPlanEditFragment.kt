@@ -60,7 +60,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     openBack(args.travelPlan!!)
                 }
             } ?: run {
-                btnBack.gone()
+                btnBack.invisible()
             }
         }
     }
@@ -129,10 +129,12 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
             viewModel.createPlan.collectLatest {
                 when (it) {
                     is Resource.Error -> {
+                        binding.progressBar.visible()
                         binding.root.showSnackBar(it.message!!)
                     }
-                    is Resource.Loading -> TODO()
+                    is Resource.Loading -> binding.progressBar.visible()
                     is Resource.Success -> {
+                        binding.progressBar.invisible()
                         it.data?.travelPlan?.let { travelPlan ->
                             openBack(travelPlan)
                         }
@@ -147,9 +149,13 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
             viewModel.updateTravelPlan(travelPlan)
             viewModel.updatePlan.collectLatest {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
-                    is Resource.Loading -> TODO()
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
+                    is Resource.Loading -> binding.progressBar.visible()
                     is Resource.Success -> {
+                        binding.progressBar.invisible()
                         it.data?.travelPlan?.let { travelPlanResponse ->
                             travelPlanResponse.id = travelPlan.id
                             openBack(travelPlanResponse)

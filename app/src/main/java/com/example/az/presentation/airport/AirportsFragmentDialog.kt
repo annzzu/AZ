@@ -10,7 +10,9 @@ import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentAirportsBinding
+import com.example.az.extensions.invisible
 import com.example.az.extensions.showSnackBar
+import com.example.az.extensions.visible
 import com.example.az.presentation.base.BaseFragmentDialog
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,10 +57,22 @@ class AirportsFragmentDialog : BaseFragmentDialog() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.airportList.collectLatest {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
-                    is Resource.Loading -> TODO()
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBar.visible()
+                    }
                     is Resource.Success -> {
-                        airportAdapter.submitList(it.data?.airports)
+                        binding.progressBar.invisible()
+                        val data = it.data?.airports
+                        if (data!!.isNotEmpty()){
+                            binding.tvNothingFound.invisible()
+                            airportAdapter.submitList(data)
+                        }else{
+                            binding.tvNothingFound.visible()
+                        }
                     }
                 }
             }

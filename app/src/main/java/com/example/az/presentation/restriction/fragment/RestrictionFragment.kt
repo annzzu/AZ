@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentRestrictionBinding
+import com.example.az.extensions.invisible
 import com.example.az.extensions.showSnackBar
 import com.example.az.extensions.visible
 import com.example.az.presentation.base.BaseFragment
@@ -59,30 +60,26 @@ class RestrictionFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.restriction.collectLatest {
                 when (it) {
-                    is Resource.Error -> binding.root.showSnackBar(it.message!!)
+                    is Resource.Error -> {
+                        binding.progressBar.visible()
+                        binding.root.showSnackBar(it.message!!)
+                    }
                     is Resource.Loading -> {
-                        d("testing AZ" , "Loading")
-                        TODO()
+                        binding.progressBar.visible()
                     }
                     is Resource.Success -> {
-                        d("testing AZ" , "ar vici ra xdeba \n ${it}")
-//                        restrictionAdapter.submitList(it.data!!.restrictions!!)
-//                        it.data?.restrictions?.let { restrictionList ->
-//                            if (list.isNotEmpty()) {
-//                                d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
-//                            }
-//                        }
+                        binding.progressBar.invisible()
                     }
                 }
             }
         }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.restrictionList.collectLatest {
-                d("testing AZ" , "ar vici ra xdeba arada vici \n $it")
                 it.let { list ->
-                    restrictionAdapter.submitList(list)
                     if (list.isNotEmpty()) {
-                        d("testing AZ" , "ar vici ra xdeba \n ${list.size}")
+                        restrictionAdapter.submitList(list)
+                        binding.tvNothingFound.invisible()
                     } else {
                         binding.tvNothingFound.visible()
                     }

@@ -126,6 +126,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNothingFound"
+        android:layout_width="0dp"
+        android:layout_height="215dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:padding="10dp"
+        android:stateListAnimator="@layout/item_travel_plan"
+        android:text="@string/nothing_found"
+        android:textAlignment="center"
+        android:textColor="@color/green_n_d"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/animation_loading"
+        app:layout_constraintEnd_toEndOf="@+id/rvTravelPlan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyTravelPlan" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTravelPlan"
         android:layout_width="match_parent"
@@ -150,5 +168,16 @@
         app:lottie_scale="0.2"
         app:lottie_speed="3"
         app:tint="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/animation_loading"
+        app:layout_constraintEnd_toEndOf="@+id/rvTravelPlan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyTravelPlan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

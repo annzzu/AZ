@@ -15,6 +15,7 @@ class AirportRepositoryImpl @Inject constructor(private val dataSource: DataSour
 
     override suspend fun getAirports(): Flow<Resource<AirportResponse>> {
         return flow {
+            emit(Resource.Loading())
             emit(handleResponse { dataSource.getAirports() })
         }.flowOn(Dispatchers.IO)
     }
