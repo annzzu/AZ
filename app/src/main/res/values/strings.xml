@@ -63,5 +63,56 @@
     <string name="change_data_first">Change Data First</string>
     <string name="choose_data_first">Choose Data First</string>
     <string name="georgian">georgian</string>
+    <string name="travel_regulations">Travel Regulations</string>
+    <string name="general_restrictions">General Restrictions</string>
 
+    <string name="generalInformation"><u>General Information</u> : %s</string>
+    <string name="generalInformationFull">
+        Allows Business Visit : %b
+        \nAllows Tourists : %b
+        \nCovid Passport Required : %b
+        \nPCR Required For NoneResidents : %b
+        \nPCR Required For Residents : %b
+        \nmoreInfoUrl : %S\n
+    </string>
+    <string name="allowsBusinessVisit"><u>Allows Business Visit</u></string>
+    <string name="allowsTourists">Allows Tourists</string>
+    <string name="covidPassportRequired">Covid Passport Required</string>
+    <string name="pcrRequiredForNoneResidents">PCR Required For NoneResidents</string>
+    <string name="pcrRequiredForResidents">PCR Required For Residents</string>
+
+    <string name="restrictionsByVaccination">Restrictions By Vaccination</string>
+    <string name="restrictionsByVaccinationFull">
+        Dozes Required : %d
+        \nis allowed : %b
+        \nMax Days After Vaccination : %d
+        \nMin Days After Vaccination : %d\n
+    </string>
+    <string name="restrictionsByNationality">Restrictions By Nationality</string>
+    <string name="typeNationality">
+        type : %S
+    </string>
+    <string name="allowsTouristsNat">
+        \nAllows Tourists : %b
+    </string>
+    <string name="allowsBusinessVisitNat">
+        \nAllows Business Visit : %b
+    </string>
+    <string name="pcrRequiredNat">
+        \nPCR Required : %b
+    </string>
+    <string name="fastTestRequiredNat">
+        \nFast Test Required : %b
+    </string>
+    <string name="biometricPassportRequiredNat">
+        \nBiometric Passport Required : %b
+    </string>
+    <string name="locatorFormRequiredNat">
+        \nLocator Form Required : %b
+    </string>
+    <string name="covidPassportRequiredNat">
+        \nCovid Passport Required : %b
+    </string>
+    <string name="success">success</string>
+    <string name="error">error</string>
 </resources>

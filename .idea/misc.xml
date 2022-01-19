@@ -54,7 +54,9 @@
         <entry key="app/src/main/res/layout/fragment_user_home.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/item_airport.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/item_nationality.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/item_nationality_restriction.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/item_restriction.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/item_restriction_expanded.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_travel_plan.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_airport.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/login_tab_fragment.xml" value="0.35520833333333335" />
@@ -66,6 +68,7 @@
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_covid_round.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/xml/shortcuts.xml" value="0.153125" />
       </map>
     </option>
   </component>

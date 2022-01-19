@@ -22,14 +22,12 @@
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_navigation_home_to_navigation_restrictionForm"
-            app:destination="@id/navigation_restrictionForm"
-            app:popUpTo="@id/navigation_restrictionForm"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/navigation_restrictionForm" />
         <action
             android:id="@+id/action_navigation_home_to_travelPlanEditFragment"
             app:destination="@id/navigation_travelPlanEdit"
             app:popUpTo="@id/navigation_travelPlanEdit"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -46,7 +44,7 @@
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_home"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -65,7 +63,7 @@
         android:id="@+id/navigation_restriction"
         android:name="com.example.az.presentation.restriction.fragment.RestrictionFragment"
         android:label="fragment_restriction"
-        tools:layout="@layout/fragment_restriction" >
+        tools:layout="@layout/fragment_restriction">
         <action
             android:id="@+id/action_navigation_restriction_to_navigation_restrictionForm"
             app:destination="@id/navigation_restrictionForm"
@@ -73,14 +71,14 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="restrictionRequest"
-            app:argType="com.example.az.model.restriction.RestrictionRequest"/>
+            app:argType="com.example.az.model.restriction.RestrictionRequest" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_restrictionForm"
         android:name="com.example.az.presentation.restriction.fragment.RestrictionFormFragment"
         android:label="fragment_restriction_form"
-        tools:layout="@layout/fragment_restriction_form" >
+        tools:layout="@layout/fragment_restriction_form">
         <action
             android:id="@+id/action_navigation_restrictionForm_to_navigation_restriction"
             app:destination="@id/navigation_restriction"
@@ -92,37 +90,36 @@
         android:id="@+id/navigation_about"
         android:name="com.example.az.presentation.about.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" >
-    </fragment>
+        tools:layout="@layout/fragment_about"></fragment>
 
     <fragment
         android:id="@+id/navigation_userHome"
         android:name="com.example.az.presentation.user.UserHomeFragment"
         android:label="fragment_user_home"
-        tools:layout="@layout/fragment_user_home" >
+        tools:layout="@layout/fragment_user_home">
         <action
             android:id="@+id/action_navigation_userHome_to_navigation_home"
             app:destination="@id/navigation_home"
-            app:popUpToInclusive="true"
-            app:enterAnim="@animator/nav_default_pop_enter_anim" />
+            app:enterAnim="@animator/nav_default_pop_enter_anim"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_userHome_to_travelPlanFragment"
             app:destination="@id/navigation_travelPlan"
             app:enterAnim="@animator/nav_default_pop_enter_anim"
             app:popUpTo="@id/navigation_travelPlan"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_travelPlan"
         android:name="com.example.az.presentation.user.travel_plans.TravelPlanFragment"
         android:label="fragment_travel_plan"
-        tools:layout="@layout/fragment_travel_plan" >
+        tools:layout="@layout/fragment_travel_plan">
         <action
             android:id="@+id/action_travelPlanFragment_to_travelPlanEditFragment"
             app:destination="@id/navigation_travelPlanEdit"
             app:popUpTo="@id/navigation_travelPlanEdit"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <argument
             android:name="travelPlan"
             app:argType="com.example.az.model.travel_plan.TravelPlan"
@@ -131,24 +128,24 @@
             android:id="@+id/action_navigation_travelPlan_to_navigation_userHome"
             app:destination="@id/navigation_userHome"
             app:popUpTo="@id/navigation_userHome"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_travelPlanEdit"
         android:name="com.example.az.presentation.user.travel_plans.TravelPlanEditFragment"
         android:label="fragment_travel_plan_edit"
-        tools:layout="@layout/fragment_travel_plan_edit" >
+        tools:layout="@layout/fragment_travel_plan_edit">
         <action
             android:id="@+id/action_travelPlanEditFragment_to_navigation_userHome"
             app:destination="@id/navigation_userHome"
             app:popUpTo="@id/navigation_userHome"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <argument
             android:name="travelPlan"
+            android:defaultValue="@null"
             app:argType="com.example.az.model.travel_plan.TravelPlan"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
         <action
             android:id="@+id/action_navigation_travelPlanEdit_to_navigation_travelPlan"
             app:destination="@id/navigation_travelPlan"
@@ -158,7 +155,7 @@
             android:id="@+id/action_navigation_travelPlanEdit_to_navigation_home"
             app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_home"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
 
     </fragment>
 

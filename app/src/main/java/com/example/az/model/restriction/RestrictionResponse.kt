@@ -29,4 +29,5 @@ data class RestrictionKotlin(
     val generalRestrictions: GeneralRestrictions? ,
     val restrictionsByVaccination: RestrictionsByVaccination? ,
     val restrictionsByNationality: List<RestrictionsByNationality>? ,
+    var expand: Boolean = false
 )

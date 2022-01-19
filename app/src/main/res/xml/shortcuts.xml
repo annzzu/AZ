@@ -1,0 +1,14 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="restriction"
+        android:enabled="true"
+        android:icon="@drawable/ic_vaccine"
+        android:shortcutShortLabel="@string/restrictions">
+        <intent
+            android:action="com.example.az.custom.name"
+            android:targetClass="com.example.az.presentation.MainActivity"
+            android:targetPackage="com.example.az.presentation" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
+    </shortcut>
+</shortcuts>

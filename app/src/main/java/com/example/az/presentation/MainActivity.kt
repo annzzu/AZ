@@ -1,7 +1,11 @@
 package com.example.az.presentation
 
+import android.app.PendingIntent
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
 import android.os.Bundle
 import android.util.Log.d
+import androidx.core.graphics.drawable.IconCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -14,6 +18,13 @@ import com.example.az.presentation.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
+enum class ActionType(val str: String) {
+    MAIN("android.intent.action.MAIN") ,
+    RESTRICTION("com.example.az.shortcut.Restriction") ,
+    RESTRICTIONONE("android.intent.action.VIEW")
+}
+
 @AndroidEntryPoint
 class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener {
 
@@ -24,9 +35,14 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        handleShortCut()
         initFab()
+    }
 
+    private fun handleShortCut() {
+        if (ActionType.RESTRICTION.str == intent.action) {
+            findNavController(R.id.navHostFragment).navigate(R.id.navigation_restrictionForm)
+        }
     }
 
     private fun initFab() {
@@ -45,37 +61,29 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         when (destination.id) {
             R.id.navigation_login -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             R.id.navigation_signup -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             R.id.navigation_userHome -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             R.id.navigation_restrictions -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             R.id.navigation_restrictionForm -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             R.id.navigation_about -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             R.id.navigation_restriction -> {
                 setFabForAuth()
-                controller.popBackStack()
             }
             else -> {
                 lifecycleScope.launch {
                     setFabForHome(authPrefsManager.readAuthToken())
                 }
-                controller.popBackStack()
             }
         }
     }
@@ -86,18 +94,14 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
 
     private fun setFabForHome(token: String?) {
         if (token.isNullOrBlank()) {
-            d("testing AZ" , "Dalogindi - $token")
             setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
         } else {
-            d("testing AZ" , "arrrrrrrr - $token")
             setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_userHome)
         }
     }
 
     private fun setFabIconDestination(icon: Int , navigation: Int) {
         binding.fab.apply {
-//            setShowMotionSpecResource(R.animator.fab_show)
-//            setHideMotionSpecResource(R.animator.fab_hide)
             setImageResource(icon)
             setOnClickListener {
                 findNavController(R.id.navHostFragment).navigate(navigation)

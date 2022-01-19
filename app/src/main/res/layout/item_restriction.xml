@@ -19,12 +19,13 @@
         android:textColor="@color/green_n_d"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/btnOpen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".6" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btnOne"
+        android:id="@+id/btnOpen"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
@@ -34,6 +35,8 @@
         app:layout_constraintWidth_percent=".1"
         app:srcCompat="@drawable/ic_next"
         app:tint="@color/green_n_d" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

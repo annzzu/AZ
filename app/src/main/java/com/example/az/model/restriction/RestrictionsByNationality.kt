@@ -1,15 +1,17 @@
 package com.example.az.model.restriction
 
 
-import com.squareup.moshi.Json
-
 data class RestrictionsByNationality(
-    @Json(name = "`data`")
-    val data: List<Data>? ,
-    val type: String?
+    val data: Data ,
+    val type: String
 ) {
     data class Data(
-        val allowsTourists: Boolean? ,
-        val allowsBusinessVisit: Boolean? ,
+        val allowsTourists: Boolean?,
+        val allowsBusinessVisit: Boolean?,
+        val pcrRequired: Boolean?,
+        val fastTestRequired: Boolean?,
+        val biometricPassportRequired: Boolean?,
+        val locatorFormRequired: Boolean?,
+        val covidPassportRequired: Boolean?,
     )
 }

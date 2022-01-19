@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvNationalityDataFull"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/comfortaa_regular"
+    android:text="@string/restrictionsByNationality"
+    android:textColor="@color/green_n_d"
+    android:textSize="15sp"
+    android:textStyle="bold" />
+
+
+

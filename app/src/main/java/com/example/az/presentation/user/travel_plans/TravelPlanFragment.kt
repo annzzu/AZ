@@ -1,6 +1,5 @@
 package com.example.az.presentation.user.travel_plans
 
-import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -107,10 +106,6 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
             layoutManager =
                 LinearLayoutManager(view?.context , LinearLayoutManager.VERTICAL , false)
         }
-        restrictionAdapter.click = {
-//            openTravelPlanDetails(it)
-            Log.d("testing AZ" , "davawire")
-        }
     }
 
     private fun listeners() = with(binding) {
@@ -144,7 +139,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         it.data?.success?.let {
-                            binding.root.showSnackBar("success")
+                            binding.root.showSnackBar(getString(STRINGS.success))
                             openUserHome()
                         }
                     }
