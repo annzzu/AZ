@@ -1,13 +1,13 @@
 package com.example.az.presentation.restriction.fragment
 
 
-import android.util.Log.d
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentRestrictionBinding
+import com.example.az.extensions.STRINGS
 import com.example.az.extensions.invisible
 import com.example.az.extensions.showSnackBar
 import com.example.az.extensions.visible
@@ -47,10 +47,6 @@ class RestrictionFragment :
             layoutManager =
                 LinearLayoutManager(view?.context , LinearLayoutManager.VERTICAL , false)
         }
-        restrictionAdapter.click = {
-//            openTravelPlanDetails(it)
-            d("testing AZ" , "davawire")
-        }
     }
 
     private fun observers() {
@@ -61,13 +57,16 @@ class RestrictionFragment :
             viewModel.restriction.collectLatest {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
+                        binding.tvNothingFound.invisible()
                         binding.progressBar.visible()
                     }
                     is Resource.Success -> {
+                        binding.tvNothingFound.invisible()
                         binding.progressBar.invisible()
                     }
                 }

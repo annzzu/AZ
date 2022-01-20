@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentAirportsBinding
 import com.example.az.databinding.FragmentNationalitiesBinding
+import com.example.az.extensions.STRINGS
 import com.example.az.extensions.invisible
 import com.example.az.extensions.showSnackBar
 import com.example.az.extensions.visible
@@ -58,7 +59,8 @@ class NationalityFragmentDialog : BaseFragmentDialog() {
             viewModel.nationalities.collectLatest {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
@@ -72,6 +74,7 @@ class NationalityFragmentDialog : BaseFragmentDialog() {
                             nationalityAdapter.submitList(data)
                         } else {
                             binding.tvNothingFound.visible()
+                            binding.tvNothingFound.text = getString(STRINGS.nothing_found)
                         }
                     }
                 }

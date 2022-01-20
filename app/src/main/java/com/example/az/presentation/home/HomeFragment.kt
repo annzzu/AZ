@@ -19,7 +19,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun init() {
         listeners()
         setUser()
-        d("testing AZ" , "opened")
     }
 
     private fun listeners() {
@@ -31,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             cardMyTravelPlan.setOnClickListener {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToTravelPlanEditFragment()
+                    HomeFragmentDirections.actionNavigationHomeToNavigationTravelPlanEditFragment()
                 )
             }
             cardRestrictions.setOnClickListener {
@@ -46,7 +45,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewLifecycleOwner.lifecycleScope.launch {
             authPrefsManager.preferencesFlow.collectLatest { user ->
                 with(binding) {
-                    d("testing AZ", "$user")
                     if (user.token.isNullOrBlank()) {
                         cardMyTravelPlan.invisible()
                     }

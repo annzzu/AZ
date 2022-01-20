@@ -115,4 +115,6 @@
     </string>
     <string name="success">success</string>
     <string name="error">error</string>
+    <string name="choose_different_route">choose different route</string>
+    <string name="not_string"> not %s</string>
 </resources>

@@ -11,21 +11,29 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_navigation_home_to_navigation_login"
-            app:destination="@id/navigation_login"
-            app:popUpTo="@id/navigation_login"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_navigation_home_to_navigation_about"
             app:destination="@id/navigation_about"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_about"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_restrictionForm"
-            app:destination="@id/navigation_restrictionForm" />
+            app:destination="@id/navigation_restrictionForm"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/navigation_home" />
         <action
-            android:id="@+id/action_navigation_home_to_travelPlanEditFragment"
+            android:id="@+id/action_navigation_home_to_navigation_travelPlanEditFragment"
             app:destination="@id/navigation_travelPlanEdit"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_travelPlanEdit"
             app:popUpToInclusive="true" />
     </fragment>
@@ -38,13 +46,22 @@
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/navigation_signup"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_signup"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/navigation_home"
-            app:popUpTo="@id/navigation_home"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/navigation_login"
             app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -55,6 +72,10 @@
         <action
             android:id="@+id/action_navigation_signup_to_navigation_login"
             app:destination="@id/navigation_login"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_login"
             app:popUpToInclusive="true" />
     </fragment>
@@ -67,6 +88,10 @@
         <action
             android:id="@+id/action_navigation_restriction_to_navigation_restrictionForm"
             app:destination="@id/navigation_restrictionForm"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_restrictionForm"
             app:popUpToInclusive="true" />
         <argument
@@ -82,6 +107,10 @@
         <action
             android:id="@+id/action_navigation_restrictionForm_to_navigation_restriction"
             app:destination="@id/navigation_restriction"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_restriction"
             app:popUpToInclusive="true" />
     </fragment>
@@ -90,7 +119,7 @@
         android:id="@+id/navigation_about"
         android:name="com.example.az.presentation.about.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about"></fragment>
+        tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/navigation_userHome"
@@ -100,12 +129,19 @@
         <action
             android:id="@+id/action_navigation_userHome_to_navigation_home"
             app:destination="@id/navigation_home"
-            app:enterAnim="@animator/nav_default_pop_enter_anim"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_userHome_to_travelPlanFragment"
             app:destination="@id/navigation_travelPlan"
-            app:enterAnim="@animator/nav_default_pop_enter_anim"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_travelPlan"
             app:popUpToInclusive="true" />
     </fragment>
@@ -118,6 +154,10 @@
         <action
             android:id="@+id/action_travelPlanFragment_to_travelPlanEditFragment"
             app:destination="@id/navigation_travelPlanEdit"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_travelPlanEdit"
             app:popUpToInclusive="true" />
         <argument
@@ -127,6 +167,10 @@
         <action
             android:id="@+id/action_navigation_travelPlan_to_navigation_userHome"
             app:destination="@id/navigation_userHome"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_userHome"
             app:popUpToInclusive="true" />
     </fragment>
@@ -139,6 +183,10 @@
         <action
             android:id="@+id/action_travelPlanEditFragment_to_navigation_userHome"
             app:destination="@id/navigation_userHome"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_userHome"
             app:popUpToInclusive="true" />
         <argument
@@ -149,11 +197,19 @@
         <action
             android:id="@+id/action_navigation_travelPlanEdit_to_navigation_travelPlan"
             app:destination="@id/navigation_travelPlan"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_travelPlan"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_travelPlanEdit_to_navigation_home"
             app:destination="@id/navigation_home"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="true" />
 

@@ -72,7 +72,8 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
             restrictionViewModel.restriction.collectLatest {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
@@ -80,6 +81,10 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                     }
                     is Resource.Success -> {
                         binding.progressBar.invisible()
+                        it.data?.restrictions?.let {} ?: run {
+                            binding.tvNothingFound.visible()
+                            binding.tvNothingFound.text = getString(STRINGS.error)
+                        }
                     }
                 }
             }

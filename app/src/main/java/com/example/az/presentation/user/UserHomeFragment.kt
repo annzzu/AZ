@@ -70,7 +70,8 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
             userViewModel.travelPlans.collect {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
@@ -84,6 +85,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                             travelPlanAdapter.submitList(data)
                         }else{
                             binding.tvNothingFound.visible()
+                            binding.tvNothingFound.text = getString(STRINGS.nothing_found)
                         }
                     }
                 }
@@ -134,5 +136,3 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         UserHomeFragmentDirections.actionNavigationUserHomeToTravelPlanFragment(travelPlan)
     )
 }
-
-//HomeFragmentDirections.actionNavigationHomeToTravelPlanEditFragment()

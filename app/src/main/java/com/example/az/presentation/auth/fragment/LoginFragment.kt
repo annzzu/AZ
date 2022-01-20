@@ -95,10 +95,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             viewModel.login.collect {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
+                        binding.tvNothingFound.invisible()
                         binding.progressBar.visible()
                     }
                     is Resource.Success -> {

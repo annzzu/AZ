@@ -191,7 +191,6 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         ).show()
     }
 
-
     override fun onTimeSet(p0: TimePicker? , hour: Int , minute: Int) {
         viewModel.date += "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
         binding.tvDate.text = viewModel.date.getDateNextLine()
@@ -203,39 +202,34 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         dialog.clickCallBack = {
             when (type) {
                 AirportChooseType.FROM -> {
-                    viewModel.source = it
-                    binding.tvSource.text = it
+                    if (viewModel.destination == it) {
+                        differentRouteAlert(it)
+                    } else {
+                        viewModel.source = it
+                        binding.tvSource.text = it
+                    }
                 }
                 AirportChooseType.TO -> {
-                    viewModel.destination = it
-                    binding.tvDestination.text = it
+                    if (viewModel.source == it) {
+                        differentRouteAlert(it)
+                    } else {
+                        viewModel.destination = it
+                        binding.tvDestination.text = it
+                    }
                 }
                 AirportChooseType.TRANSITION -> {
                 }
             }
         }
     }
-}
 
-//abstract fun openAirportDialog(fm:FragmentManager, type: AirportChooseType) {
-//    val dialog = AirportsFragmentDialog()
-//    dialog.show(fm , null)
-//    dialog.clickAirport = {
-//        when (type) {
-//            AirportChooseType.FROM -> {
-//                viewModel.source = it
-//                binding.tvSource.text = it
-//            }
-//            AirportChooseType.TO -> {
-//                viewModel.destination = it
-//                binding.tvDestination.text = it
-//            }
-//            AirportChooseType.TRANSITION ->{
-//                transition()
-//            }
-//        }
-//    }
-//}
-//private fun transition(){
-//
-//}
+    private fun differentRouteAlert(it: String) =
+        binding.root.showSnackBar(
+            getString(STRINGS.choose_different_route).plus(
+                getString(
+                    STRINGS.not_string ,
+                    it
+                )
+            )
+        )
+}

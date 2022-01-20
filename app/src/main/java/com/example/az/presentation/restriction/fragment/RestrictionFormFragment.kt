@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RestrictionFormFragment :
     BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
 
-    private val restriction = RestrictionRequest()
+    private var restriction = RestrictionRequest()
 
     override fun init() {
         listeners()
@@ -32,7 +32,7 @@ class RestrictionFormFragment :
             openAirportDialog(AirportChooseType.TRANSITION)
         }
         btnAirportSearch.setOnClickListener {
-            if (!restriction.from.isNullOrBlank()  || !restriction.from.isNullOrBlank()  ) {
+            if (!restriction.from.isNullOrBlank() || !restriction.from.isNullOrBlank()) {
                 searchRestriction()
             } else {
                 root.showSnackBar(getString(STRINGS.indicate_first))
@@ -55,18 +55,41 @@ class RestrictionFormFragment :
         dialog.clickCallBack = {
             when (type) {
                 AirportChooseType.FROM -> {
-                    restriction.from = it
-                    binding.tvSource.text = it
+                    if (restriction.to.equals(it) || restriction.transfer.equals(it)) {
+                        differentRouteAlert(it)
+                    } else {
+                        restriction.from = it
+                        binding.tvSource.text = it
+                    }
                 }
                 AirportChooseType.TO -> {
-                    restriction.to = it
-                    binding.tvDestination.text = it
+                    if (restriction.from.equals(it) || restriction.transfer.equals(it)) {
+                        differentRouteAlert(it)
+                    } else {
+                        restriction.to = it
+                        binding.tvDestination.text = it
+                    }
                 }
-                AirportChooseType.TRANSITION ->{
-                    restriction.transfer = it
-                    binding.tvTransfer.text = it
+                AirportChooseType.TRANSITION -> {
+                    if (restriction.from.equals(it) || restriction.to.equals(it)) {
+                        differentRouteAlert(it)
+                    } else {
+                        restriction.transfer = it
+                        binding.tvTransfer.text = it
+                    }
                 }
             }
         }
     }
+
+    private fun differentRouteAlert(it: String) =
+        binding.root.showSnackBar(
+            getString(STRINGS.choose_different_route).plus(
+                getString(
+                    STRINGS.not_string ,
+                    it
+                )
+            )
+        )
 }
+

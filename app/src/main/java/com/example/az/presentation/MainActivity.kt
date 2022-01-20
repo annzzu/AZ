@@ -8,6 +8,7 @@ import android.util.Log.d
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -29,6 +30,7 @@ enum class ActionType(val str: String) {
 class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
+    private val navController by lazy { findNavController(R.id.navHostFragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +49,10 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
 
     private fun initFab() {
         binding.run {
-            findNavController(R.id.navHostFragment).addOnDestinationChangedListener(
+            navController.addOnDestinationChangedListener(
                 this@MainActivity
             )
+//            supportFragmentManager.
         }
     }
 
@@ -104,8 +107,13 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         binding.fab.apply {
             setImageResource(icon)
             setOnClickListener {
-                findNavController(R.id.navHostFragment).navigate(navigation)
+                navController.navigate(navigation)
             }
         }
+    }
+
+    override fun finish() {
+        super.finish()
+        ActivityNavigator.applyPopAnimationsToPendingTransition(this)
     }
 }

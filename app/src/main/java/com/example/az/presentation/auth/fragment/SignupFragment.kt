@@ -117,14 +117,17 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
             viewModel.signup.collect {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
+                        binding.tvNothingFound.invisible()
                         binding.progressBar.visible()
                     }
                     is Resource.Success -> {
                         binding.progressBar.invisible()
+                        binding.tvNothingFound.invisible()
                         binding.root.hideKeyboard()
                         binding.root.showSnackBar(getString(STRINGS.successful_sign_up))
                         openLogin()

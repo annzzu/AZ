@@ -60,6 +60,7 @@ class RestrictionAdapter : ListAdapter<RestrictionKotlin , RecyclerView.ViewHold
             val context = this@ChildViewHolder.itemView.context
 
             model.generalRestrictions?.let {
+                lGeneralRestriction.visible()
                 tvGeneralInformation.text =
                     context.getString(STRINGS.generalInformation , it.generalInformation)
                 tvGeneralFull.text = context.getString(

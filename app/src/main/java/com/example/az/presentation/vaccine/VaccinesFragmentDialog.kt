@@ -69,12 +69,11 @@ class VaccinesFragmentDialog : BaseFragmentDialog() {
             viewModel.vaccines.collectLatest {
                 when (it) {
                     is Resource.Error -> {
-                        binding.progressBar.visible()
+                        binding.tvNothingFound.visible()
+                        binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
-                    is Resource.Loading -> {
-                        binding.progressBar.visible()
-                    }
+                    is Resource.Loading -> binding.progressBar.visible()
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         val data = it.data?.vaccines
@@ -83,6 +82,7 @@ class VaccinesFragmentDialog : BaseFragmentDialog() {
                             vaccineAdapter.submitList(data)
                         } else {
                             binding.tvNothingFound.visible()
+                            binding.tvNothingFound.text = getString(STRINGS.nothing_found)
                         }
                     }
                 }
