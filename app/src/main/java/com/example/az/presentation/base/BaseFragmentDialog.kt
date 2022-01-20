@@ -6,6 +6,8 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.az.R
 import com.google.android.material.transition.MaterialElevationScale
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.MaterialSharedAxis
 
 
 typealias ClickCallBack = (string: String) -> Unit
@@ -18,6 +20,13 @@ abstract class BaseFragmentDialog : DialogFragment() {
         super.onViewCreated(view , savedInstanceState)
         init()
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough().apply {
+            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+        }
+    }
+
 
     open fun init() {
         initRV()

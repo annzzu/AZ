@@ -10,6 +10,7 @@ import android.util.Log.d
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.az.R
 import com.example.az.databinding.FragmentAirportsBinding
 import com.example.az.databinding.FragmentNationalitiesBinding
 import com.example.az.model.airport.Airport
@@ -24,6 +25,7 @@ import com.example.az.presentation.base.BaseFragmentDialog
 import com.example.az.presentation.nationality.NationalityAdapter
 import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 import com.example.az.utils.Resource
+import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

@@ -117,11 +117,13 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
             viewModel.signup.collect {
                 when (it) {
                     is Resource.Error -> {
+                        binding.root.isEnabled = true
                         binding.tvNothingFound.visible()
                         binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
+                        binding.root.isEnabled = false
                         binding.tvNothingFound.invisible()
                         binding.progressBar.visible()
                     }

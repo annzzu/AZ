@@ -30,12 +30,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         listenerETs()
         formValidation()
         with(binding) {
-
             btnLogin.setOnClickListener {
                 root.hideKeyboard()
                 login()
             }
-
             btnSignupTab.setOnClickListener {
                 openSingup()
             }
@@ -100,10 +98,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {
+                        binding.root.isEnabled = false
                         binding.tvNothingFound.invisible()
                         binding.progressBar.visible()
                     }
                     is Resource.Success -> {
+                        d("testing AZ", "$it")
                         binding.progressBar.invisible()
                         binding.root.showSnackBar(getString(STRINGS.successful_login))
                         openHome()
