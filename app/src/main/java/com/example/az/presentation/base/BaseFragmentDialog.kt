@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import com.example.az.R
+import com.google.android.material.transition.MaterialElevationScale
 
 
 typealias ClickCallBack = (string: String) -> Unit

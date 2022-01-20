@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log.d
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
@@ -16,6 +17,8 @@ import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.BaseActivity
+import com.google.android.material.transition.MaterialElevationScale
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,10 +38,29 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
+
+        motions()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         handleShortCut()
         initFab()
+    }
+
+    private val currentNavigationFragment: Fragment?
+        get() = supportFragmentManager.findFragmentById(R.id.navHostFragment)
+            ?.childFragmentManager
+            ?.fragments
+            ?.first()
+
+    private fun motions(){
+        currentNavigationFragment?.apply {
+            exitTransition = MaterialElevationScale(false).apply {
+                duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+            }
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+            }
+        }
     }
 
     private fun handleShortCut() {
@@ -52,7 +74,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             navController.addOnDestinationChangedListener(
                 this@MainActivity
             )
-//            supportFragmentManager.
         }
     }
 
@@ -107,6 +128,7 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         binding.fab.apply {
             setImageResource(icon)
             setOnClickListener {
+                motions()
                 navController.navigate(navigation)
             }
         }

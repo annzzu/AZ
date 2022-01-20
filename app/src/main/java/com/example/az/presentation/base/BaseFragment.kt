@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
 import com.example.az.data.local.AuthPrefsManager
 import com.example.az.presentation.user.UserViewModel
+import com.google.android.material.transition.MaterialContainerTransform
 import javax.inject.Inject
 
 typealias  Inflate<T> = (LayoutInflater , ViewGroup , Boolean) -> T
