@@ -28,10 +28,9 @@ class AirportsViewModel @Inject constructor(private val repository: AirportRepos
         viewModelScope.launch {
             getAirports()
         }
-
     }
 
-    var source = "TBS"
-    var destination = "BER"
-    var transition = "BER"
+    var source = ""
+    var destination = ""
+    var transition = ""
 }

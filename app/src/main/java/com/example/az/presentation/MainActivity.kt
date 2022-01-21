@@ -1,11 +1,6 @@
 package com.example.az.presentation
 
-import android.app.PendingIntent
-import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
 import android.os.Bundle
-import android.util.Log.d
-import androidx.core.graphics.drawable.IconCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -18,16 +13,9 @@ import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.BaseActivity
 import com.google.android.material.transition.MaterialElevationScale
-import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
-enum class ActionType(val str: String) {
-    MAIN("android.intent.action.MAIN") ,
-    RESTRICTION("com.example.az.shortcut.Restriction") ,
-    RESTRICTIONONE("android.intent.action.VIEW")
-}
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener {
@@ -42,7 +30,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         motions()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        handleShortCut()
         initFab()
     }
 
@@ -60,12 +47,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             reenterTransition = MaterialElevationScale(true).apply {
                 duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
             }
-        }
-    }
-
-    private fun handleShortCut() {
-        if (ActionType.RESTRICTION.str == intent.action) {
-            findNavController(R.id.navHostFragment).navigate(R.id.navigation_restrictionForm)
         }
     }
 

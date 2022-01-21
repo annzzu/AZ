@@ -46,14 +46,15 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
                 tvDate.text = date.getTime(true).getTimeNextLine()
                 tvDateTime.text = date.getTime(false)
                 days = date.getDuration().toInt()
-                if (days <= 0){
+                if (days <= 0) {
                     pbDateLeft.progress = 100
-                }else{
+                } else {
                     pbDateLeft.progress = 100 / days
                     pbDateLeft.max = days + 1
-                    tvDaysLeft.text = "$days Days Left"
+                    tvDaysLeft.text =
+                        this@ViewHolder.itemView.context.getString(STRINGS.x_days_left , days)
                 }
-            }else{
+            } else {
                 pbDateLeft.invisible()
                 tvDaysLeft.invisible()
             }
@@ -71,6 +72,4 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
         override fun areContentsTheSame(oldItem: TravelPlan , newItem: TravelPlan): Boolean =
             oldItem == newItem
     }
-
-
 }

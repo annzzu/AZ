@@ -12,7 +12,6 @@ import com.example.az.extensions.invisible
 import com.example.az.extensions.showSnackBar
 import com.example.az.extensions.visible
 import com.example.az.presentation.base.BaseFragment
-import com.example.az.presentation.restriction.ConvertToRestrictionKotlin
 import com.example.az.presentation.restriction.RestrictionViewModel
 import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.utils.Resource
@@ -23,8 +22,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RestrictionFragment :
-    BaseFragment<FragmentRestrictionBinding>(FragmentRestrictionBinding::inflate) ,
-    ConvertToRestrictionKotlin {
+    BaseFragment<FragmentRestrictionBinding>(FragmentRestrictionBinding::inflate)
+     {
 
     private val args: RestrictionFragmentArgs by navArgs()
     private val viewModel: RestrictionViewModel by activityViewModels()
@@ -54,7 +53,7 @@ class RestrictionFragment :
             viewModel.getRestriction(args.restrictionRequest)
         }
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.restriction.collectLatest {
+            viewModel.restriction.collectLatest { it ->
                 when (it) {
                     is Resource.Error -> {
                         binding.tvNothingFound.visible()
@@ -66,21 +65,13 @@ class RestrictionFragment :
                         binding.progressBar.visible()
                     }
                     is Resource.Success -> {
-                        binding.tvNothingFound.invisible()
                         binding.progressBar.invisible()
-                    }
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.restrictionList.collectLatest {
-                it.let { list ->
-                    if (list.isNotEmpty()) {
-                        restrictionAdapter.submitList(list)
-                        binding.tvNothingFound.invisible()
-                    } else {
-                        binding.tvNothingFound.visible()
+                        it.data?.restrictionList?.let{ value ->
+                            restrictionAdapter.submitList(value)
+                            binding.tvNothingFound.invisible()
+                        } ?: run {
+                            binding.tvNothingFound.visible()
+                        }
                     }
                 }
             }

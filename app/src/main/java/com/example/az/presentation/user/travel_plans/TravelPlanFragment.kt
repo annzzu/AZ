@@ -45,7 +45,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                 } else {
                     pbDateLeft.progress = 100 / days
                     pbDateLeft.max = days + 1
-                    tvDaysLeft.text = "$days Days Left"
+                    tvDaysLeft.text = getString(STRINGS.x_days_left, days)
                 }
             } ?: run {
                 pbDateLeft.invisible()
@@ -53,12 +53,10 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
             }
 
             initRestrictions(it.source!! , it.destination!!)
-
         }
     }
 
     private fun initRestrictions(from: String , to: String) {
-
         viewLifecycleOwner.lifecycleScope.launch {
             restrictionViewModel.getRestriction(
                 RestrictionRequest(
@@ -81,23 +79,12 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                     }
                     is Resource.Success -> {
                         binding.progressBar.invisible()
-                        it.data?.restrictions?.let {} ?: run {
+                        it.data?.restrictionList?.let{ value ->
+                            restrictionAdapter.submitList(value)
+                            binding.tvNothingFound.invisible()
+                        } ?: run {
                             binding.tvNothingFound.visible()
-                            binding.tvNothingFound.text = getString(STRINGS.error)
                         }
-                    }
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            restrictionViewModel.restrictionList.collectLatest {
-                it.let { list ->
-                    if (list.isNotEmpty()) {
-                        restrictionAdapter.submitList(list)
-                        binding.tvNothingFound.invisible()
-                    } else {
-                        binding.tvNothingFound.visible()
                     }
                 }
             }
@@ -156,5 +143,4 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     private fun btnEdit() = findNavController().navigate(
         TravelPlanFragmentDirections.actionTravelPlanFragmentToTravelPlanEditFragment(args.travelPlan)
     )
-
 }

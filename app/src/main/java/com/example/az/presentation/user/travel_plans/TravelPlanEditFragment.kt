@@ -120,7 +120,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         } else {
             create(travelPlan)
         }
-
+ 
     }
 
     private fun create(travelPlan: TravelPlan) {

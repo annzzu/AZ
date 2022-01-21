@@ -117,4 +117,5 @@
     <string name="error">error</string>
     <string name="choose_different_route">choose different route</string>
     <string name="not_string"> not %s</string>
+    <string name="x_days_left">%d days left</string>
 </resources>
