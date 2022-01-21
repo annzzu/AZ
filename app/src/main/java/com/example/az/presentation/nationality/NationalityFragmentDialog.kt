@@ -1,6 +1,8 @@
 package com.example.az.presentation.nationality
 
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +39,7 @@ class NationalityFragmentDialog : BaseFragmentDialog() {
         container: ViewGroup? ,
         savedInstanceState: Bundle?
     ): View? {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         _binding = FragmentNationalitiesBinding.inflate(inflater , container , false)
         return binding.root
     }
