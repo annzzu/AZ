@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.az.databinding.FragmentAirportsBinding
 import com.example.az.databinding.FragmentNationalitiesBinding
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.invisible

@@ -153,7 +153,10 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                         binding.progressBar.visible()
                         binding.root.showSnackBar(it.message!!)
                     }
-                    is Resource.Loading -> binding.progressBar.visible()
+                    is Resource.Loading -> {
+                        binding.root.isEnabled = false
+                        binding.progressBar.visible()
+                    }
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         it.data?.travelPlan?.let { travelPlanResponse ->
