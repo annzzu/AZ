@@ -26,6 +26,7 @@
         android:background="@drawable/rounded_shapes_gr_bottom"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnusedAttribute">
@@ -37,7 +38,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/comfortaa_regular"
             android:lines="2"
-            android:padding="8dp"
+            android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/white"
             android:textSize="21sp"
@@ -50,13 +51,30 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toStartOf="@+id/tvDestination"
-            app:layout_constraintHeight_percent=".4"
+            app:layout_constraintHeight_percent=".3"
             app:layout_constraintStart_toEndOf="@+id/tvSource"
             app:layout_constraintTop_toTopOf="@+id/tvSource"
             app:layout_constraintWidth_percent=".2"
             app:srcCompat="@drawable/ic_plane" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTransfer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_regular"
+            android:lines="2"
+            android:text="@string/transfer"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/tvDateTime"
+            app:layout_constraintStart_toStartOf="@+id/tvSource"
+            app:layout_constraintTop_toBottomOf="@+id/tvSource"
+            app:layout_constraintWidth_percent=".6" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDestination"
@@ -65,7 +83,6 @@
             android:ellipsize="end"
             android:fontFamily="@font/comfortaa_regular"
             android:lines="2"
-            android:padding="8dp"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/white"
@@ -81,12 +98,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_regular"
+            android:lines="2"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:lines="2"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDestination"
@@ -117,7 +135,7 @@
             app:indicatorColor="@color/red_l"
             app:layout_constraintEnd_toStartOf="@+id/tvDateTime"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSource"
+            app:layout_constraintTop_toBottomOf="@+id/tvTransfer"
             app:layout_constraintWidth_percent=".6"
             app:trackColor="@color/green_l_l" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,15 +155,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lTravelPlan" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRestrictions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="40dp"
         android:stateListAnimator="@layout/item_restriction"
         app:layout_constraintTop_toBottomOf="@+id/lTravelPlan"
         app:layout_constraintBottom_toBottomOf="@+id/tvBackground"
         tools:listitem="@layout/item_restriction" />
-
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -158,7 +177,6 @@
         app:layout_constraintEnd_toEndOf="@+id/rvRestrictions"
         app:layout_constraintStart_toStartOf="@+id/rvRestrictions"
         app:layout_constraintTop_toBottomOf="@+id/lTravelPlan" />
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnBack"
@@ -175,7 +193,6 @@
         app:srcCompat="@drawable/ic_back"
         app:layout_constraintHorizontal_bias=".1"
         app:tint="@color/white" />
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnDelete"

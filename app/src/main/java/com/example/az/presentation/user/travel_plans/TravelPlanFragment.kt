@@ -1,6 +1,7 @@
 package com.example.az.presentation.user.travel_plans
 
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentTravelPlanBinding
 import com.example.az.extensions.*
 import com.example.az.model.restriction.RestrictionRequest
+import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.presentation.restriction.RestrictionViewModel
@@ -24,7 +26,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
 ) {
     private val args: TravelPlanFragmentArgs by navArgs()
     private val viewModel: UserViewModel by activityViewModels()
-    private val restrictionViewModel: RestrictionViewModel by activityViewModels()
+    private val restrictionViewModel: RestrictionViewModel by viewModels()
     private lateinit var restrictionAdapter: RestrictionAdapter
 
     override fun init() {
@@ -33,35 +35,41 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     }
 
     private fun setInfo() = with(binding) {
-        args.travelPlan?.let {
+        args.travelPlan?.let { it ->
             initRV()
             tvSource.text = it.source
             tvDestination.text = it.destination
-            it.date?.getDateNextLine().also { tvDateTime.text = it }
-
+            if (!it.transfer.isNullOrBlank()) {
+                tvTransfer.visible()
+                tvTransfer.text = getString(STRINGS.transfer_x , it.transfer)
+            }
+            it.travelDate?.let {
+                it.getDateNextLine().also { tvDateTime.text = it }
+                tvDateTime.visible()
+            }
             it.days?.let { days ->
                 if (days <= 0) {
                     pbDateLeft.progress = 100
                 } else {
                     pbDateLeft.progress = 100 / days
                     pbDateLeft.max = days + 1
-                    tvDaysLeft.text = getString(STRINGS.x_days_left, days)
+                    tvDaysLeft.text = getString(STRINGS.x_days_left , days)
                 }
             } ?: run {
                 pbDateLeft.invisible()
                 tvDaysLeft.invisible()
             }
-
-            initRestrictions(it.source!! , it.destination!!)
+            initRestrictions(it)
         }
     }
 
-    private fun initRestrictions(from: String , to: String) {
+    private fun initRestrictions(travelPlan: TravelPlan) {
         viewLifecycleOwner.lifecycleScope.launch {
             restrictionViewModel.getRestriction(
                 RestrictionRequest(
-                    from = from ,
-                    to = to ,
+                    from = travelPlan.source ,
+                    to = travelPlan.destination ,
+                    transfer = travelPlan.transfer ,
                 )
             )
         }
@@ -79,7 +87,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                     }
                     is Resource.Success -> {
                         binding.progressBar.invisible()
-                        it.data?.restrictionList?.let{ value ->
+                        it.data?.restrictionList?.let { value ->
                             restrictionAdapter.submitList(value)
                             binding.tvNothingFound.invisible()
                         } ?: run {

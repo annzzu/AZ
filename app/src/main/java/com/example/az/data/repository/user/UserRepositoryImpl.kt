@@ -30,7 +30,7 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createTravelPlan(
-        travelPlan: TravelPlan
+        travelPlan: TravelPlanRequest
     ): Flow<Resource<TravelPlanSingleResponse>> {
         return flow {
             emit(Resource.Loading())
@@ -41,17 +41,15 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateTravelPlan(
-        travelPlan: TravelPlan
+        travelPlan: TravelPlanRequest
     ): Flow<Resource<TravelPlanSingleResponse>> {
         return flow {
             emit(Resource.Loading())
-            val travelPlanRequest =
-                TravelPlanRequest(travelPlan.source , travelPlan.destination , travelPlan.date)
             emit(handleResponse {
                 dataSource.updateTravelPlan(
                     autoAuthPrefsManager.readAuthToken() ,
                     travelPlan.id!! ,
-                    travelPlanRequest
+                    travelPlan.copy(id=null)
                 )
             })
         }.flowOn(Dispatchers.IO)

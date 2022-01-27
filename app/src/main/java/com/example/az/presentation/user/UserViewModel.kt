@@ -4,13 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.remote.ApiResponse
 import com.example.az.data.repository.user.UserRepositoryImpl
+import com.example.az.extensions.dateToString
+import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlanRequest
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +32,8 @@ class UserViewModel @Inject constructor(private val repository: UserRepositoryIm
     private val _createPlan = MutableSharedFlow<Resource<TravelPlanSingleResponse>>()
     val createPlan: SharedFlow<Resource<TravelPlanSingleResponse>> = _createPlan
 
-    suspend fun createTravelPlan(travelPlan: TravelPlan) = viewModelScope.launch {
+    suspend fun createTravelPlan(travelPlan: TravelPlanRequest) = viewModelScope.launch {
+        travelPlan.date = Calendar.getInstance().time.dateToString()
         repository.createTravelPlan(travelPlan).collectLatest { values ->
             _createPlan.emit(values)
         }
@@ -37,7 +42,7 @@ class UserViewModel @Inject constructor(private val repository: UserRepositoryIm
     private val _updatePlan = MutableSharedFlow<Resource<TravelPlanSingleResponse>>()
     val updatePlan: SharedFlow<Resource<TravelPlanSingleResponse>> = _updatePlan
 
-    suspend fun updateTravelPlan(travelPlan: TravelPlan) = viewModelScope.launch {
+    suspend fun updateTravelPlan(travelPlan: TravelPlanRequest) = viewModelScope.launch {
         repository.updateTravelPlan(travelPlan).collectLatest { values ->
             _updatePlan.emit(values)
         }
@@ -51,22 +56,5 @@ class UserViewModel @Inject constructor(private val repository: UserRepositoryIm
             _deletePlan.emit(values)
         }
     }
-
-    private val _travelPlanForm = MutableStateFlow<Boolean>(false)
-    val travelPlanForm: StateFlow<Boolean> = _travelPlanForm
-
-    fun travelPlanFormValidation(travelPlan: TravelPlan) {
-        viewModelScope.launch {
-            if (!travelPlan.source.isNullOrBlank()
-                && travelPlan.destination.isNullOrBlank()
-                && travelPlan.destination.isNullOrBlank()
-            )
-                _travelPlanForm.emit(true)
-        }
-    }
-
-    var source = "TBS"
-    var destination = "BER"
-    var date = "2022-07-25T00:00:00"
-
+    var travelPlanRequestForm = TravelPlanRequest()
 }

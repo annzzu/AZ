@@ -35,7 +35,6 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/comfortaa_regular"
                 android:lines="2"
-                android:padding="8dp"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/white"
                 android:textSize="21sp"
@@ -46,9 +45,9 @@
                 tools:text="@string/source" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/tvDestination"
                 app:layout_constraintHeight_percent=".4"
                 app:layout_constraintStart_toEndOf="@+id/tvSource"
@@ -63,7 +62,6 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/comfortaa_regular"
                 android:lines="2"
-                android:padding="8dp"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/white"
@@ -73,6 +71,23 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".4"
                 tools:text="@string/destination" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTransfer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/comfortaa_regular"
+                android:text="@string/transfer"
+                android:visibility="invisible"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSource"
+                app:layout_constraintWidth_percent=".8" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvDateTime"
@@ -86,7 +101,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDestination"
+                app:layout_constraintTop_toTopOf="@+id/pbDateLeft"
                 app:layout_constraintWidth_percent=".4" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -114,7 +129,7 @@
                 app:indicatorColor="@color/red_l"
                 app:layout_constraintEnd_toStartOf="@+id/tvDateTime"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSource"
+                app:layout_constraintTop_toBottomOf="@+id/tvTransfer"
                 app:layout_constraintWidth_percent=".6"
                 app:trackColor="@color/green_l_l" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,7 +146,7 @@
         android:padding="2dp"
         android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="@color/green_n_d"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cvTravelPlan"

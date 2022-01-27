@@ -7,5 +7,5 @@ data class Airport(
 )
 
 enum class AirportChooseType {
-    FROM, TO, TRANSITION
+    FROM, TO, TRANSFER
 }

@@ -31,12 +31,12 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:transitionName="shared_element_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
-        android:transitionName="shared_element_container"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardSource"
@@ -56,18 +56,32 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/comfortaa_regular"
             android:lines="2"
-            android:textAlignment="center"
             android:padding="10dp"
-            android:text="@string/click_to_choose"
+            android:textAlignment="center"
             android:textColor="@color/green_n_d"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".6" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSourceText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/click_to_choose"
+            android:textAlignment="center"
+            android:textColor="@color/green_n_d"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvSource"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent=".6"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green_n_d"
@@ -81,7 +95,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvSource"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,17 +117,31 @@
             android:fontFamily="@font/comfortaa_regular"
             android:lines="2"
             android:padding="10dp"
-            android:text="@string/click_to_choose"
+            android:textAlignment="center"
             android:textColor="@color/green_n_d"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".6" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDestinationText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/click_to_choose"
+            android:textAlignment="center"
+            android:textColor="@color/green_n_d"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvDestination"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent=".6"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green_n_d"
@@ -148,19 +176,33 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/comfortaa_regular"
-            android:lines="2"
-            android:textAlignment="center"
             android:padding="10dp"
-            android:text="@string/click_to_choose"
+            android:textAlignment="center"
             android:textColor="@color/green_n_d"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:lines="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".55" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTransferText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/click_to_choose_long_click"
+            android:textAlignment="center"
+            android:textColor="@color/green_n_d"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvTransfer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent=".6" />
+
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnTransfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green_n_d"
@@ -174,23 +216,41 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvTransfer"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnAirportSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/red_d"
         android:contentDescription="@string/app_name"
         android:foregroundTint="@color/white"
+        android:text="@string/search"
+        android:textColor="@color/white"
+        app:icon="@drawable/ic_plane"
         app:backgroundTint="@color/red_d"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".875"
-        app:srcCompat="@drawable/ic_plane"
-        app:tint="@color/white" />
+        app:layout_constraintVertical_bias=".875"/>
+
+<!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--        android:text="@string/search"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:backgroundTint="@color/red_d"-->
+<!--        android:contentDescription="@string/app_name"-->
+<!--        app:backgroundTint="@color/red_d"-->
+<!--        app:iconTint="@color/white"-->
+<!--        android:foregroundTint="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias=".875"-->
+<!--        app:srcCompat="@drawable/ic_plane"-->
+<!--        app:tint="@color/white" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,7 @@ class DataSource @Inject constructor(private val api: ApiService) {
 
     suspend fun getTravelPlan(token: String) = api.getTravelPlan(token)
 
-    suspend fun createTravelPlan(token: String , travelPlan: TravelPlan) =
+    suspend fun createTravelPlan(token: String , travelPlan: TravelPlanRequest) =
         api.createTravelPlan(token , travelPlan)
 
     suspend fun updateTravelPlan(token: String , id: String , travelPlanRequest: TravelPlanRequest) =

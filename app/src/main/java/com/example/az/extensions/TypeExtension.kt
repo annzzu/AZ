@@ -1,5 +1,6 @@
 package com.example.az.extensions
 
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.pow
 
@@ -15,6 +16,11 @@ fun String.addInfoNationality(info: Boolean? , formatted: String): String =
 fun String.addString(info: String): String = this.plus(info)
 fun String.addNL(info: String): String = this.plus("\n")
 fun String.addInfoNL(info: String): String = this.plus(" : ").plus(info).plus("\n")
+
+fun Date.dateToString(): String =
+      SimpleDateFormat("yyyy-MM-dd HH:mm:ss" , Locale.getDefault()).format(this).replaceSpaceWithT()
+
+
 fun Boolean.addInfoBoolean(): String =
     if (this) {
         "True"

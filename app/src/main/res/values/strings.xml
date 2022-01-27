@@ -45,9 +45,15 @@
     <string name="days_left"> Days Left!</string>
     <string name="transfer">Transfer</string>
     <string name="click_to_choose">Click to Choose</string>
+    <string name="from_click_to_choose">from\nClick to Choose</string>
+    <string name="to_click_to_choose">to\nClick to Choose</string>
+    <string name="click_to_choose_long_click">Click to Choose\nLong Click to Delete</string>
     <string name="search">SEARCH</string>
     <string name="from">from</string>
     <string name="to">to</string>
+    <string name="to_x">To %s</string>
+    <string name="from_x">From %s</string>
+    <string name="transfer_x">Transfer %s</string>
     <string name="source_text">Switzerland\nGeneva</string>
     <string name="to_text">Germany\nBerlin</string>
     <string name="transfer_text">Georgia\nTbilisi</string>
@@ -115,7 +121,7 @@
     </string>
     <string name="success">success</string>
     <string name="error">error</string>
-    <string name="choose_different_route">choose different route</string>
+    <string name="choose_different_route">choose different route not %s</string>
     <string name="not_string"> not %s</string>
     <string name="x_days_left">%d days left</string>
 </resources>

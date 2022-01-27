@@ -1,5 +1,6 @@
 package com.example.az.presentation.restriction.fragment
 
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentRestrictionFormBinding
 import com.example.az.extensions.STRINGS
@@ -8,6 +9,8 @@ import com.example.az.model.airport.AirportChooseType
 import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.presentation.airport.AirportsFragmentDialog
 import com.example.az.presentation.base.BaseFragment
+import com.example.az.presentation.restriction.RestrictionViewModel
+import com.example.az.presentation.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -15,24 +18,31 @@ import dagger.hilt.android.AndroidEntryPoint
 class RestrictionFormFragment :
     BaseFragment<FragmentRestrictionFormBinding>(FragmentRestrictionFormBinding::inflate) {
 
-    private var restriction = RestrictionRequest()
+    private val restrictionViewModel: RestrictionViewModel by activityViewModels()
 
     override fun init() {
         listeners()
     }
 
-    private fun listeners() = with(binding) {
-        cardSource.setOnClickListener {
+    private fun listeners() {
+        setOnClickFuns()
+        setOnLongClickFuns()
+    }
+
+    private fun setOnClickFuns() = with(binding) {
+        btnFrom.setOnClickListener {
             openAirportDialog(AirportChooseType.FROM)
         }
-        cardDestination.setOnClickListener {
+        btnTo.setOnClickListener {
             openAirportDialog(AirportChooseType.TO)
         }
-        cardTransfer.setOnClickListener {
-            openAirportDialog(AirportChooseType.TRANSITION)
+        btnTransfer.setOnClickListener {
+            openAirportDialog(AirportChooseType.TRANSFER)
         }
         btnAirportSearch.setOnClickListener {
-            if (!restriction.from.isNullOrBlank() || !restriction.from.isNullOrBlank()) {
+            if (!restrictionViewModel.restrictionRequestForm.to.isNullOrBlank() ||
+                !restrictionViewModel.restrictionRequestForm.from.isNullOrBlank()
+            ) {
                 searchRestriction()
             } else {
                 root.showSnackBar(getString(STRINGS.indicate_first))
@@ -40,43 +50,78 @@ class RestrictionFormFragment :
         }
     }
 
+    private fun setOnLongClickFuns() = with(binding) {
+        btnFrom.setOnLongClickListener {
+            deleteForm(AirportChooseType.FROM)
+            true
+        }
+        btnTo.setOnLongClickListener {
+            deleteForm(AirportChooseType.TO)
+            true
+        }
+        btnTransfer.setOnLongClickListener {
+            deleteForm(AirportChooseType.TRANSFER)
+            true
+        }
+    }
+
     private fun searchRestriction() {
         findNavController().navigate(
-            RestrictionFormFragmentDirections.actionNavigationRestrictionFormToNavigationRestriction(
-                restriction
-            )
+            RestrictionFormFragmentDirections.actionNavigationRestrictionFormToNavigationRestriction()
         )
     }
 
 
-    private fun openAirportDialog(type: AirportChooseType) {
-        val dialog = AirportsFragmentDialog()
-        dialog.show(childFragmentManager , null)
-        dialog.clickCallBack = {
+    private fun openAirportDialog(type: AirportChooseType) =
+        with(restrictionViewModel.restrictionRequestForm) {
+            val dialog = AirportsFragmentDialog()
+            dialog.show(childFragmentManager , null)
+            dialog.clickCallBack = {
+                when (type) {
+                    AirportChooseType.FROM -> {
+                        if (to.equals(it) || transfer?.split(",")?.contains(it) == true) {
+                            differentRouteAlert(it)
+                        } else {
+                            from = it
+                            binding.tvSource.text = it
+                        }
+                    }
+                    AirportChooseType.TO -> {
+                        if (from.equals(it) || transfer?.split(",")?.contains(it) == true) {
+                            differentRouteAlert(it)
+                        } else {
+                            to = it
+                            binding.tvDestination.text = it
+                        }
+                    }
+                    AirportChooseType.TRANSFER -> {
+                        if (from.equals(it) || to.equals(it) ||
+                            transfer?.split(",")?.contains(it) == true
+                        ) {
+                            differentRouteAlert(it)
+                        } else {
+                            transfer = if (!transfer.isNullOrBlank()) transfer.plus(",$it") else it
+                            binding.tvTransfer.text = transfer
+                        }
+                    }
+                }
+            }
+        }
+
+    private fun deleteForm(type: AirportChooseType) = with(binding) {
+        with(restrictionViewModel.restrictionRequestForm) {
             when (type) {
-                AirportChooseType.FROM -> {
-                    if (restriction.to.equals(it) || restriction.transfer.equals(it)) {
-                        differentRouteAlert(it)
-                    } else {
-                        restriction.from = it
-                        binding.tvSource.text = it
-                    }
-                }
                 AirportChooseType.TO -> {
-                    if (restriction.from.equals(it) || restriction.transfer.equals(it)) {
-                        differentRouteAlert(it)
-                    } else {
-                        restriction.to = it
-                        binding.tvDestination.text = it
-                    }
+                    tvSource.text = ""
+                    to = null
                 }
-                AirportChooseType.TRANSITION -> {
-                    if (restriction.from.equals(it) || restriction.to.equals(it)) {
-                        differentRouteAlert(it)
-                    } else {
-                        restriction.transfer = it
-                        binding.tvTransfer.text = it
-                    }
+                AirportChooseType.FROM -> {
+                    tvDestination.text = ""
+                    from = null
+                }
+                AirportChooseType.TRANSFER -> {
+                    tvTransfer.text = ""
+                    transfer = null
                 }
             }
         }

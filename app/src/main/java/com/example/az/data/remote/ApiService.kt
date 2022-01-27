@@ -43,7 +43,7 @@ interface ApiService {
     @POST(ApiEndpoints.TRAVEL_PLAN)
     suspend fun createTravelPlan(
         @Header(ApiEndpoints.TOKEN) token: String ,
-        @Body travelPlan: TravelPlan
+        @Body travelPlan: TravelPlanRequest
     ): Response<TravelPlanSingleResponse>
 
     @PUT(ApiEndpoints.TRAVEL_PLAN_ID)

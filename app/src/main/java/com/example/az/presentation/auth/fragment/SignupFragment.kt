@@ -5,6 +5,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.az.R
 import com.example.az.databinding.FragmentSignupBinding
 import com.example.az.extensions.*
 import com.example.az.model.user.User
@@ -154,7 +155,9 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
             nationality = it
             binding.btnNationality.text = it
         }
+//        findNavController().navigate(SignupFragmentDirections.actionNavigationSignupToNationalityFragmentDialog())
     }
+
     private fun openVaccineDialog() {
         val dialog = VaccinesFragmentDialog()
         dialog.show(childFragmentManager , null)

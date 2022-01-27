@@ -15,6 +15,7 @@
         android:fontFamily="@font/comfortaa_regular"
         android:padding="10dp"
         android:text="@string/gva_text"
+        android:lines="2"
         android:textAlignment="center"
         android:textColor="@color/green_n_d"
         android:textSize="18sp"
@@ -35,8 +36,6 @@
         app:layout_constraintWidth_percent=".1"
         app:srcCompat="@drawable/ic_next"
         app:tint="@color/green_n_d" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

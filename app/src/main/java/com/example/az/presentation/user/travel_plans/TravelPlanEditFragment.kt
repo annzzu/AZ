@@ -21,6 +21,7 @@ import com.example.az.databinding.FragmentTravelPlanEditBinding
 import com.example.az.extensions.*
 import com.example.az.model.airport.AirportChooseType
 import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlanRequest
 import com.example.az.model.user.User
 import com.example.az.model.user.UserResponse
 import com.example.az.presentation.airport.AirportsFragmentDialog
@@ -50,12 +51,22 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     private fun setInfo() {
         with(binding) {
             args.travelPlan?.let {
-                viewModel.source = it.source ?: ""
-                viewModel.destination = it.destination ?: ""
-                viewModel.date = it.date ?: ""
-                tvSource.text = it.source
-                tvDestination.text = it.destination
-                tvDate.text = it.date?.getDateNextLine()
+                viewModel.travelPlanRequestForm.apply {
+                    id = it.id
+                    source = it.source
+                    destination = it.destination
+                    transfer = it.transfer
+                    date = it.date
+                    travelDate = it.travelDate
+                }
+                tvSource.text = getString(STRINGS.to_x , it.source)
+                tvDestination.text = getString(STRINGS.from_x , it.destination)
+
+                tvTransfer.text =
+                    if (!it.transfer.isNullOrBlank()) getString(STRINGS.transfer_x , it.transfer)
+                    else getString(STRINGS.transfer)
+
+                tvDate.text = it.travelDate?.getDateNextLine()
                 btnBack.setOnClickListener {
                     openBack(args.travelPlan!!)
                 }
@@ -69,6 +80,11 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         btnTravelPlanSave.setOnClickListener {
             checkChoose()
         }
+        setOnClickFuns()
+        setOnLongClickFuns()
+    }
+
+    private fun setOnClickFuns() = with(binding) {
         cardDate.setOnClickListener {
             openDateDialog()
         }
@@ -78,29 +94,77 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         cardDestination.setOnClickListener {
             openAirportDialog(AirportChooseType.TO)
         }
+        cardTransfer.setOnClickListener {
+            openAirportDialog(AirportChooseType.TRANSFER)
+        }
+        btnTravelPlanSave.setOnClickListener {
+            checkChoose()
+        }
     }
 
+    private fun setOnLongClickFuns() = with(binding) {
+        cardSource.setOnLongClickListener {
+            deleteForm(AirportChooseType.FROM)
+            true
+
+        }
+        cardDestination.setOnLongClickListener {
+            deleteForm(AirportChooseType.TO)
+            true
+        }
+        cardTransfer.setOnLongClickListener {
+            deleteForm(AirportChooseType.TRANSFER)
+            true
+        }
+
+    }
+
+    private fun deleteForm(type: AirportChooseType) = with(binding) {
+        with(viewModel.travelPlanRequestForm) {
+            when (type) {
+                AirportChooseType.TO -> {
+                    tvSource.text = ""
+                    source = null
+                }
+                AirportChooseType.FROM -> {
+                    tvDestination.text = ""
+                    destination = null
+                }
+                AirportChooseType.TRANSFER -> {
+                    tvTransfer.text = ""
+                    transfer = null
+                }
+            }
+        }
+    }
+
+    private fun getIfSimilar(
+        travelPlan: TravelPlan ,
+        travelPlanRequest: TravelPlanRequest
+    ): TravelPlan =
+        travelPlan.copy(
+            source = travelPlanRequest.source ,
+            destination = travelPlanRequest.destination ,
+            transfer = travelPlanRequest.transfer ,
+            travelDate = travelPlanRequest.travelDate ,
+        )
 
     private fun checkChoose() {
         args.travelPlan?.let {
-            if (it.source != viewModel.source || it.destination != viewModel.destination || it.date != viewModel.date) {
-                it.source = viewModel.source
-                it.destination = viewModel.destination
-                it.date = viewModel.date
-                btnTravelPlanSave(it , true)
+            if (it != getIfSimilar(it , viewModel.travelPlanRequestForm)) {
+                btnTravelPlanSave(true)
             } else {
                 binding.root.showSnackBar(getString(STRINGS.change_data_first))
             }
         } ?: run {
-            if (viewModel.source.isBlank() || viewModel.destination.isBlank() || viewModel.date.isBlank()) {
+            if (viewModel.travelPlanRequestForm.source.isNullOrBlank() ||
+                viewModel.travelPlanRequestForm.destination.isNullOrBlank() ||
+                viewModel.travelPlanRequestForm.travelDate.isNullOrBlank()
+            ) {
                 binding.root.showSnackBar(getString(STRINGS.choose_data_first))
             } else {
                 btnTravelPlanSave(
-                    TravelPlan(
-                        source = viewModel.source ,
-                        destination = viewModel.destination ,
-                        date = viewModel.date
-                    ) , false
+                    false
                 )
             }
         }
@@ -114,18 +178,12 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         )
     }
 
-    private fun btnTravelPlanSave(travelPlan: TravelPlan , update: Boolean) {
-        if (update) {
-            update(travelPlan)
-        } else {
-            create(travelPlan)
-        }
- 
-    }
+    private fun btnTravelPlanSave(update: Boolean) =
+        if (update) update() else create()
 
-    private fun create(travelPlan: TravelPlan) {
+    private fun create() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.createTravelPlan(travelPlan)
+            viewModel.createTravelPlan(viewModel.travelPlanRequestForm)
             viewModel.createPlan.collectLatest {
                 when (it) {
                     is Resource.Error -> {
@@ -144,9 +202,9 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         }
     }
 
-    private fun update(travelPlan: TravelPlan) {
+    private fun update() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.updateTravelPlan(travelPlan)
+            viewModel.updateTravelPlan(viewModel.travelPlanRequestForm)
             viewModel.updatePlan.collectLatest {
                 when (it) {
                     is Resource.Error -> {
@@ -160,7 +218,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         it.data?.travelPlan?.let { travelPlanResponse ->
-                            travelPlanResponse.id = travelPlan.id
+                            travelPlanResponse.id = viewModel.travelPlanRequestForm.id
                             openBack(travelPlanResponse)
                         }
                     }
@@ -184,7 +242,8 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     override fun onDateSet(p0: DatePicker? , year: Int , month: Int , dayOfMonth: Int) {
         val cal = Calendar.getInstance()
-        viewModel.date = "$year-${month.plusOnePutFirstZero()}-${dayOfMonth.putFirstZero()}T"
+        viewModel.travelPlanRequestForm.travelDate =
+            "$year-${month.plusOnePutFirstZero()}-${dayOfMonth.putFirstZero()}T"
         TimePickerDialog(
             this.requireContext() ,
             this ,
@@ -195,44 +254,49 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     }
 
     override fun onTimeSet(p0: TimePicker? , hour: Int , minute: Int) {
-        viewModel.date += "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
-        binding.tvDate.text = viewModel.date.getDateNextLine()
+        viewModel.travelPlanRequestForm.travelDate += "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
+        binding.tvDate.text = viewModel.travelPlanRequestForm.travelDate?.getDateNextLine()
     }
 
     private fun openAirportDialog(type: AirportChooseType) {
         val dialog = AirportsFragmentDialog()
         dialog.show(childFragmentManager , null)
         dialog.clickCallBack = {
-            when (type) {
-                AirportChooseType.FROM -> {
-                    if (viewModel.destination == it) {
-                        differentRouteAlert(it)
-                    } else {
-                        viewModel.source = it
-                        binding.tvSource.text = it
+            with(viewModel.travelPlanRequestForm) {
+                when (type) {
+                    AirportChooseType.FROM -> {
+                        if (destination.equals(it) || transfer?.split(",")?.contains(it) == true) {
+                            differentRouteAlert(it)
+                        } else {
+                            source = it
+                            binding.tvSource.text = getString(STRINGS.to_x , it)
+                        }
                     }
-                }
-                AirportChooseType.TO -> {
-                    if (viewModel.source == it) {
-                        differentRouteAlert(it)
-                    } else {
-                        viewModel.destination = it
-                        binding.tvDestination.text = it
+                    AirportChooseType.TO -> {
+                        if (source.equals(it) || transfer?.split(",")?.contains(it) == true
+                        ) {
+                            differentRouteAlert(it)
+                        } else {
+                            destination = it
+                            binding.tvDestination.text = getString(STRINGS.from_x , it)
+                        }
                     }
-                }
-                AirportChooseType.TRANSITION -> {
+                    AirportChooseType.TRANSFER -> {
+                        if (source.equals(it) || destination.equals(it) ||
+                            transfer?.split(",")?.contains(it) == true
+                        ) {
+                            differentRouteAlert(it)
+                        } else {
+                            transfer = if (!transfer.isNullOrBlank()) transfer.plus(",$it") else it
+                            binding.tvTransfer.text =
+                                getString(STRINGS.transfer_x , transfer)
+                        }
+                    }
                 }
             }
         }
     }
 
     private fun differentRouteAlert(it: String) =
-        binding.root.showSnackBar(
-            getString(STRINGS.choose_different_route).plus(
-                getString(
-                    STRINGS.not_string ,
-                    it
-                )
-            )
-        )
+        binding.root.showSnackBar(getString(STRINGS.choose_different_route , it))
 }

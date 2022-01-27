@@ -20,13 +20,6 @@ abstract class BaseFragmentDialog : DialogFragment() {
         super.onViewCreated(view , savedInstanceState)
         init()
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enterTransition = MaterialFadeThrough().apply {
-            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-        }
-    }
-
 
     open fun init() {
         initRV()
@@ -43,6 +36,9 @@ abstract class BaseFragmentDialog : DialogFragment() {
             WindowManager.LayoutParams.MATCH_PARENT ,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
+        enterTransition = MaterialFadeThrough().apply {
+            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+        }
     }
 
 }

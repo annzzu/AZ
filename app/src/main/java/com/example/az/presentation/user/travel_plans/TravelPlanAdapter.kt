@@ -40,9 +40,16 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
         fun onBind(model: TravelPlan) = with(binding) {
             tvSource.text = model.source
             tvDestination.text = model.destination
+
+            if (!model.transfer.isNullOrBlank()) {
+                tvTransfer.visible()
+                tvTransfer.text =
+                    this@ViewHolder.itemView.context.getString(STRINGS.transfer_x , model.transfer)
+            }
+
             var days: Int? = null
-            val date: String = model.date ?: ""
-            if (!model.date.isNullOrBlank()) {
+            val date: String = model.travelDate ?: ""
+            if (!model.travelDate.isNullOrBlank()) {
                 tvDate.text = date.getTime(true).getTimeNextLine()
                 tvDateTime.text = date.getTime(false)
                 days = date.getDuration().toInt()

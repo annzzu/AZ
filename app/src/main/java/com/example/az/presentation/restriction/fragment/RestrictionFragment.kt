@@ -25,14 +25,14 @@ class RestrictionFragment :
     BaseFragment<FragmentRestrictionBinding>(FragmentRestrictionBinding::inflate)
      {
 
-    private val args: RestrictionFragmentArgs by navArgs()
     private val viewModel: RestrictionViewModel by activityViewModels()
     private lateinit var restrictionAdapter: RestrictionAdapter
 
     override fun init() {
         listeners()
-        binding.tvFrom.text = args.restrictionRequest.from
-        binding.tvTo.text = args.restrictionRequest.to
+        binding.tvFrom.text = viewModel.restrictionRequestForm.from
+        binding.tvTo.text = viewModel.restrictionRequestForm.to
+        binding.tvTransfer.text = viewModel.restrictionRequestForm.transfer
         observers()
     }
 
@@ -50,7 +50,7 @@ class RestrictionFragment :
 
     private fun observers() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getRestriction(args.restrictionRequest)
+            viewModel.getRestriction(viewModel.restrictionRequestForm)
         }
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.restriction.collectLatest { it ->

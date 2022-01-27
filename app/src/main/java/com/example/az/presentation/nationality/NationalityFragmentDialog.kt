@@ -37,7 +37,7 @@ class NationalityFragmentDialog : BaseFragmentDialog() {
         inflater: LayoutInflater ,
         container: ViewGroup? ,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         _binding = FragmentNationalitiesBinding.inflate(inflater , container , false)
         return binding.root
@@ -82,10 +82,5 @@ class NationalityFragmentDialog : BaseFragmentDialog() {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

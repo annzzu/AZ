@@ -44,7 +44,7 @@ class RestrictionAdapter : ListAdapter<RestrictionKotlin , RecyclerView.ViewHold
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(model: RestrictionKotlin) = with(binding) {
             tvCode.text = model.code
-            btnOpen.setOnClickListener {
+            root.setOnClickListener {
                 model.expand = true
                 notifyItemChanged(adapterPosition)
             }

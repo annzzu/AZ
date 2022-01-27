@@ -35,6 +35,7 @@ fun String.getTime(boolean: Boolean) =
     } else {
         this.substringAfter('T')
     }
+fun String.replaceSpaceWithT() = this.replace(" ", "T")
 
 fun String.getTimeNextLine() =
     this.replace("-" , "\n")

@@ -1,21 +1,24 @@
 package com.example.az.presentation.restriction
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.restriction.RestrictionRepositoryImpl
+import com.example.az.extensions.emailValid
+import com.example.az.extensions.passwordValid
+import com.example.az.model.airport.AirportChooseType
 import com.example.az.model.restriction.*
+import com.example.az.model.user.UserFormState
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class RestrictionViewModel @Inject constructor(private val repository: RestrictionRepositoryImpl) :
-    ViewModel()  {
+    ViewModel() {
 
     private val _restriction = MutableSharedFlow<Resource<RestrictionResponse>>()
     val restriction: SharedFlow<Resource<RestrictionResponse>> = _restriction
@@ -25,4 +28,7 @@ class RestrictionViewModel @Inject constructor(private val repository: Restricti
             _restriction.emit(values)
         }
     }
+
+    var restrictionRequestForm = RestrictionRequest()
+
 }
