@@ -116,26 +116,30 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.signup.collect {
-                when (it) {
-                    is Resource.Error -> {
-                        binding.root.isEnabled = true
-                        binding.tvNothingFound.visible()
-                        binding.tvNothingFound.text = getString(STRINGS.error)
-                        binding.root.showSnackBar(it.message!!)
-                    }
-                    is Resource.Loading -> {
-                        binding.root.isEnabled = false
-                        binding.tvNothingFound.invisible()
-                        binding.progressBar.visible()
-                    }
-                    is Resource.Success -> {
-                        binding.progressBar.invisible()
-                        binding.tvNothingFound.invisible()
-                        binding.root.hideKeyboard()
-                        binding.root.showSnackBar(getString(STRINGS.successful_sign_up))
-                        openLogin()
+                with (binding) {
+                    when (it) {
+                        is Resource.Error -> {
+                            root.isEnabled = true
+                            tvNothingFound.visible()
+                            tvNothingFound.text = getString(STRINGS.error)
+                            progressBar.invisible()
+                            root.showSnackBar(it.message!!)
+                        }
+                        is Resource.Loading -> {
+                            root.isEnabled = false
+                            tvNothingFound.invisible()
+                            progressBar.visible()
+                        }
+                        is Resource.Success -> {
+                            progressBar.invisible()
+                            tvNothingFound.invisible()
+                            root.hideKeyboard()
+                            root.showSnackBar(getString(STRINGS.successful_sign_up))
+                            openLogin()
+                        }
                     }
                 }
+
             }
         }
     }

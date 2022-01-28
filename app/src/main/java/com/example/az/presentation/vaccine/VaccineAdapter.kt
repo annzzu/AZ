@@ -2,15 +2,15 @@ package com.example.az.presentation.vaccine
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemNationalityBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.ClickCallBack
+import com.example.az.utils.StringDiffCallBack
 
 class VaccineAdapter() :
-    ListAdapter<String , VaccineAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<String , VaccineAdapter.ViewHolder>(StringDiffCallBack()) {
     var clickCallBack: ClickCallBack? = null
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int) =
@@ -36,13 +36,5 @@ class VaccineAdapter() :
                 clickCallBack?.invoke(vaccine)
             }
         }
-    }
-
-    class DiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String , newItem: String): Boolean =
-            oldItem == newItem
-
-        override fun areContentsTheSame(oldItem: String , newItem: String): Boolean =
-            oldItem == newItem
     }
 }

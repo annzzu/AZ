@@ -1,5 +1,7 @@
 package com.example.az.presentation.user.travel_plans
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,37 +31,40 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     private val restrictionViewModel: RestrictionViewModel by viewModels()
     private lateinit var restrictionAdapter: RestrictionAdapter
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun init() {
         setInfo()
         listeners()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setInfo() = with(binding) {
-        args.travelPlan?.let { it ->
+        args.travelPlan?.let { travelPlan ->
             initRV()
-            tvSource.text = it.source
-            tvDestination.text = it.destination
-            if (!it.transfer.isNullOrBlank()) {
+            tvSource.text = travelPlan.source
+            tvDestination.text = travelPlan.destination
+            if (!travelPlan.transfer.isNullOrBlank()) {
                 tvTransfer.visible()
-                tvTransfer.text = getString(STRINGS.transfer_x , it.transfer)
+                tvTransfer.text = getString(STRINGS.transfer_x , travelPlan.transfer)
             }
-            it.travelDate?.let {
-                it.getDateNextLine().also { tvDateTime.text = it }
+
+            travelPlan.travelDate.takeIf { !it.isNullOrBlank() }?.let { date ->
+                date.getDateNextLine().also { tvDateTime.text = it }
                 tvDateTime.visible()
-            }
-            it.days?.let { days ->
-                if (days <= 0) {
+
+                date.getDuration(null).takeIf { (-it) > 0 }?.let {
+                    tvDaysLeft.text = getString(STRINGS.x_days_left , -it)
+                    if (!travelPlan.date.isNullOrBlank() && date.getDuration(travelPlan.date) > 0) {
+                        pbDateLeft.progress =
+                            100 * (travelPlan.date!!.getDuration(null) %
+                                    travelPlan.travelDate!!.getDuration(travelPlan.date))
+                    }
+                } ?: run {
                     pbDateLeft.progress = 100
-                } else {
-                    pbDateLeft.progress = 100 / days
-                    pbDateLeft.max = days + 1
-                    tvDaysLeft.text = getString(STRINGS.x_days_left , days)
                 }
-            } ?: run {
-                pbDateLeft.invisible()
-                tvDaysLeft.invisible()
             }
-            initRestrictions(it)
+
+            initRestrictions(travelPlan)
         }
     }
 
@@ -151,4 +156,5 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     private fun btnEdit() = findNavController().navigate(
         TravelPlanFragmentDirections.actionTravelPlanFragmentToTravelPlanEditFragment(args.travelPlan)
     )
+
 }

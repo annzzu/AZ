@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.az.databinding.ItemNationalityRestrictionBinding
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.addInfoNationality
+import com.example.az.extensions.booleanToYN
 import com.example.az.model.restriction.RestrictionsByNationality
 
 
@@ -39,43 +40,43 @@ class RestrictionNationalityAdapter :
                     model.data.allowsTourists ,
                     context.getString(
                         STRINGS.allowsTouristsNat ,
-                        model.data.allowsTourists
+                        model.data.allowsTourists?.booleanToYN()
                     )
                 ).addInfoNationality(
                     model.data.allowsBusinessVisit ,
                     context.getString(
                         STRINGS.allowsBusinessVisitNat ,
-                        model.data.allowsBusinessVisit
+                        model.data.allowsBusinessVisit?.booleanToYN()
                     )
                 ).addInfoNationality(
                     model.data.pcrRequired ,
                     context.getString(
                         STRINGS.pcrRequiredNat ,
-                        model.data.pcrRequired
+                        model.data.pcrRequired?.booleanToYN()
                     )
                 ).addInfoNationality(
                     model.data.fastTestRequired ,
                     context.getString(
                         STRINGS.fastTestRequiredNat ,
-                        model.data.fastTestRequired
+                        model.data.fastTestRequired?.booleanToYN()
                     )
                 ).addInfoNationality(
                     model.data.biometricPassportRequired ,
                     context.getString(
                         STRINGS.biometricPassportRequiredNat ,
-                        model.data.biometricPassportRequired
+                        model.data.biometricPassportRequired?.booleanToYN()
                     )
                 ).addInfoNationality(
                     model.data.locatorFormRequired ,
                     context.getString(
                         STRINGS.locatorFormRequiredNat ,
-                        model.data.locatorFormRequired
+                        model.data.locatorFormRequired?.booleanToYN()
                     )
                 ).addInfoNationality(
                     model.data.covidPassportRequired ,
                     context.getString(
                         STRINGS.covidPassportRequiredNat ,
-                        model.data.covidPassportRequired
+                        model.data.covidPassportRequired?.booleanToYN()
                     )
                 )
         }

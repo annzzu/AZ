@@ -59,24 +59,27 @@ class NationalityFragmentDialog : BaseFragmentDialog() {
     override fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.nationalities.collectLatest {
-                when (it) {
-                    is Resource.Error -> {
-                        binding.tvNothingFound.visible()
-                        binding.tvNothingFound.text = getString(STRINGS.error)
-                        binding.root.showSnackBar(it.message!!)
-                    }
-                    is Resource.Loading -> {
-                        binding.progressBar.visible()
-                    }
-                    is Resource.Success -> {
-                        binding.progressBar.invisible()
-                        val data = it.data?.nationalities
-                        if (data!!.isNotEmpty()) {
-                            binding.tvNothingFound.invisible()
-                            nationalityAdapter.submitList(data)
-                        } else {
-                            binding.tvNothingFound.visible()
-                            binding.tvNothingFound.text = getString(STRINGS.nothing_found)
+                with(binding) {
+                    when (it) {
+                        is Resource.Error -> {
+                            tvNothingFound.visible()
+                            tvNothingFound.text = getString(STRINGS.error)
+                            progressBar.invisible()
+                            root.showSnackBar(it.message!!)
+                        }
+                        is Resource.Loading -> {
+                            progressBar.visible()
+                        }
+                        is Resource.Success -> {
+                            progressBar.invisible()
+                            val data = it.data?.nationalities
+                            if (data!!.isNotEmpty()) {
+                                tvNothingFound.invisible()
+                                nationalityAdapter.submitList(data)
+                            } else {
+                                tvNothingFound.visible()
+                                tvNothingFound.text = getString(STRINGS.nothing_found)
+                            }
                         }
                     }
                 }

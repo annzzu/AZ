@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemNationalityBinding
 import com.example.az.presentation.base.ClickCallBack
+import com.example.az.utils.StringDiffCallBack
 
 
 class NationalityAdapter() :
-    ListAdapter<String , NationalityAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<String , NationalityAdapter.ViewHolder>(StringDiffCallBack()) {
     var clickCallBack: ClickCallBack? = null
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int) =
@@ -35,13 +36,5 @@ class NationalityAdapter() :
                 clickCallBack?.invoke(nationality)
             }
         }
-    }
-
-    class DiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String , newItem: String): Boolean =
-            oldItem == newItem
-
-        override fun areContentsTheSame(oldItem: String , newItem: String): Boolean =
-            oldItem == newItem
     }
 }

@@ -1,7 +1,6 @@
 package com.example.az.presentation.home
 
 
-import android.util.Log.d
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentHomeBinding
@@ -52,7 +51,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         tvHello.textSize = 30.0F
                         tvHello.text = getString(STRINGS.hello)
                     } else {
-                        tvHello.textSize = 20.0F
+                        tvHello.textSize = 18.0F
                         tvHello.text = getString(STRINGS.hello_next_line).plus(user.email.getName().uppercase())
                     }
                 }

@@ -91,24 +91,28 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.login.collect {
-                when (it) {
-                    is Resource.Error -> {
-                        binding.tvNothingFound.visible()
-                        binding.tvNothingFound.text = getString(STRINGS.error)
-                        binding.root.showSnackBar(it.message!!)
-                    }
-                    is Resource.Loading -> {
-                        binding.root.isEnabled = false
-                        binding.tvNothingFound.invisible()
-                        binding.progressBar.visible()
-                    }
-                    is Resource.Success -> {
-                        d("testing AZ", "$it")
-                        binding.progressBar.invisible()
-                        binding.root.showSnackBar(getString(STRINGS.successful_login))
-                        openHome()
+                with(binding){
+                    when (it) {
+                        is Resource.Error -> {
+                            tvNothingFound.visible()
+                            progressBar.invisible()
+                            tvNothingFound.text = getString(STRINGS.error)
+                            root.showSnackBar(it.message!!)
+                        }
+                        is Resource.Loading -> {
+                            root.isEnabled = false
+                            tvNothingFound.invisible()
+                            progressBar.visible()
+                        }
+                        is Resource.Success -> {
+                            d("testing AZ", "$it")
+                            progressBar.invisible()
+                            root.showSnackBar(getString(STRINGS.successful_login))
+                            openHome()
+                        }
                     }
                 }
+
             }
         }
     }

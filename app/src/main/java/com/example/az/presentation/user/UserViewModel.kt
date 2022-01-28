@@ -56,5 +56,7 @@ class UserViewModel @Inject constructor(private val repository: UserRepositoryIm
             _deletePlan.emit(values)
         }
     }
+
     var travelPlanRequestForm = TravelPlanRequest()
+    var travelPlanRequestDate: String? = null
 }

@@ -71,6 +71,7 @@ class VaccinesFragmentDialog : BaseFragmentDialog() {
             viewModel.vaccines.collectLatest {
                 when (it) {
                     is Resource.Error -> {
+                        binding.progressBar.invisible()
                         binding.tvNothingFound.visible()
                         binding.tvNothingFound.text = getString(STRINGS.error)
                         binding.root.showSnackBar(it.message!!)

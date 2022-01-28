@@ -28,7 +28,6 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
             )
         )
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TravelPlanAdapter.ViewHolder , position: Int) {
         holder.onBind(getItem(position))
@@ -38,6 +37,7 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
         RecyclerView.ViewHolder(binding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
         fun onBind(model: TravelPlan) = with(binding) {
+
             tvSource.text = model.source
             tvDestination.text = model.destination
 
@@ -46,26 +46,34 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
                 tvTransfer.text =
                     this@ViewHolder.itemView.context.getString(STRINGS.transfer_x , model.transfer)
             }
+            model.travelDate.takeIf { !it.isNullOrBlank() }?.let { date ->
+                date.getTime(false).also { tvDateTime.text = it }
+                date.getTime(true).getTimeNextLine().also { tvDate.text = it }
+                tvDateTime.visible()
+                tvDate.visible()
 
-            var days: Int? = null
-            val date: String = model.travelDate ?: ""
-            if (!model.travelDate.isNullOrBlank()) {
-                tvDate.text = date.getTime(true).getTimeNextLine()
-                tvDateTime.text = date.getTime(false)
-                days = date.getDuration().toInt()
-                if (days <= 0) {
-                    pbDateLeft.progress = 100
-                } else {
-                    pbDateLeft.progress = 100 / days
-                    pbDateLeft.max = days + 1
+                date.getDuration(null).takeIf { (-it) > 0 }?.let {
                     tvDaysLeft.text =
-                        this@ViewHolder.itemView.context.getString(STRINGS.x_days_left , days)
+                        this@ViewHolder.itemView.context.getString(
+                            STRINGS.x_days_left ,
+                            (-it)
+                        )
+                    if (!model.date.isNullOrBlank() && date.getDuration(model.date) > 0) {
+                        pbDateLeft.progress =
+                            100 * (model.date!!.getDuration(null)
+                                    % model.travelDate!!.getDuration(model.date))
+                    }
+
+                } ?: run {
+                    pbDateLeft.progress = 100
                 }
-            } else {
+
+
+            } ?: run {
                 pbDateLeft.invisible()
                 tvDaysLeft.invisible()
             }
-            model.days = days
+
             cvTravelPlan.setOnClickListener {
                 clickTravelPlan?.invoke(model)
             }

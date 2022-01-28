@@ -65,11 +65,11 @@ class RestrictionAdapter : ListAdapter<RestrictionKotlin , RecyclerView.ViewHold
                     context.getString(STRINGS.generalInformation , it.generalInformation)
                 tvGeneralFull.text = context.getString(
                     STRINGS.generalInformationFull ,
-                    it.allowsBusinessVisit ,
-                    it.allowsTourists ,
-                    it.covidPassportRequired ,
-                    it.pcrRequiredForNoneResidents ,
-                    it.pcrRequiredForResidents ,
+                    it.allowsBusinessVisit.booleanToYN() ,
+                    it.allowsTourists.booleanToYN() ,
+                    it.covidPassportRequired.booleanToYN() ,
+                    it.pcrRequiredForNoneResidents.booleanToYN() ,
+                    it.pcrRequiredForResidents.booleanToYN() ,
                     it.moreInfoUrl
                 )
             } ?: lGeneralRestriction.gone()
@@ -79,7 +79,7 @@ class RestrictionAdapter : ListAdapter<RestrictionKotlin , RecyclerView.ViewHold
                 tvRestrictionsByVaccinationFull.text = context.getString(
                     STRINGS.restrictionsByVaccinationFull ,
                     it.dozesRequired ,
-                    it.isAllowed ,
+                    it.isAllowed?.booleanToYN() ,
                     it.maxDaysAfterVaccination ,
                     it.minDaysAfterVaccination
                 )

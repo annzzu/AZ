@@ -1,6 +1,5 @@
 package com.example.az.utils
 
-import android.util.Log.d
 import retrofit2.Response
 
 suspend fun <T> handleResponse(apiCall: suspend () -> Response<T>): Resource<T> {
@@ -8,9 +7,7 @@ suspend fun <T> handleResponse(apiCall: suspend () -> Response<T>): Resource<T> 
         val result = apiCall()
         val body = result.body()
         if (result.isSuccessful && body != null) {
-            d("testing AZ" , "handleResponse  $result \n $body")
             body.let {
-//                d("testing AZ", "handleResponse  $result \n $body")
                 return Resource.Success(body)
             }
         }

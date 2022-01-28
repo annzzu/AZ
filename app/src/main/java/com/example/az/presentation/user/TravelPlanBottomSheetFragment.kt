@@ -36,7 +36,6 @@ class TravelPlanBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     fun bottomSheetFragment(model: TravelPlan){
-        d("testing AZ", "daawira tavidan $model")
         view?.findViewById<AppCompatTextView>(R.id.tvFromBottomSheet)?.text = model.source
         view?.findViewById<AppCompatTextView>(R.id.tvToBottomSheet)?.text = model.destination
         view?.findViewById<AppCompatTextView>(R.id.btnSeeMoreBottomSheet)?.setOnClickListener{

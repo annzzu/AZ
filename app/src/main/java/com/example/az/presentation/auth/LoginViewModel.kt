@@ -47,7 +47,6 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
         viewModelScope.launch {
             when {
                 !email.emailValid() && !password.passwordValid() -> {
-                    d("testing AZ viewmodel" , "email, password")
                     _userForm.emit(
                         UserFormState(
                             emailError = STRINGS.email_error ,
@@ -56,11 +55,9 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepositoryI
                     )
                 }
                 !email.emailValid() -> {
-                    d("testing AZ viewmodel" , "email, password - $password")
                     _userForm.emit(UserFormState(emailError = STRINGS.email_error))
                 }
                 !password.passwordValid() -> {
-                    d("testing AZ viewmodel" , "password")
                     _userForm.emit(UserFormState(passwordError = STRINGS.password_error))
                 }
 

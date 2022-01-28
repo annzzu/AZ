@@ -128,13 +128,6 @@ class RestrictionFormFragment :
     }
 
     private fun differentRouteAlert(it: String) =
-        binding.root.showSnackBar(
-            getString(STRINGS.choose_different_route).plus(
-                getString(
-                    STRINGS.not_string ,
-                    it
-                )
-            )
-        )
+        binding.root.showSnackBar(getString(STRINGS.choose_different_route , it))
 }
 

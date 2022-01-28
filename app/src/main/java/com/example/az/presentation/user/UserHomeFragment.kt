@@ -76,9 +76,11 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         val data = it.data?.travelPlans
+
                         if (data!!.isNotEmpty()){
                             binding.tvNothingFound.invisible()
                             travelPlanAdapter.submitList(data)
+
                         }else{
                             binding.tvNothingFound.visible()
                             binding.tvNothingFound.text = getString(STRINGS.nothing_found)
@@ -93,6 +95,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
         viewLifecycleOwner.lifecycleScope.launch {
             binding.root.showSnackBar(getString(STRINGS.logout))
             authPrefsManager.logout()
+            childFragmentManager.popBackStack()
             openHome()
         }
     }

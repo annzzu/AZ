@@ -38,7 +38,8 @@ import java.util.*
 @AndroidEntryPoint
 class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     FragmentTravelPlanEditBinding::inflate
-) , DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener {
+) ,  DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener {
+
     private val args: TravelPlanFragmentArgs by navArgs()
     private val viewModel: UserViewModel by activityViewModels()
 
@@ -230,6 +231,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     private fun openDateDialog() = getDatePicker()
 
     private fun getDatePicker() {
+        viewModel.travelPlanRequestDate = null
         val cal = Calendar.getInstance()
         DatePickerDialog(
             this.requireContext() ,
@@ -242,7 +244,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     override fun onDateSet(p0: DatePicker? , year: Int , month: Int , dayOfMonth: Int) {
         val cal = Calendar.getInstance()
-        viewModel.travelPlanRequestForm.travelDate =
+        viewModel.travelPlanRequestDate =
             "$year-${month.plusOnePutFirstZero()}-${dayOfMonth.putFirstZero()}T"
         TimePickerDialog(
             this.requireContext() ,
@@ -254,7 +256,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     }
 
     override fun onTimeSet(p0: TimePicker? , hour: Int , minute: Int) {
-        viewModel.travelPlanRequestForm.travelDate += "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
+        viewModel.travelPlanRequestForm.travelDate = viewModel.travelPlanRequestDate + "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
         binding.tvDate.text = viewModel.travelPlanRequestForm.travelDate?.getDateNextLine()
     }
 

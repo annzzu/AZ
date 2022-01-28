@@ -58,6 +58,7 @@ class RestrictionFragment :
                     is Resource.Error -> {
                         binding.tvNothingFound.visible()
                         binding.tvNothingFound.text = getString(STRINGS.error)
+                        binding.progressBar.invisible()
                         binding.root.showSnackBar(it.message!!)
                     }
                     is Resource.Loading -> {

@@ -60,27 +60,31 @@ class AirportsFragmentDialog : BaseFragmentDialog() {
     override fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.airportList.collectLatest {
-                when (it) {
-                    is Resource.Error -> {
-                        binding.tvNothingFound.visible()
-                        binding.tvNothingFound.text = getString(STRINGS.error)
-                        binding.root.showSnackBar(it.message!!)
-                    }
-                    is Resource.Loading -> {
-                        binding.progressBar.visible()
-                    }
-                    is Resource.Success -> {
-                        binding.progressBar.invisible()
-                        val data = it.data?.airports
-                        if (data!!.isNotEmpty()){
-                            binding.tvNothingFound.invisible()
-                            airportAdapter.submitList(data)
-                        }else{
-                            binding.tvNothingFound.visible()
-                            binding.tvNothingFound.text = getString(STRINGS.nothing_found)
+                with(binding){
+                    when (it) {
+                        is Resource.Error -> {
+                            tvNothingFound.visible()
+                            progressBar.invisible()
+                            tvNothingFound.text = getString(STRINGS.error)
+                            root.showSnackBar(it.message!!)
+                        }
+                        is Resource.Loading -> {
+                            progressBar.visible()
+                        }
+                        is Resource.Success -> {
+                            progressBar.invisible()
+                            val data = it.data?.airports
+                            if (data!!.isNotEmpty()){
+                                tvNothingFound.invisible()
+                                airportAdapter.submitList(data)
+                            }else{
+                                tvNothingFound.visible()
+                                tvNothingFound.text = getString(STRINGS.nothing_found)
+                            }
                         }
                     }
                 }
+
             }
         }
     }

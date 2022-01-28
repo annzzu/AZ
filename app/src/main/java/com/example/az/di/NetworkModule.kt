@@ -2,6 +2,7 @@ package com.example.az.di
 
 import com.example.az.BuildConfig
 import com.example.az.data.remote.ApiService
+import com.example.az.data.remote.services.AuthService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -50,15 +51,20 @@ object NetworkModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient ,
         moshi: Moshi
-    ): Retrofit.Builder {
+    ): Retrofit {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(MoshiConverterFactory.create(moshi)).build()
     }
 
     @Singleton
     @Provides
-    fun service(retrofit: Retrofit.Builder): ApiService {
-        return retrofit.build().create(ApiService::class.java)
+    fun service(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun authService(retrofit: Retrofit): AuthService {
+        return retrofit.create(AuthService::class.java)
+    }
 }

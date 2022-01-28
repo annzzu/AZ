@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.DRAWABLES
+import com.example.az.extensions.IDS
 import com.example.az.presentation.base.BaseActivity
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,25 +65,25 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         arguments: Bundle?
     ) {
         when (destination.id) {
-            R.id.navigation_login -> {
+            IDS.navigation_login -> {
                 setFabForAuth()
             }
-            R.id.navigation_signup -> {
+            IDS.navigation_signup -> {
                 setFabForAuth()
             }
-            R.id.navigation_userHome -> {
+            IDS.navigation_userHome -> {
                 setFabForAuth()
             }
-            R.id.navigation_restrictions -> {
+            IDS.navigation_restrictions -> {
                 setFabForAuth()
             }
-            R.id.navigation_restrictionForm -> {
+            IDS.navigation_restrictionForm -> {
                 setFabForAuth()
             }
-            R.id.navigation_about -> {
+            IDS.navigation_about -> {
                 setFabForAuth()
             }
-            R.id.navigation_restriction -> {
+            IDS.navigation_restriction -> {
                 setFabForAuth()
             }
             else -> {
