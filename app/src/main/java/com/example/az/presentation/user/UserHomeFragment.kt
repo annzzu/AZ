@@ -42,6 +42,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
             btnBack.setOnClickListener {
                 openHome()
             }
+            logo.getRotationAnimation()
         }
     }
 

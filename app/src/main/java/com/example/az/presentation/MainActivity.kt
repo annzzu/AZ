@@ -1,6 +1,11 @@
 package com.example.az.presentation
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.SystemClock
+import android.view.View
+import android.view.animation.AnticipateInterpolator
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +21,7 @@ import com.example.az.presentation.base.BaseActivity
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.time.Instant
 
 
 @AndroidEntryPoint
@@ -26,7 +32,25 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
+
+        val splashScreen = installSplashScreen()
+        splashScreen.setOnExitAnimationListener { splashScreenView ->
+
+            val iconAnimator =
+                ObjectAnimator.ofFloat(splashScreenView.iconView , View.ROTATION , -360f , 0f)
+            iconAnimator.duration = 600L
+            iconAnimator.start()
+            val splashScreenAnimator = ObjectAnimator.ofFloat(
+                splashScreenView.view ,
+                View.TRANSLATION_Y ,
+                0f ,
+                splashScreenView.view.height.toFloat()
+            )
+            splashScreenAnimator.interpolator = AnticipateInterpolator()
+            splashScreenAnimator.duration = 600L
+            splashScreenAnimator.doOnEnd { splashScreenView.remove() }
+            splashScreenAnimator.start()
+        }
 
         motions()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,7 +64,7 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             ?.fragments
             ?.first()
 
-    private fun motions(){
+    private fun motions() {
         currentNavigationFragment?.apply {
             exitTransition = MaterialElevationScale(false).apply {
                 duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()

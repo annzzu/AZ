@@ -39,6 +39,7 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
             btnLoginTab.setOnClickListener {
                 openLogin()
             }
+            logo.getRotationAnimation()
         }
     }
 
