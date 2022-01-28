@@ -1,10 +1,7 @@
 package com.example.az.data.repository.restriction
 
-import android.util.Log
 import com.example.az.data.local.AuthPrefsManager
-import com.example.az.data.remote.DataSource
-import com.example.az.model.airport.AirportResponse
-import com.example.az.model.nationality.NationalityResponse
+import com.example.az.data.remote.datasources.RestrictionDataSource
 import com.example.az.model.restriction.*
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
@@ -15,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class RestrictionRepositoryImpl @Inject constructor(
-    private val dataSource: DataSource ,
+    private val dataSource: RestrictionDataSource ,
     private val autoAuthPrefsManager: AuthPrefsManager
 ) :
     RestrictionRepository {

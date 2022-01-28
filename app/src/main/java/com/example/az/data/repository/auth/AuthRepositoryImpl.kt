@@ -2,7 +2,7 @@ package com.example.az.data.repository.auth
 
 import android.util.Log.d
 import com.example.az.data.local.AuthPrefsManager
-import com.example.az.data.remote.DataSource
+import com.example.az.data.remote.datasources.AuthDataSource
 import com.example.az.model.user.User
 import com.example.az.model.user.UserResponse
 import com.example.az.utils.Resource
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
-    private val dataSource: DataSource ,
+    private val dataSource: AuthDataSource ,
     private val autoAuthPrefsManager: AuthPrefsManager
 ) : AuthRepository {
 

@@ -1,6 +1,6 @@
 package com.example.az.data.repository.airport
 
-import com.example.az.data.remote.DataSource
+import com.example.az.data.remote.datasources.AirportDataSource
 import com.example.az.model.airport.AirportResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class AirportRepositoryImpl @Inject constructor(private val dataSource: DataSource) :
+class AirportRepositoryImpl @Inject constructor(private val dataSource: AirportDataSource) :
     AirportRepository {
 
     override suspend fun getAirports(): Flow<Resource<AirportResponse>> {

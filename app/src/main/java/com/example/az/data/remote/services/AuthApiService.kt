@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-interface AuthService {
+interface AuthApiService {
 
     @POST(ApiEndpoints.LOGIN)
     suspend fun loginUser(@Body user: User): Response<User>

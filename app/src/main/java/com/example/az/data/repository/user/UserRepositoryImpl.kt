@@ -1,9 +1,8 @@
 package com.example.az.data.repository.user
 
 import com.example.az.data.local.AuthPrefsManager
-import com.example.az.data.remote.ApiResponse
-import com.example.az.data.remote.DataSource
-import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.data.remote.datasources.TravelPlanDataSource
+import com.example.az.data.remote.services.ApiResponse
 import com.example.az.model.travel_plan.TravelPlanRequest
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.travel_plan.TravelPlanSingleResponse
@@ -18,7 +17,7 @@ import javax.inject.Singleton
 
 @Singleton
 class UserRepositoryImpl @Inject constructor(
-    private val dataSource: DataSource ,
+    private val dataSource: TravelPlanDataSource ,
     private val autoAuthPrefsManager: AuthPrefsManager
 ) : UserRepository {
 
