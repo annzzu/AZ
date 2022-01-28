@@ -3,10 +3,7 @@ package com.example.az.data.local
 import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.viewModelScope
 import com.example.az.model.travel_plan.TravelPlanResponse
@@ -16,6 +13,7 @@ import com.example.az.utils.Resource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.IOException
 import javax.inject.Inject
 
@@ -47,7 +45,7 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
         val preferences = context.dataStore.data.first()
         return preferences[AUTH_USER_TOKEN] ?: ""
     }
-    
+
     suspend fun readNationality(): String {
         val preferences = context.dataStore.data.first()
         return preferences[AUTH_USER_NATIONALITY] ?: ""
@@ -79,13 +77,22 @@ class AuthPrefsManager @Inject constructor(@ApplicationContext private val conte
 
     private suspend fun deleteUserDataStore() {
         saveAuthToken(User())
-        Log.d(
-            "testing AZ" ,
-            "saved autoAuthPrefsManager saveUserDataStore $preferencesFlow"
-        )
+    }
+
+    suspend fun setAnotherTimeLaunch() {
+        context.dataStore.edit { _dataStore ->
+            _dataStore[IS_FIRST_TIME_LAUNCH] = false
+        }
+    }
+
+    suspend fun isFirstTimeLaunch(): Boolean {
+        val preferences = context.dataStore.data.first()
+        return preferences[IS_FIRST_TIME_LAUNCH] ?: true
     }
 
     companion object {
+        val IS_FIRST_TIME_LAUNCH = booleanPreferencesKey("IS_FIRST_TIME_LAUNCH")
+
         val AUTH_USER_TOKEN = stringPreferencesKey("AUTH_USER_TOKEN")
         val AUTH_USER_EMAIL = stringPreferencesKey("AUTH_USER_EMAIL")
         val AUTH_USER_VACCINE = stringPreferencesKey("AUTH_USER_VACCINE")

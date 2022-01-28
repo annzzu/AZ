@@ -18,6 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
 
@@ -106,4 +107,7 @@ dependencies {
 
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    implementation 'com.github.AppIntro:AppIntro:6.2.0'
 }

@@ -12,7 +12,11 @@ import com.google.android.material.snackbar.Snackbar
 
 
 fun View.showSnackBar(title: String) =
-    Snackbar.make(this , title , Snackbar.LENGTH_SHORT).show()
+    Snackbar
+        .make(this , title , Snackbar.LENGTH_SHORT)
+        .setBackgroundTint(resources.getColor(COLORS.green_l))
+        .setTextColor(resources.getColor(COLORS.white))
+        .show()
 
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -25,7 +29,7 @@ fun View.visible() = View.VISIBLE.also { visibility = it }
 
 fun View.gone() = View.GONE.also { visibility = it }
 
-fun View.getRotationAnimation() : ObjectAnimator {
+fun View.getRotationAnimation(): ObjectAnimator {
     val iconAnimator =
         ObjectAnimator.ofFloat(this , View.ROTATION , -360f , 0f)
     iconAnimator.start()

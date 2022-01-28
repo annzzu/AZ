@@ -30,8 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         with(binding) {
             cardAbout.setOnClickListener {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToNavigationAbout()
+                    HomeFragmentDirections.actionNavigationHomeToNavigationIntroSlide()
                 )
+//                HomeFragmentDirections.actionNavigationHomeToNavigationAbout()
             }
             cardMyTravelPlan.setOnClickListener {
                 findNavController().navigate(

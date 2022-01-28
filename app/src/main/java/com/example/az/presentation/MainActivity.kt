@@ -1,13 +1,19 @@
 package com.example.az.presentation
 
 import android.animation.ObjectAnimator
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
+import android.util.Log.d
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
@@ -17,25 +23,68 @@ import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.extensions.IDS
+import com.example.az.extensions.invisible
+import com.example.az.extensions.showSnackBar
 import com.example.az.presentation.base.BaseActivity
+import com.example.az.presentation.user.UserViewModel
+import com.example.az.utils.network.NetworkStatus
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.time.Instant
 
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener {
 
+    private val networkViewModel: NetworkViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private val navController by lazy { findNavController(R.id.navHostFragment) }
+    private val navController by lazy { findNavController(IDS.navHostFragment) }
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initSplashScreen()
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        motions()
+        initIntro()
+        initFab()
+
+
+
+        initNetwork()
+    }
+
+    private fun initDoAsync() {
+
+    }
+
+    @ExperimentalCoroutinesApi
+    private fun initNetwork() {
+        lifecycleScope.launch {
+            networkViewModel.networkStatusActive.collectLatest {
+                binding.root.showSnackBar("Internet Connection - ${if (it == NetworkStatus.Available) "Yes" else "No"}")
+            }
+        }
+
+    }
+
+    private fun initIntro() {
+        lifecycleScope.launch {
+            val isFirstTimeLaunch = authPrefsManager.isFirstTimeLaunch()
+            if (isFirstTimeLaunch) {
+                navigationWithMotion(IDS.navigationIntroSlide)
+                authPrefsManager.setAnotherTimeLaunch()
+            }
+        }
+    }
+
+    private fun initSplashScreen() {
         val splashScreen = installSplashScreen()
         splashScreen.setOnExitAnimationListener { splashScreenView ->
-
             val iconAnimator =
                 ObjectAnimator.ofFloat(splashScreenView.iconView , View.ROTATION , -360f , 0f)
             iconAnimator.duration = 600L
@@ -51,15 +100,10 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             splashScreenAnimator.doOnEnd { splashScreenView.remove() }
             splashScreenAnimator.start()
         }
-
-        motions()
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initFab()
     }
 
     private val currentNavigationFragment: Fragment?
-        get() = supportFragmentManager.findFragmentById(R.id.navHostFragment)
+        get() = supportFragmentManager.findFragmentById(IDS.navHostFragment)
             ?.childFragmentManager
             ?.fragments
             ?.first()
@@ -110,6 +154,9 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             IDS.navigation_restriction -> {
                 setFabForAuth()
             }
+            IDS.navigationIntroSlide -> {
+                binding.fab.invisible()
+            }
             else -> {
                 lifecycleScope.launch {
                     setFabForHome(authPrefsManager.readAuthToken())
@@ -119,14 +166,14 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     }
 
     private fun setFabForAuth() {
-        setFabIconDestination(DRAWABLES.ic_covid_19 , R.id.navigation_home)
+        setFabIconDestination(DRAWABLES.ic_covid_19 , IDS.navigation_home)
     }
 
     private fun setFabForHome(token: String?) {
         if (token.isNullOrBlank()) {
-            setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_login)
+            setFabIconDestination(DRAWABLES.ic_user , IDS.navigation_login)
         } else {
-            setFabIconDestination(DRAWABLES.ic_user , R.id.navigation_userHome)
+            setFabIconDestination(DRAWABLES.ic_user , IDS.navigation_userHome)
         }
     }
 
@@ -134,10 +181,14 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         binding.fab.apply {
             setImageResource(icon)
             setOnClickListener {
-                motions()
-                navController.navigate(navigation)
+                navigationWithMotion(navigation)
             }
         }
+    }
+
+    private fun navigationWithMotion(navigation: Int) {
+        motions()
+        navController.navigate(navigation)
     }
 
     override fun finish() {

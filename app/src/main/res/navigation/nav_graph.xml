@@ -36,6 +36,9 @@
             app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/navigation_travelPlanEdit"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigationIntroSlide"
+            app:destination="@id/navigationIntroSlide" />
     </fragment>
 
     <fragment
@@ -222,5 +225,14 @@
             android:id="@+id/action_nationalityFragmentDialog_to_navigation_signup"
             app:destination="@id/navigation_signup" />
     </dialog>
+    <fragment
+        android:id="@+id/navigationIntroSlide"
+        android:name="com.example.az.presentation.intro.IntroSlideFragment"
+        android:label="fragment_intro_slide"
+        tools:layout="@layout/fragment_intro_slide" >
+        <action
+            android:id="@+id/action_introSlideFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
 </navigation>
