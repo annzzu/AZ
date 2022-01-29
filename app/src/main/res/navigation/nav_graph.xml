@@ -11,15 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_navigation_home_to_navigation_about"
-            app:destination="@id/navigation_about"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"
-            app:popUpTo="@id/navigation_about"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_navigation_home_to_navigation_restrictionForm"
             app:destination="@id/navigation_restrictionForm"
             app:enterAnim="@anim/slide_in"
@@ -38,7 +29,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_home_to_navigationIntroSlide"
-            app:destination="@id/navigationIntroSlide" />
+            app:destination="@id/navigationIntroSlide"
+            app:popUpTo="@id/navigation_travelPlanEdit"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -119,10 +112,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_about"
-        android:name="com.example.az.presentation.about.AboutFragment"
-        android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        android:id="@+id/navigation_network"
+        android:name="com.example.az.presentation.network.NetworkFragment"
+        android:label="fragment_network"
+        tools:layout="@layout/item_intro_slider" />
 
     <fragment
         android:id="@+id/navigation_userHome"
@@ -232,7 +225,11 @@
         tools:layout="@layout/fragment_intro_slide" >
         <action
             android:id="@+id/action_introSlideFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
 </navigation>

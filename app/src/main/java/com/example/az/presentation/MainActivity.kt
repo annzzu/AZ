@@ -1,6 +1,7 @@
 package com.example.az.presentation
 
 import android.animation.ObjectAnimator
+import android.app.AlertDialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.util.Log.d
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -21,13 +23,12 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
-import com.example.az.extensions.DRAWABLES
-import com.example.az.extensions.IDS
-import com.example.az.extensions.invisible
-import com.example.az.extensions.showSnackBar
+import com.example.az.extensions.*
 import com.example.az.presentation.base.BaseActivity
+import com.example.az.presentation.network.NetworkFragment
 import com.example.az.presentation.user.UserViewModel
 import com.example.az.utils.network.NetworkStatus
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -53,19 +54,21 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         initIntro()
         initFab()
 
-
-
         initNetwork()
-    }
-
-    private fun initDoAsync() {
-
     }
 
     @ExperimentalCoroutinesApi
     private fun initNetwork() {
         lifecycleScope.launch {
             networkViewModel.networkStatusActive.collectLatest {
+
+                if (it is NetworkStatus.Unavailable) {
+                    navigationWithMotion(IDS.navigation_network)
+                } else {
+                    if (currentNavigationFragment is NetworkFragment) {
+                        supportFragmentManager.popBackStackImmediate()
+                    }
+                }
                 binding.root.showSnackBar("Internet Connection - ${if (it == NetworkStatus.Available) "Yes" else "No"}")
             }
         }
@@ -85,20 +88,26 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     private fun initSplashScreen() {
         val splashScreen = installSplashScreen()
         splashScreen.setOnExitAnimationListener { splashScreenView ->
+
             val iconAnimator =
                 ObjectAnimator.ofFloat(splashScreenView.iconView , View.ROTATION , -360f , 0f)
-            iconAnimator.duration = 600L
-            iconAnimator.start()
+            iconAnimator.apply {
+                duration = 600L
+                start()
+            }
+
             val splashScreenAnimator = ObjectAnimator.ofFloat(
                 splashScreenView.view ,
                 View.TRANSLATION_Y ,
                 0f ,
                 splashScreenView.view.height.toFloat()
             )
-            splashScreenAnimator.interpolator = AnticipateInterpolator()
-            splashScreenAnimator.duration = 600L
-            splashScreenAnimator.doOnEnd { splashScreenView.remove() }
-            splashScreenAnimator.start()
+            splashScreenAnimator.apply {
+                interpolator = AnticipateInterpolator()
+                duration = 600L
+                doOnEnd { splashScreenView.remove() }
+                start()
+            }
         }
     }
 
@@ -133,43 +142,37 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         arguments: Bundle?
     ) {
         when (destination.id) {
-            IDS.navigation_login -> {
-                setFabForAuth()
-            }
-            IDS.navigation_signup -> {
-                setFabForAuth()
-            }
-            IDS.navigation_userHome -> {
-                setFabForAuth()
-            }
-            IDS.navigation_restrictions -> {
-                setFabForAuth()
-            }
-            IDS.navigation_restrictionForm -> {
-                setFabForAuth()
-            }
-            IDS.navigation_about -> {
-                setFabForAuth()
-            }
-            IDS.navigation_restriction -> {
-                setFabForAuth()
-            }
-            IDS.navigationIntroSlide -> {
-                binding.fab.invisible()
-            }
-            else -> {
+            IDS.navigation_login , IDS.navigation_signup , IDS.navigation_userHome ,
+            IDS.navigation_restrictions , IDS.navigation_restrictionForm ,
+            IDS.navigation_restriction -> setFabForAuth()
+            IDS.navigation_network , IDS.navigationIntroSlide -> binding.fab.invisible()
+            else ->
                 lifecycleScope.launch {
                     setFabForHome(authPrefsManager.readAuthToken())
                 }
-            }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (currentNavigationFragment is NetworkFragment) {
+            MaterialAlertDialogBuilder(this)
+                .setMessage(getString(STRINGS.unable_to_go_back))
+                .setPositiveButton(getString(STRINGS.ok)) { _ , _ ->
+                    binding.root.showSnackBar(getString(STRINGS.ok))
+                }
+                .show()
+        } else {
+            super.onBackPressed()
         }
     }
 
     private fun setFabForAuth() {
+        binding.fab.visible()
         setFabIconDestination(DRAWABLES.ic_covid_19 , IDS.navigation_home)
     }
 
     private fun setFabForHome(token: String?) {
+        binding.fab.visible()
         if (token.isNullOrBlank()) {
             setFabIconDestination(DRAWABLES.ic_user , IDS.navigation_login)
         } else {
