@@ -39,13 +39,16 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initSplashScreen()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        motions()
+        initMain()
+
+    }
+
+    @ExperimentalCoroutinesApi
+    private fun initMain() {
         initIntro()
         initFab()
-
         initNetwork()
     }
 
@@ -53,7 +56,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     private fun initNetwork() {
         lifecycleScope.launch {
             networkViewModel.networkStatusActive.collectLatest {
-
                 if (it is NetworkStatus.Unavailable) {
                     navigationWithMotion(IDS.navigation_network)
                 } else {
@@ -62,7 +64,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
                         supportFragmentManager.popBackStackImmediate()
                     }
                 }
-                binding.root.showSnackBar("Internet Connection - ${if (it == NetworkStatus.Available) "Yes" else "No"}")
             }
         }
 
@@ -109,17 +110,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
             ?.childFragmentManager
             ?.fragments
             ?.first()
-
-    private fun motions() {
-        currentNavigationFragment?.apply {
-            exitTransition = MaterialElevationScale(false).apply {
-                duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-            }
-            reenterTransition = MaterialElevationScale(true).apply {
-                duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-            }
-        }
-    }
 
     private fun initFab() {
         binding.run {
@@ -183,7 +173,6 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     }
 
     private fun navigationWithMotion(navigation: Int) {
-        motions()
         navController.navigate(navigation)
     }
 
