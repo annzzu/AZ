@@ -1,4 +1,4 @@
-package com.example.az.presentation
+package com.example.az.presentation.network
 
 import androidx.lifecycle.ViewModel
 import com.example.az.utils.network.NetworkStatusTracker

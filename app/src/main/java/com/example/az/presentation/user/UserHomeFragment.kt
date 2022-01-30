@@ -111,10 +111,11 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                 LinearLayoutManager(view?.context , LinearLayoutManager.VERTICAL , false)
         }
         travelPlanAdapter.clickTravelPlan = {
-            openTravelPlanDetails(it)
+//            openTravelPlanDetails(it)
 //            for dialog
-//            openTravelPlan(it)
+            openTravelPlan(it)
         }
+
     }
 
     private fun openTravelPlan(travelPlan: TravelPlan) {

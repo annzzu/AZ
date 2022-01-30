@@ -1,12 +1,6 @@
 package com.example.az.presentation.nationality
 
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,25 +17,12 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class NationalityFragmentDialog : BaseFragmentDialog() {
+class NationalityFragmentDialog :
+    BaseFragmentDialog<FragmentNationalitiesBinding>(FragmentNationalitiesBinding::inflate) {
 
     private lateinit var nationalityAdapter: NationalityAdapter
 
     private val viewModel by viewModels<NationalityViewModel>()
-
-    private var _binding: FragmentNationalitiesBinding? = null
-    val binding
-        get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater ,
-        container: ViewGroup? ,
-        savedInstanceState: Bundle?
-    ): View {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        _binding = FragmentNationalitiesBinding.inflate(inflater , container , false)
-        return binding.root
-    }
 
     override fun initRV() {
         binding.rvNationality.apply {

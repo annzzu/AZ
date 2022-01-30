@@ -1,21 +1,13 @@
 package com.example.az.presentation
 
 import android.animation.ObjectAnimator
-import android.app.AlertDialog
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
-import android.util.Log.d
 import android.view.View
 import android.view.animation.AnticipateInterpolator
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
@@ -26,7 +18,7 @@ import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.*
 import com.example.az.presentation.base.BaseActivity
 import com.example.az.presentation.network.NetworkFragment
-import com.example.az.presentation.user.UserViewModel
+import com.example.az.presentation.network.NetworkViewModel
 import com.example.az.utils.network.NetworkStatus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialElevationScale
@@ -66,6 +58,7 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
                     navigationWithMotion(IDS.navigation_network)
                 } else {
                     if (currentNavigationFragment is NetworkFragment) {
+                        binding.fab.visible()
                         supportFragmentManager.popBackStackImmediate()
                     }
                 }
