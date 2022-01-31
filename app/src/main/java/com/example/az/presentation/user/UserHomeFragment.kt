@@ -3,9 +3,11 @@ package com.example.az.presentation.user
 
 import android.os.Build
 import android.util.Log.d
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentUserHomeBinding
@@ -111,9 +113,9 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                 LinearLayoutManager(view?.context , LinearLayoutManager.VERTICAL , false)
         }
         travelPlanAdapter.clickTravelPlan = {
-//            openTravelPlanDetails(it)
+            openTravelPlanDetails(it)
 //            for dialog
-            openTravelPlan(it)
+//            openTravelPlan(it)
         }
 
     }

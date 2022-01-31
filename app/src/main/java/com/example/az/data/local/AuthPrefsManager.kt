@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.viewModelScope
+import com.example.az.extensions.STRINGS
 import com.example.az.model.travel_plan.TravelPlanResponse
 import com.example.az.model.user.User
 import com.example.az.model.vaccine.VaccineResponse
@@ -20,7 +21,7 @@ import javax.inject.Inject
 
 class AuthPrefsManager @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("AUTH_PREFS_MANAGER")
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(context.resources.getString(STRINGS.auth_prefs_manager))
 
     val preferencesFlow: Flow<User> = context.dataStore.data
         .catch { exception ->

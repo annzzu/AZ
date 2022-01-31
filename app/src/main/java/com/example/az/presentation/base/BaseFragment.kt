@@ -26,6 +26,12 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) 
         get() = _binding!!
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initOnCreate()
+    }
+    open fun initOnCreate(){}
+
     override fun onCreateView(
         inflater: LayoutInflater ,
         container: ViewGroup? ,

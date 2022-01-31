@@ -1,6 +1,7 @@
 package com.example.az.presentation.user.travel_plans
 
 import android.os.Build
+import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -17,6 +18,7 @@ import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.presentation.restriction.RestrictionViewModel
 import com.example.az.presentation.user.UserViewModel
 import com.example.az.utils.Resource
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -30,6 +32,18 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     private val viewModel: UserViewModel by activityViewModels()
     private val restrictionViewModel: RestrictionViewModel by viewModels()
     private lateinit var restrictionAdapter: RestrictionAdapter
+
+    override fun initOnCreate() {
+        sharedElementEnterTransition = MaterialContainerTransform()
+    }
+
+    override fun motions() {
+        if (args.travelPlan == null){
+            super.motions()
+        } else{
+            sharedElementEnterTransition = MaterialContainerTransform()
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun init() {

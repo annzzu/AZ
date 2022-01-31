@@ -46,12 +46,10 @@ class IntroSlideFragment : BaseFragment<FragmentIntroSlideBinding>(
                 introSliderViewPager.currentItem += 1
             } else {
                 openHome()
-                childFragmentManager.popBackStack()
             }
         }
         textSkipIntro.setOnClickListener {
             openHome()
-            childFragmentManager.popBackStack()
         }
 
     }

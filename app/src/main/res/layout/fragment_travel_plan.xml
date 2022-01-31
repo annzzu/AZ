@@ -29,7 +29,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UnusedAttribute">
+        tools:ignore="UnusedAttribute"
+        android:transitionName="shared_element_container">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSource"

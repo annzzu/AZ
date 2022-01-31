@@ -35,7 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 login()
             }
             btnSignupTab.setOnClickListener {
-                openSingup()
+                openSingUp()
             }
             logo.getRotationAnimation()
         }
@@ -92,7 +92,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.login.collect {
-                with(binding){
+                with(binding) {
                     when (it) {
                         is Resource.Error -> {
                             tvNothingFound.visible()
@@ -106,7 +106,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                             progressBar.visible()
                         }
                         is Resource.Success -> {
-                            d("testing AZ", "$it")
                             progressBar.invisible()
                             root.showSnackBar(getString(STRINGS.successful_login))
                             openHome()
@@ -122,7 +121,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         LoginFragmentDirections.actionLoginFragmentToHomeFragment()
     )
 
-    private fun openSingup() = findNavController().navigate(
+    private fun openSingUp() = findNavController().navigate(
         LoginFragmentDirections.actionLoginFragmentToSignupFragment()
     )
 }
