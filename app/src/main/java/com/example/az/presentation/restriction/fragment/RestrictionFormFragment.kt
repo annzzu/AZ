@@ -6,11 +6,9 @@ import com.example.az.databinding.FragmentRestrictionFormBinding
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.showSnackBar
 import com.example.az.model.airport.AirportChooseType
-import com.example.az.model.restriction.RestrictionRequest
 import com.example.az.presentation.airport.AirportsFragmentDialog
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.restriction.RestrictionViewModel
-import com.example.az.presentation.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -22,14 +20,21 @@ class RestrictionFormFragment :
 
     override fun init() {
         listeners()
+        setData()
+    }
+
+    private fun setData(){
+        binding.tvSource.text = restrictionViewModel.restrictionRequestForm.from
+        binding.tvDestination.text = restrictionViewModel.restrictionRequestForm.to
+        binding.tvTransfer.text = restrictionViewModel.restrictionRequestForm.transfer
     }
 
     private fun listeners() {
-        setOnClickFuns()
-        setOnLongClickFuns()
+        setOnClickFun()
+        setOnLongClickFun()
     }
 
-    private fun setOnClickFuns() = with(binding) {
+    private fun setOnClickFun() = with(binding) {
         btnFrom.setOnClickListener {
             openAirportDialog(AirportChooseType.FROM)
         }
@@ -40,7 +45,7 @@ class RestrictionFormFragment :
             openAirportDialog(AirportChooseType.TRANSFER)
         }
         btnAirportSearch.setOnClickListener {
-            if (!restrictionViewModel.restrictionRequestForm.to.isNullOrBlank() ||
+            if (!restrictionViewModel.restrictionRequestForm.to.isNullOrBlank() &&
                 !restrictionViewModel.restrictionRequestForm.from.isNullOrBlank()
             ) {
                 searchRestriction()
@@ -50,7 +55,7 @@ class RestrictionFormFragment :
         }
     }
 
-    private fun setOnLongClickFuns() = with(binding) {
+    private fun setOnLongClickFun() = with(binding) {
         btnFrom.setOnLongClickListener {
             deleteForm(AirportChooseType.FROM)
             true
@@ -64,13 +69,6 @@ class RestrictionFormFragment :
             true
         }
     }
-
-    private fun searchRestriction() {
-        findNavController().navigate(
-            RestrictionFormFragmentDirections.actionNavigationRestrictionFormToNavigationRestriction()
-        )
-    }
-
 
     private fun openAirportDialog(type: AirportChooseType) =
         with(restrictionViewModel.restrictionRequestForm) {
@@ -129,5 +127,11 @@ class RestrictionFormFragment :
 
     private fun differentRouteAlert(it: String) =
         binding.root.showSnackBar(getString(STRINGS.choose_different_route , it))
+
+    private fun searchRestriction() {
+            findNavController().navigate(
+                RestrictionFormFragmentDirections.actionNavigationRestrictionFormToNavigationRestriction()
+            )
+        }
 }
 

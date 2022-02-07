@@ -16,14 +16,14 @@ import com.example.az.presentation.restriction.RestrictionViewModel
 import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class RestrictionFragment :
-    BaseFragment<FragmentRestrictionBinding>(FragmentRestrictionBinding::inflate)
-     {
+    BaseFragment<FragmentRestrictionBinding>(FragmentRestrictionBinding::inflate) {
 
     private val viewModel: RestrictionViewModel by activityViewModels()
     private lateinit var restrictionAdapter: RestrictionAdapter
@@ -37,6 +37,10 @@ class RestrictionFragment :
     }
 
     private fun listeners() = with(binding) {
+        btnRetry.setOnClickListener {
+            observeRestrictionRequest()
+        }
+
         btnBack.setOnClickListener {
             findNavController().navigate(RestrictionFragmentDirections.actionNavigationRestrictionToNavigationRestrictionForm())
         }
@@ -49,33 +53,49 @@ class RestrictionFragment :
     }
 
     private fun observers() {
+        observeRestrictionRequest()
+        observeRestrictionCollector()
+    }
+
+    private fun observeRestrictionRequest() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getRestriction(viewModel.restrictionRequestForm)
         }
+    }
+
+    private fun observeRestrictionCollector() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.restriction.collectLatest { it ->
-                when (it) {
-                    is Resource.Error -> {
-                        binding.tvNothingFound.visible()
-                        binding.tvNothingFound.text = getString(STRINGS.error)
-                        binding.progressBar.invisible()
-                        binding.root.showSnackBar(it.message!!)
-                    }
-                    is Resource.Loading -> {
-                        binding.tvNothingFound.invisible()
-                        binding.progressBar.visible()
-                    }
-                    is Resource.Success -> {
-                        binding.progressBar.invisible()
-                        it.data?.restrictionList?.let{ value ->
-                            restrictionAdapter.submitList(value)
-                            binding.tvNothingFound.invisible()
-                        } ?: run {
-                            binding.tvNothingFound.visible()
+            viewModel.restriction.collectLatest {
+                with (binding) {
+                    when (it) {
+                        is Resource.Error -> {
+                            tvNothingFound.visible()
+                            tvNothingFound.text = getString(STRINGS.error)
+                            progressBar.invisible()
+                            root.showSnackBar(it.message!!)
+                            btnRetry.visible()
+                        }
+                        is Resource.Loading -> {
+                            tvNothingFound.invisible()
+                            progressBar.visible()
+                            btnRetry.invisible()
+                        }
+                        is Resource.Success -> {
+                            btnRetry.invisible()
+                            progressBar.invisible()
+                            it.data?.restrictionList?.let { value ->
+                                restrictionAdapter.submitList(value)
+                                tvNothingFound.invisible()
+                            } ?: run {
+                                tvNothingFound.visible()
+                            }
                         }
                     }
                 }
+
             }
         }
     }
+
+
 }

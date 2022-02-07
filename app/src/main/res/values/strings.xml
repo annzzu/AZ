@@ -2,7 +2,7 @@
     <string name="app_name">AZ</string>
     <string name="auth_prefs_manager">AUTH_PREFS_MANAGER</string>
 
-
+    <string name="retry">Retry</string>
 
     <string name="sent_an_attachment">Sent an attachment</string>
     <string name="something_wrong">Something went wrong!</string>

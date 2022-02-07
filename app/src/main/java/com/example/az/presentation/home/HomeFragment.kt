@@ -1,9 +1,5 @@
 package com.example.az.presentation.home
 
-
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentHomeBinding
@@ -14,7 +10,6 @@ import com.example.az.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import android.view.animation.LinearInterpolator
 import com.example.az.extensions.getRotationAnimation
 
 

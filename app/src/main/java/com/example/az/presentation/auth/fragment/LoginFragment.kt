@@ -38,6 +38,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 openSingUp()
             }
             logo.getRotationAnimation()
+            btnRetry.setOnClickListener {
+                etEmail.text = null
+                etPassword.text = null
+                btnRetry.invisible()
+            }
         }
     }
 
@@ -45,9 +50,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         with(binding) {
             etEmail.doAfterTextChanged {
                 observeFields()
+                tvNothingFound.invisible()
             }
             etPassword.doAfterTextChanged {
                 observeFields()
+                tvNothingFound.invisible()
             }
         }
     }
@@ -82,44 +89,50 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
     private fun login() {
-        with(binding) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.login(
-                    User(email = etEmail.text.toString() , password = etPassword.text.toString())
-                )
-            }
-        }
+        observeLoginRequest()
+        observeLoginCollector()
+    }
 
+    private fun observeLoginRequest() = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.login.collect {
-                with(binding) {
-                    when (it) {
-                        is Resource.Error -> {
-                            tvNothingFound.visible()
-                            progressBar.invisible()
-                            tvNothingFound.text = getString(STRINGS.error)
-                            root.showSnackBar(it.message!!)
-                        }
-                        is Resource.Loading -> {
-                            root.isEnabled = false
-                            tvNothingFound.invisible()
-                            progressBar.visible()
-                        }
-                        is Resource.Success -> {
-                            progressBar.invisible()
-                            root.showSnackBar(getString(STRINGS.successful_login))
-                            openHome()
-                        }
+            viewModel.login(
+                User(email = etEmail.text.toString() , password = etPassword.text.toString())
+            )
+        }
+    }
+
+    private fun observeLoginCollector() = with(binding) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.login.collectLatest {
+                when (it) {
+                    is Resource.Error -> {
+                        btnRetry.visible()
+                        tvNothingFound.visible()
+                        progressBar.invisible()
+                        tvNothingFound.text = getString(STRINGS.error)
+                        root.showSnackBar(it.message!!)
+                    }
+                    is Resource.Loading -> {
+                        root.isEnabled = false
+                        tvNothingFound.invisible()
+                        btnRetry.invisible()
+                        progressBar.visible()
+                    }
+                    is Resource.Success -> {
+                        tvNothingFound.invisible()
+                        progressBar.invisible()
+                        root.showSnackBar(getString(STRINGS.successful_login))
+                        openHome()
                     }
                 }
-
             }
         }
     }
 
-    private fun openHome() = findNavController().navigate(
-        LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-    )
+    private fun openHome() {
+        findNavController().navigate(IDS.navigation_home)
+        childFragmentManager.popBackStack()
+    }
 
     private fun openSingUp() = findNavController().navigate(
         LoginFragmentDirections.actionLoginFragmentToSignupFragment()
