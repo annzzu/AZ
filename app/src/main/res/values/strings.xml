@@ -135,5 +135,12 @@
     <string name="yes">Yes</string>
     <string name="ok">OK</string>
     <string name="no">No</string>
-    <string name="unable_to_go_back">Unable to go back</string>
+
+    <string name="into_title_1">AZ\nFor Your Comfort</string>
+    <string name="into_title_2">AZ\nCovid Restrictions</string>
+    <string name="into_title_3">AZ\nUser Information</string>
+    <string name="into_desc_1">Welcome to Covid Century. Unfortunately we have to follow the Covid Regulations to destroy pandemic.</string>
+    <string name="into_desc_2">Due to the on-going COVID situation we have to obey some rules, so AZ
+        is the easiest way to see worldwide Covid Restrictions</string>
+    <string name="into_desc_3">For saving travel information and then find saved travel route with its Restrictions</string>
 </resources>

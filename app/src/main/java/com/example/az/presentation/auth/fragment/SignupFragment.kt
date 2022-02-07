@@ -1,14 +1,12 @@
 package com.example.az.presentation.auth.fragment
 
-
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.az.R
 import com.example.az.databinding.FragmentSignupBinding
 import com.example.az.extensions.*
-import com.example.az.model.user.User
+import com.example.az.domain.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.nationality.NationalityFragmentDialog
@@ -18,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding::inflate) {
@@ -160,7 +159,6 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
             nationality = it
             binding.btnNationality.text = it
         }
-//        findNavController().navigate(SignupFragmentDirections.actionNavigationSignupToNationalityFragmentDialog())
     }
 
     private fun openVaccineDialog() {

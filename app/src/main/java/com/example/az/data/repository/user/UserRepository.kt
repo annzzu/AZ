@@ -1,9 +1,9 @@
 package com.example.az.data.repository.user
 
 import com.example.az.data.remote.services.ApiResponse
-import com.example.az.model.travel_plan.TravelPlanRequest
-import com.example.az.model.travel_plan.TravelPlanResponse
-import com.example.az.model.travel_plan.TravelPlanSingleResponse
+import com.example.az.domain.model.travel_plan.TravelPlanRequest
+import com.example.az.domain.model.travel_plan.TravelPlanResponse
+import com.example.az.domain.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.utils.Resource
 import kotlinx.coroutines.flow.Flow
 

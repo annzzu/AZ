@@ -9,7 +9,7 @@ import com.example.az.databinding.ItemNationalityRestrictionBinding
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.addInfoNationality
 import com.example.az.extensions.booleanToYN
-import com.example.az.model.restriction.RestrictionsByNationality
+import com.example.az.domain.model.restriction.RestrictionsByNationality
 
 
 class RestrictionNationalityAdapter :

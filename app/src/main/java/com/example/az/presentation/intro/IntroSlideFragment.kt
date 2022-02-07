@@ -1,6 +1,5 @@
 package com.example.az.presentation.intro
 
-import android.util.Log.d
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -11,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.az.databinding.FragmentIntroSlideBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.BaseFragment
+import com.example.az.utils.anumations.ZoomOutPageTransformer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -110,24 +110,27 @@ class IntroSlideFragment : BaseFragment<FragmentIntroSlideBinding>(
         }
     }
 
-    private val introSliderAdapter = IntroSliderAdapter(
-        listOf(
-            IntroSlide(
-                "AZ\nFor Your Comfort" ,
-                "Welcome to Covid Century. Unfortunately we have to follow the Covid Regulations to destroy pandemic." ,
-                DRAWABLES.ic_covid_19
-            ) ,
-            IntroSlide(
-                "AZ\nCovid Restrictions" ,
-                "Due to the on-going COVID situation we have to obey some rules," +
-                        " so AZ is the easiest way to see worldwide Covid Restrictions" ,
-                DRAWABLES.ic_plane
-            ) ,
-            IntroSlide(
-                "AZ\nUser Information" ,
-                "For saving travel information and then find saved travel route with its Restrictions" ,
-                DRAWABLES.ic_user
+    companion object {
+        val introSliderAdapter = IntroSliderAdapter(
+            listOf(
+                IntroSlide(
+                    "AZ\nFor Your Comfort" ,
+                    "Welcome to Covid Century. Unfortunately we have to follow the Covid Regulations to destroy pandemic." ,
+                    DRAWABLES.ic_covid_19
+                ) ,
+                IntroSlide(
+                    "AZ\nCovid Restrictions" ,
+                    "Due to the on-going COVID situation we have to obey some rules," +
+                            " so AZ is the easiest way to see worldwide Covid Restrictions" ,
+                    DRAWABLES.ic_plane
+                ) ,
+                IntroSlide(
+                    "AZ\nUser Information" ,
+                    "For saving travel information and then find saved travel route with its Restrictions" ,
+                    DRAWABLES.ic_user
+                )
             )
         )
-    )
+    }
+
 }

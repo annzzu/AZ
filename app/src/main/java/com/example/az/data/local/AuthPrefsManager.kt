@@ -1,20 +1,13 @@
 package com.example.az.data.local
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.viewModelScope
 import com.example.az.extensions.STRINGS
-import com.example.az.model.travel_plan.TravelPlanResponse
-import com.example.az.model.user.User
-import com.example.az.model.vaccine.VaccineResponse
-import com.example.az.utils.Resource
+import com.example.az.domain.model.user.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.IOException
 import javax.inject.Inject
 

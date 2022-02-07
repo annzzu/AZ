@@ -2,17 +2,17 @@ package com.example.az.presentation.auth.fragment
 
 import android.util.Log.d
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentLoginBinding
 import com.example.az.extensions.*
-import com.example.az.model.user.User
+import com.example.az.domain.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -130,8 +130,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
     private fun openHome() {
+        d("testing az", "fffffffffffffffff")
+        parentFragmentManager.popBackStack()
         findNavController().navigate(IDS.navigation_home)
-        childFragmentManager.popBackStack()
+
     }
 
     private fun openSingUp() = findNavController().navigate(

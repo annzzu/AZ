@@ -1,4 +1,4 @@
-package com.example.az.utils
+package com.example.az.utils.endpoints
 
 object ApiEndpoints {
 

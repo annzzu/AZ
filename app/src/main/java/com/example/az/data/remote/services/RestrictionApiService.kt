@@ -1,7 +1,7 @@
 package com.example.az.data.remote.services
 
-import com.example.az.model.restriction.RestrictionResponse
-import com.example.az.utils.ApiEndpoints
+import com.example.az.domain.model.restriction.RestrictionResponse
+import com.example.az.utils.endpoints.ApiEndpoints
 import retrofit2.Response
 import retrofit2.http.*
 

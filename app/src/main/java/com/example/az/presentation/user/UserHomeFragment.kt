@@ -3,16 +3,14 @@ package com.example.az.presentation.user
 
 import android.os.Build
 import android.util.Log.d
-import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentUserHomeBinding
 import com.example.az.extensions.*
-import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.domain.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 import com.example.az.utils.Resource
@@ -79,10 +77,10 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         val data = it.data?.travelPlans
-
                         if (data!!.isNotEmpty()){
                             binding.tvNothingFound.invisible()
                             travelPlanAdapter.submitList(data)
+                            binding.rvTravelPlan.startLayoutAnimation()
 
                         }else{
                             binding.tvNothingFound.visible()
@@ -113,20 +111,6 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
                 LinearLayoutManager(view?.context , LinearLayoutManager.VERTICAL , false)
         }
         travelPlanAdapter.clickTravelPlan = {
-            openTravelPlanDetails(it)
-//            for dialog
-//            openTravelPlan(it)
-        }
-
-    }
-
-    private fun openTravelPlan(travelPlan: TravelPlan) {
-        //        for dialog
-        val dialog = TravelPlanBottomSheetFragment()
-        dialog.bottomSheetFragment(travelPlan)
-        dialog.show(childFragmentManager , "AndroidCenter")
-        dialog.clickSeeMore = {
-            d("testing AZ" , "daaWira ashkarad \n $travelPlan")
             openTravelPlanDetails(it)
         }
     }

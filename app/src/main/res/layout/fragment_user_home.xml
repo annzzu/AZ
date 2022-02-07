@@ -149,7 +149,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
-        android:stateListAnimator="@layout/item_travel_plan"
+        android:layoutAnimation="@anim/item_rv_anim"
         app:layout_constraintTop_toBottomOf="@+id/tvMyTravelPlan"
         app:layout_constraintBottom_toTopOf="@+id/animation_loading"
         tools:listitem="@layout/item_travel_plan" />

@@ -162,6 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="40dp"
+        android:layoutAnimation="@anim/item_rv_anim"
         android:stateListAnimator="@layout/item_restriction"
         app:layout_constraintTop_toBottomOf="@+id/lTravelPlan"
         app:layout_constraintBottom_toBottomOf="@+id/tvBackground"

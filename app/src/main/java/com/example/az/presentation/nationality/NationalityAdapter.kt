@@ -2,12 +2,11 @@ package com.example.az.presentation.nationality
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemNationalityBinding
 import com.example.az.presentation.base.ClickCallBack
-import com.example.az.utils.StringDiffCallBack
+import com.example.az.utils.callbacks.StringDiffCallBack
 
 
 class NationalityAdapter() :

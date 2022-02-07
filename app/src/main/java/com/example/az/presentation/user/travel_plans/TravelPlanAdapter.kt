@@ -1,16 +1,16 @@
 package com.example.az.presentation.user.travel_plans
 
 import android.os.Build
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.domain.model.travel_plan.TravelPlan
 import androidx.recyclerview.widget.ListAdapter
 import com.example.az.databinding.ItemTravelPlanBinding
 import com.example.az.extensions.*
+import kotlin.math.abs
 
 typealias ClickTravelPlan = (travelPlan: TravelPlan) -> Unit
 
@@ -53,21 +53,20 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
                 tvDate.visible()
 
                 date.getDuration(null).takeIf { (-it) > 0 }?.let {
-                    tvDaysLeft.text =
-                        this@ViewHolder.itemView.context.getString(
+                    tvDaysLeft.text =  this@ViewHolder.itemView.context.getString(
                             STRINGS.x_days_left ,
                             (-it)
                         )
-                    if (!model.date.isNullOrBlank() && date.getDuration(model.date) > 0) {
+                    if (!model.date.isNullOrBlank()) {
                         pbDateLeft.progress =
-                            100 * (model.date!!.getDuration(null)
-                                    % model.travelDate!!.getDuration(model.date))
+                            abs((100 * (model.date!!.getDuration(null).toDouble() /
+                                    model.travelDate!!.getDuration(model.date).toDouble())).toInt())
                     }
+
 
                 } ?: run {
                     pbDateLeft.progress = 100
                 }
-
 
             } ?: run {
                 pbDateLeft.invisible()

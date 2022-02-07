@@ -1,4 +1,4 @@
-package com.example.az.model.airport
+package com.example.az.domain.model.airport
 
 
 data class AirportResponse(

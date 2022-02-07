@@ -56,6 +56,7 @@ class VaccinesFragmentDialog : BaseFragmentDialog<FragmentNationalitiesBinding>(
                         if (data!!.isNotEmpty()) {
                             binding.tvNothingFound.invisible()
                             vaccineAdapter.submitList(data)
+                            binding.rvNationality.startLayoutAnimation()
                         } else {
                             binding.tvNothingFound.visible()
                             binding.tvNothingFound.text = getString(STRINGS.nothing_found)

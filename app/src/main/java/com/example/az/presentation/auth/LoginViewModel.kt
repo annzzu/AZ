@@ -1,15 +1,13 @@
 package com.example.az.presentation.auth
 
-import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.auth.AuthRepositoryImpl
+import com.example.az.domain.form_states.UserFormState
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.emailValid
 import com.example.az.extensions.passwordValid
-import com.example.az.model.user.User
-import com.example.az.model.user.UserFormState
-import com.example.az.model.user.UserResponse
+import com.example.az.domain.model.user.User
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

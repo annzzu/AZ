@@ -57,6 +57,7 @@ class NationalityFragmentDialog :
                             if (data!!.isNotEmpty()) {
                                 tvNothingFound.invisible()
                                 nationalityAdapter.submitList(data)
+                                rvNationality.startLayoutAnimation()
                             } else {
                                 tvNothingFound.visible()
                                 tvNothingFound.text = getString(STRINGS.nothing_found)

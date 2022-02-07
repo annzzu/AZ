@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.az.data.remote.services.ApiResponse
 import com.example.az.data.repository.user.UserRepositoryImpl
 import com.example.az.extensions.dateToString
-import com.example.az.model.travel_plan.TravelPlanRequest
-import com.example.az.model.travel_plan.TravelPlanResponse
-import com.example.az.model.travel_plan.TravelPlanSingleResponse
+import com.example.az.domain.model.travel_plan.TravelPlanRequest
+import com.example.az.domain.model.travel_plan.TravelPlanResponse
+import com.example.az.domain.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

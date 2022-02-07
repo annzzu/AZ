@@ -1,4 +1,4 @@
-package com.example.az.model.travel_plan
+package com.example.az.domain.model.travel_plan
 
 
 import android.os.Parcelable

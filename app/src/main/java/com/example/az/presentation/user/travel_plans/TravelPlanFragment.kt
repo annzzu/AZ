@@ -1,7 +1,7 @@
 package com.example.az.presentation.user.travel_plans
 
 import android.os.Build
-import android.os.Bundle
+import android.util.Log.d
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -11,8 +11,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentTravelPlanBinding
 import com.example.az.extensions.*
-import com.example.az.model.restriction.RestrictionRequest
-import com.example.az.model.travel_plan.TravelPlan
+import com.example.az.domain.model.restriction.RestrictionRequest
+import com.example.az.domain.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.presentation.restriction.RestrictionViewModel
@@ -22,6 +22,7 @@ import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.math.abs
 
 
 @AndroidEntryPoint
@@ -38,9 +39,9 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
     }
 
     override fun motions() {
-        if (args.travelPlan == null){
+        if (args.travelPlan == null) {
             super.motions()
-        } else{
+        } else {
             sharedElementEnterTransition = MaterialContainerTransform()
         }
     }
@@ -68,10 +69,13 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
 
                 date.getDuration(null).takeIf { (-it) > 0 }?.let {
                     tvDaysLeft.text = getString(STRINGS.x_days_left , -it)
-                    if (!travelPlan.date.isNullOrBlank() && date.getDuration(travelPlan.date) > 0) {
-                        pbDateLeft.progress =
-                            100 * (travelPlan.date!!.getDuration(null) %
-                                    travelPlan.travelDate!!.getDuration(travelPlan.date))
+                    if (!travelPlan.date.isNullOrBlank()) {
+                        val progress = (100 * (travelPlan.date!!.getDuration(null)
+                            .toDouble() / travelPlan.travelDate!!.getDuration(travelPlan.date)
+                            .toDouble())).toInt()
+
+                        d("testing az" , "@$progress")
+                        pbDateLeft.progress = abs(progress)
                     }
                 } ?: run {
                     pbDateLeft.progress = 100
@@ -108,6 +112,7 @@ class TravelPlanFragment : BaseFragment<FragmentTravelPlanBinding>(
                         binding.progressBar.invisible()
                         it.data?.restrictionList?.let { value ->
                             restrictionAdapter.submitList(value)
+                            binding.rvRestrictions.startLayoutAnimation()
                             binding.tvNothingFound.invisible()
                         } ?: run {
                             binding.tvNothingFound.visible()

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemAirportBinding
-import com.example.az.model.airport.Airport
+import com.example.az.domain.model.airport.Airport
 import com.example.az.presentation.base.ClickCallBack
 
 

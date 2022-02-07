@@ -1,6 +1,7 @@
 package com.example.az.presentation
 
 import android.animation.ObjectAnimator
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnticipateInterpolator
@@ -8,12 +9,12 @@ import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import com.example.az.R
 import com.example.az.databinding.ActivityMainBinding
 import com.example.az.extensions.*
 import com.example.az.presentation.base.BaseActivity
@@ -21,7 +22,6 @@ import com.example.az.presentation.network.NetworkFragment
 import com.example.az.presentation.network.NetworkViewModel
 import com.example.az.utils.network.NetworkStatus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
@@ -35,14 +35,20 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     private lateinit var binding: ActivityMainBinding
     private val navController by lazy { findNavController(IDS.navHostFragment) }
 
+    private val currentNavigationFragment: Fragment?
+        get() = supportFragmentManager.findFragmentById(IDS.navHostFragment)
+            ?.childFragmentManager
+            ?.fragments
+            ?.first()
+
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initMain()
-
     }
 
     @ExperimentalCoroutinesApi
@@ -82,34 +88,11 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
     private fun initSplashScreen() {
         val splashScreen = installSplashScreen()
         splashScreen.setOnExitAnimationListener { splashScreenView ->
-
-            val iconAnimator =
-                ObjectAnimator.ofFloat(splashScreenView.iconView , View.ROTATION , -360f , 0f)
-            iconAnimator.apply {
-                duration = 600L
-                start()
-            }
-
-            val splashScreenAnimator = ObjectAnimator.ofFloat(
-                splashScreenView.view ,
-                View.TRANSLATION_Y ,
-                0f ,
-                splashScreenView.view.height.toFloat()
-            )
-            splashScreenAnimator.apply {
-                interpolator = AnticipateInterpolator()
-                duration = 600L
-                doOnEnd { splashScreenView.remove() }
-                start()
-            }
+            splashScreenView.iconView.getSplashIconRotationAnimation()
+            splashScreenView.getSplashViewRotationAnimation()
         }
     }
 
-    private val currentNavigationFragment: Fragment?
-        get() = supportFragmentManager.findFragmentById(IDS.navHostFragment)
-            ?.childFragmentManager
-            ?.fragments
-            ?.first()
 
     private fun initFab() {
         binding.run {
@@ -165,14 +148,17 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
 
     private fun setFabIconDestination(icon: Int , navigation: Int) {
         binding.fab.apply {
+
             setImageResource(icon)
             setOnClickListener {
+                getFabIconAnimation()
                 navigationWithMotion(navigation)
             }
         }
     }
 
     private fun navigationWithMotion(navigation: Int) {
+        supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         navController.navigate(navigation)
     }
 

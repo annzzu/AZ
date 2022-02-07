@@ -4,7 +4,6 @@ package com.example.az.presentation.restriction.fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentRestrictionBinding
 import com.example.az.extensions.STRINGS
@@ -16,7 +15,6 @@ import com.example.az.presentation.restriction.RestrictionViewModel
 import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -42,8 +40,9 @@ class RestrictionFragment :
         }
 
         btnBack.setOnClickListener {
-            findNavController().navigate(RestrictionFragmentDirections.actionNavigationRestrictionToNavigationRestrictionForm())
+            openForm()
         }
+
         rvRestrictions.apply {
             restrictionAdapter = RestrictionAdapter()
             adapter = restrictionAdapter
@@ -55,6 +54,10 @@ class RestrictionFragment :
     private fun observers() {
         observeRestrictionRequest()
         observeRestrictionCollector()
+    }
+
+    private fun openForm() {
+        findNavController().navigate(RestrictionFragmentDirections.actionNavigationRestrictionToNavigationRestrictionForm())
     }
 
     private fun observeRestrictionRequest() {
@@ -85,6 +88,7 @@ class RestrictionFragment :
                             progressBar.invisible()
                             it.data?.restrictionList?.let { value ->
                                 restrictionAdapter.submitList(value)
+                                rvRestrictions.startLayoutAnimation()
                                 tvNothingFound.invisible()
                             } ?: run {
                                 tvNothingFound.visible()

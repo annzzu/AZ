@@ -66,6 +66,7 @@ class AirportsFragmentDialog : BaseFragmentDialog<FragmentAirportsBinding>(
                             if (data!!.isNotEmpty()) {
                                 tvNothingFound.invisible()
                                 airportAdapter.submitList(data)
+                                rvAirports.startLayoutAnimation()
                             } else {
                                 tvNothingFound.visible()
                                 tvNothingFound.text = getString(STRINGS.nothing_found)

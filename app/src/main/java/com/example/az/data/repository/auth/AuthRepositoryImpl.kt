@@ -3,8 +3,8 @@ package com.example.az.data.repository.auth
 import android.util.Log.d
 import com.example.az.data.local.AuthPrefsManager
 import com.example.az.data.remote.datasources.AuthDataSource
-import com.example.az.model.user.User
-import com.example.az.model.user.UserResponse
+import com.example.az.domain.model.user.User
+import com.example.az.domain.model.user.UserResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
 import kotlinx.coroutines.Dispatchers.IO

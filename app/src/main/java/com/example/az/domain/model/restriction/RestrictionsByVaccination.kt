@@ -1,4 +1,4 @@
-package com.example.az.model.restriction
+package com.example.az.domain.model.restriction
 
 
 data class RestrictionsByVaccination(

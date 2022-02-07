@@ -1,7 +1,7 @@
 package com.example.az.data.repository.auth
 
-import com.example.az.model.user.User
-import com.example.az.model.user.UserResponse
+import com.example.az.domain.model.user.User
+import com.example.az.domain.model.user.UserResponse
 import com.example.az.utils.Resource
 import kotlinx.coroutines.flow.Flow
 

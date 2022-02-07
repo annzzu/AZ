@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemNationalityBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.ClickCallBack
-import com.example.az.utils.StringDiffCallBack
+import com.example.az.utils.callbacks.StringDiffCallBack
 
 class VaccineAdapter() :
     ListAdapter<String , VaccineAdapter.ViewHolder>(StringDiffCallBack()) {
