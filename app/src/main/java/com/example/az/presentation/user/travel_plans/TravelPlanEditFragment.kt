@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.az.databinding.FragmentTravelPlanEditBinding
-import com.example.az.domain.enums.AirportChooseType
+import com.example.az.utils.enums.AirportChooseType
 import com.example.az.extensions.*
 import com.example.az.domain.model.travel_plan.TravelPlan
 import com.example.az.domain.model.travel_plan.TravelPlanRequest

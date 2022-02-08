@@ -3,7 +3,7 @@ package com.example.az.presentation.restriction.fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentRestrictionFormBinding
-import com.example.az.domain.enums.AirportChooseType
+import com.example.az.utils.enums.AirportChooseType
 import com.example.az.extensions.STRINGS
 import com.example.az.extensions.showSnackBar
 import com.example.az.presentation.airport.AirportsFragmentDialog

@@ -133,6 +133,7 @@
     <string name="network_oops">Oops!</string>
     <string name="network_connection_false">No internet :(\nPlease check your internet connection,\nyou are offline now</string>
     <string name="yes">Yes</string>
+    <string name="unable_to_go_back">Unable to Go Back</string>
     <string name="ok">OK</string>
     <string name="no">No</string>
 
