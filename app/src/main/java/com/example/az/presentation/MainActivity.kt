@@ -79,6 +79,7 @@ class MainActivity : BaseActivity() , NavController.OnDestinationChangedListener
         lifecycleScope.launch {
             val isFirstTimeLaunch = authPrefsManager.isFirstTimeLaunch()
             if (isFirstTimeLaunch) {
+                binding.fab.invisible()
                 navigationWithMotion(IDS.navigationIntroSlide)
                 authPrefsManager.setAnotherTimeLaunch()
             }

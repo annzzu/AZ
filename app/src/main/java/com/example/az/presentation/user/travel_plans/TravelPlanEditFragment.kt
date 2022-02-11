@@ -26,7 +26,7 @@ import java.util.*
 @AndroidEntryPoint
 class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     FragmentTravelPlanEditBinding::inflate
-) ,  DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener {
+) , DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener {
 
     private val args: TravelPlanFragmentArgs by navArgs()
     private val viewModel: UserViewModel by activityViewModels()
@@ -40,7 +40,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     private fun setInfo() {
         with(binding) {
             args.travelPlan?.let {
-                viewModel.travelPlanRequestForm.apply {
+                travelPlanRequestForm.apply {
                     id = it.id
                     source = it.source
                     destination = it.destination
@@ -109,7 +109,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     }
 
     private fun deleteForm(type: AirportChooseType) = with(binding) {
-        with(viewModel.travelPlanRequestForm) {
+        with(travelPlanRequestForm) {
             when (type) {
                 AirportChooseType.TO -> {
                     tvSource.text = ""
@@ -140,15 +140,15 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     private fun checkChoose() {
         args.travelPlan?.let {
-            if (it != getIfSimilar(it , viewModel.travelPlanRequestForm)) {
+            if (it != getIfSimilar(it , travelPlanRequestForm)) {
                 btnTravelPlanSave(true)
             } else {
                 binding.root.showSnackBar(getString(STRINGS.change_data_first))
             }
         } ?: run {
-            if (viewModel.travelPlanRequestForm.source.isNullOrBlank() ||
-                viewModel.travelPlanRequestForm.destination.isNullOrBlank() ||
-                viewModel.travelPlanRequestForm.travelDate.isNullOrBlank()
+            if (travelPlanRequestForm.source.isNullOrBlank() ||
+                travelPlanRequestForm.destination.isNullOrBlank() ||
+                travelPlanRequestForm.travelDate.isNullOrBlank()
             ) {
                 binding.root.showSnackBar(getString(STRINGS.choose_data_first))
             } else {
@@ -172,7 +172,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     private fun create() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.createTravelPlan(viewModel.travelPlanRequestForm)
+            viewModel.createTravelPlan(travelPlanRequestForm)
             viewModel.createPlan.collectLatest {
                 when (it) {
                     is Resource.Error -> {
@@ -193,7 +193,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     private fun update() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.updateTravelPlan(viewModel.travelPlanRequestForm)
+            viewModel.updateTravelPlan(travelPlanRequestForm)
             viewModel.updatePlan.collectLatest {
                 when (it) {
                     is Resource.Error -> {
@@ -207,7 +207,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     is Resource.Success -> {
                         binding.progressBar.invisible()
                         it.data?.travelPlan?.let { travelPlanResponse ->
-                            travelPlanResponse.id = viewModel.travelPlanRequestForm.id
+                            travelPlanResponse.id = travelPlanRequestForm.id
                             openBack(travelPlanResponse)
                         }
                     }
@@ -219,7 +219,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     private fun openDateDialog() = getDatePicker()
 
     private fun getDatePicker() {
-        viewModel.travelPlanRequestDate = null
+        travelPlanRequestDate = null
         val cal = Calendar.getInstance()
         DatePickerDialog(
             this.requireContext() ,
@@ -232,8 +232,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     override fun onDateSet(p0: DatePicker? , year: Int , month: Int , dayOfMonth: Int) {
         val cal = Calendar.getInstance()
-        viewModel.travelPlanRequestDate =
-            "$year-${month.plusOnePutFirstZero()}-${dayOfMonth.putFirstZero()}T"
+        travelPlanRequestDate = "$year-${month.plusOnePutFirstZero()}-${dayOfMonth.putFirstZero()}T"
         TimePickerDialog(
             this.requireContext() ,
             this ,
@@ -244,15 +243,16 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     }
 
     override fun onTimeSet(p0: TimePicker? , hour: Int , minute: Int) {
-        viewModel.travelPlanRequestForm.travelDate = viewModel.travelPlanRequestDate + "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
-        binding.tvDate.text = viewModel.travelPlanRequestForm.travelDate?.getDateNextLine()
+        travelPlanRequestForm.travelDate =
+            travelPlanRequestDate + "${hour.plusOnePutFirstZero()}:${minute.putFirstZero()}:00"
+        binding.tvDate.text = travelPlanRequestForm.travelDate?.getDateNextLine()
     }
 
     private fun openAirportDialog(type: AirportChooseType) {
         val dialog = AirportsFragmentDialog()
         dialog.show(childFragmentManager , null)
         dialog.clickCallBack = {
-            with(viewModel.travelPlanRequestForm) {
+            with(travelPlanRequestForm) {
                 when (type) {
                     AirportChooseType.FROM -> {
                         if (destination.equals(it) || transfer?.split(",")?.contains(it) == true) {
@@ -289,4 +289,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
 
     private fun differentRouteAlert(it: String) =
         binding.root.showSnackBar(getString(STRINGS.choose_different_route , it))
+
+    var travelPlanRequestForm = TravelPlanRequest()
+    var travelPlanRequestDate: String? = null
 }
