@@ -15,8 +15,8 @@ import javax.inject.Inject
 class VaccineViewModel @Inject constructor(private val repository: VaccineRepositoryImpl) :
     ViewModel() {
 
-    private val _vaccines = MutableSharedFlow<Resource<VaccineResponse>>()
-    val vaccines: SharedFlow<Resource<VaccineResponse>> = _vaccines
+    private val _vaccines = MutableStateFlow<Resource<VaccineResponse>>(Resource.Loading())
+    val vaccines: StateFlow<Resource<VaccineResponse>> = _vaccines
 
     private suspend fun getVaccines() = viewModelScope.launch {
         repository.getVaccines().collectLatest { values ->

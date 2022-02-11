@@ -15,8 +15,8 @@ import javax.inject.Inject
 class NationalityViewModel @Inject constructor(private val repository: NationalityRepositoryImpl) :
     ViewModel() {
 
-    private val _nationalities = MutableSharedFlow<Resource<NationalityResponse>>()
-    val nationalities: SharedFlow<Resource<NationalityResponse>> = _nationalities
+    private val _nationalities = MutableStateFlow<Resource<NationalityResponse>>(Resource.Loading())
+    val nationalities: StateFlow<Resource<NationalityResponse>> = _nationalities
 
     private suspend fun getNationalities() = viewModelScope.launch {
         repository.getNationalities().collectLatest { values ->

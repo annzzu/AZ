@@ -15,7 +15,6 @@ class NationalityRepositoryImpl @Inject constructor(private val dataSource: Nati
 
     override suspend fun getNationalities(): Flow<Resource<NationalityResponse>> {
         return flow {
-            emit(Resource.Loading())
             emit(handleResponse { dataSource.getNationalities() })
         }.flowOn(Dispatchers.IO)
     }

@@ -23,7 +23,6 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getTravelPlan(): Flow<Resource<TravelPlanResponse>> {
         return flow {
-            emit(Resource.Loading())
             emit(handleResponse { dataSource.getTravelPlan(autoAuthPrefsManager.readAuthToken()) })
         }.flowOn(Dispatchers.IO)
     }

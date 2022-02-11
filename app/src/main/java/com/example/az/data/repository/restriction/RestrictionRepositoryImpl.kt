@@ -19,7 +19,6 @@ class RestrictionRepositoryImpl @Inject constructor(
 
     override suspend fun getRestriction(restrictionRequest: RestrictionRequest): Flow<Resource<RestrictionResponse>> {
         return flow {
-            emit(Resource.Loading())
             restrictionRequest.apply {
                 vaccine = autoAuthPrefsManager.readVaccine()
                 nationality = autoAuthPrefsManager.readNationality()

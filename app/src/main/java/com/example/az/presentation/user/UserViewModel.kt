@@ -18,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(private val repository: UserRepositoryImpl) : ViewModel() {
 
-    private val _travelPlans = MutableSharedFlow<Resource<TravelPlanResponse>>()
-    val travelPlans: SharedFlow<Resource<TravelPlanResponse>> = _travelPlans
+    private val _travelPlans = MutableStateFlow<Resource<TravelPlanResponse>>(Resource.Loading())
+    val travelPlans: StateFlow<Resource<TravelPlanResponse>> = _travelPlans
 
     suspend fun getTravelPlan() = viewModelScope.launch {
         repository.getTravelPlan().collectLatest { values ->

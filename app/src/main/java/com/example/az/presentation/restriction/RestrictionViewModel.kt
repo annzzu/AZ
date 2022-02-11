@@ -15,8 +15,8 @@ import javax.inject.Inject
 class RestrictionViewModel @Inject constructor(private val repository: RestrictionRepositoryImpl) :
     ViewModel() {
 
-    private val _restriction = MutableSharedFlow<Resource<RestrictionResponse>>()
-    val restriction: SharedFlow<Resource<RestrictionResponse>> = _restriction
+    private val _restriction = MutableStateFlow<Resource<RestrictionResponse>>(Resource.Loading())
+    val restriction: StateFlow<Resource<RestrictionResponse>> = _restriction
 
     suspend fun getRestriction(restrictionRequest: RestrictionRequest) = viewModelScope.launch {
         repository.getRestriction(restrictionRequest).collectLatest { values ->

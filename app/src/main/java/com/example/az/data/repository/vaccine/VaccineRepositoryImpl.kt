@@ -15,7 +15,6 @@ class VaccineRepositoryImpl @Inject constructor(private val dataSource: VaccineD
 
     override suspend fun getVaccines(): Flow<Resource<VaccineResponse>> {
         return flow {
-            emit(Resource.Loading())
             emit(handleResponse { dataSource.getVaccines() })
         }.flowOn(Dispatchers.IO)
     }
