@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemAirportBinding
 import com.example.az.domain.model.airport.Airport
-import com.example.az.presentation.base.ClickCallBack
+import com.example.az.extensions.STRINGS
+import com.example.az.utils.callbacks.ClickCallBack
 
 
-class AirportAdapter() :
+class AirportAdapter :
     ListAdapter<Airport , AirportAdapter.ViewHolder>(DiffCallback()) {
 
     var clickCallBack: ClickCallBack? = null
@@ -32,7 +33,12 @@ class AirportAdapter() :
     inner class ViewHolder(private val binding: ItemAirportBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(model: Airport) {
-            binding.tvAirport.text = "${model.country}\n${model.city}\n${model.code}"
+            binding.tvAirport.text = this@ViewHolder.itemView.context.getString(
+                STRINGS.next_line ,
+                model.country ,
+                model.city ,
+                model.code
+            )
             binding.root.setOnClickListener {
                 clickCallBack?.invoke(model.code!!)
             }

@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.az.databinding.ItemNationalityBinding
-import com.example.az.presentation.base.ClickCallBack
+import com.example.az.utils.callbacks.ClickCallBack
 import com.example.az.utils.callbacks.StringDiffCallBack
 
 
-class NationalityAdapter() :
+class NationalityAdapter :
     ListAdapter<String , NationalityAdapter.ViewHolder>(StringDiffCallBack()) {
     var clickCallBack: ClickCallBack? = null
 

@@ -12,12 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.az.R
 import com.example.az.databinding.FragmentNationalitiesBinding
+import com.example.az.utils.callbacks.ClickCallBack
 import com.google.android.material.transition.MaterialElevationScale
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
 
 typealias  DialogInflate<T> = (LayoutInflater , ViewGroup? , Boolean) -> T
-typealias ClickCallBack = (string: String) -> Unit
+
 
 abstract class BaseFragmentDialog<VB : ViewBinding>(private val inflate: DialogInflate<VB>) :
     DialogFragment() {

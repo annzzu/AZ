@@ -144,4 +144,7 @@
     <string name="into_desc_2">Due to the on-going COVID situation we have to obey some rules, so AZ
         is the easiest way to see worldwide Covid Restrictions</string>
     <string name="into_desc_3">For saving travel information and then find saved travel route with its Restrictions</string>
+
+
+    <string name="next_line">%s\n%s\n%s</string>
 </resources>

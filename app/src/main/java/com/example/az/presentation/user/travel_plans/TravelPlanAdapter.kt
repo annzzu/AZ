@@ -10,9 +10,8 @@ import com.example.az.domain.model.travel_plan.TravelPlan
 import androidx.recyclerview.widget.ListAdapter
 import com.example.az.databinding.ItemTravelPlanBinding
 import com.example.az.extensions.*
+import com.example.az.utils.callbacks.ClickTravelPlan
 import kotlin.math.abs
-
-typealias ClickTravelPlan = (travelPlan: TravelPlan) -> Unit
 
 
 class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>(DiffCallback()) {
@@ -62,12 +61,9 @@ class TravelPlanAdapter : ListAdapter<TravelPlan , TravelPlanAdapter.ViewHolder>
                             abs((100 * (model.date!!.getDuration(null).toDouble() /
                                     model.travelDate!!.getDuration(model.date).toDouble())).toInt())
                     }
-
-
                 } ?: run {
                     pbDateLeft.progress = 100
                 }
-
             } ?: run {
                 pbDateLeft.invisible()
                 tvDaysLeft.invisible()

@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.az.databinding.FragmentIntroSlideBinding
 import com.example.az.extensions.DRAWABLES
 import com.example.az.presentation.base.BaseFragment
-import com.example.az.utils.anumations.ZoomOutPageTransformer
+import com.example.az.utils.animations.ZoomOutPageTransformer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
