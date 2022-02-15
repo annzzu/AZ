@@ -49,7 +49,7 @@ Home Page | Restriction Form | Restriction Result | Travel Plan Form  | Travel P
 
 User Home Page | About Form | Login | Sign Up |Splash Screen
 ---|---|---|---|---
-<img src="screenshots/user_home.jpg"  width="200" alt="018"/> | <img src="screenshots/about.gif"  width="200" alt="018" />| <img src="screenshots/login.jpg"  width="200" alt="018" />| <img src="screenshots/signup.jpg"  width="200" alt="018" />| <img src="screenshots/splashscreen.gif"  width="200" alt="018" />
+<img src="screenshots/user_home.jpg"  width="200" alt="018"/> | <img src="screenshots/about.gif"  width="200" alt="018" />| <img src="screenshots/login.jpg"  width="200" alt="018" />| <img src="screenshots/signup.jpg"  width="200" alt="018" />| <img src="screenshots/splash_screen.gif"  width="200" alt="018" />
 
 
 
