@@ -112,15 +112,15 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         with(travelPlanRequestForm) {
             when (type) {
                 AirportChooseType.TO -> {
-                    tvSource.text = ""
+                    tvSource.deleteText()
                     source = null
                 }
                 AirportChooseType.FROM -> {
-                    tvDestination.text = ""
+                    tvDestination.deleteText()
                     destination = null
                 }
                 AirportChooseType.TRANSFER -> {
-                    tvTransfer.text = ""
+                    tvTransfer.deleteText()
                     transfer = null
                 }
             }
@@ -255,7 +255,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
             with(travelPlanRequestForm) {
                 when (type) {
                     AirportChooseType.FROM -> {
-                        if (destination.equals(it) || transfer?.split(",")?.contains(it) == true) {
+                        if (destination.equals(it) || transfer?.containsAirport(it) == true) {
                             differentRouteAlert(it)
                         } else {
                             source = it
@@ -263,7 +263,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                         }
                     }
                     AirportChooseType.TO -> {
-                        if (source.equals(it) || transfer?.split(",")?.contains(it) == true
+                        if (source.equals(it) || transfer?.containsAirport(it) == true
                         ) {
                             differentRouteAlert(it)
                         } else {
@@ -273,7 +273,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     }
                     AirportChooseType.TRANSFER -> {
                         if (source.equals(it) || destination.equals(it) ||
-                            transfer?.split(",")?.contains(it) == true
+                            transfer?.containsAirport(it) == true
                         ) {
                             differentRouteAlert(it)
                         } else {

@@ -80,7 +80,9 @@
         \nCovid Passport Required : %s
         \nPCR Required For NoneResidents : %s
         \nPCR Required For Residents : %s
-        \nmoreInfoUrl : %s\n
+    </string>
+    <string name="infoUrl">
+        Info Url
     </string>
     <string name="allowsBusinessVisit"><u>Allows Business Visit</u></string>
     <string name="allowsTourists">Allows Tourists</string>

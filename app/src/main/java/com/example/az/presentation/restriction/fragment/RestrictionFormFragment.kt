@@ -5,6 +5,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentRestrictionFormBinding
 import com.example.az.utils.enums.AirportChooseType
 import com.example.az.extensions.STRINGS
+import com.example.az.extensions.containsAirport
+import com.example.az.extensions.deleteText
 import com.example.az.extensions.showSnackBar
 import com.example.az.presentation.airport.AirportsFragmentDialog
 import com.example.az.presentation.base.BaseFragment
@@ -45,8 +47,8 @@ class RestrictionFormFragment :
             openAirportDialog(AirportChooseType.TRANSFER)
         }
         btnAirportSearch.setOnClickListener {
-            if (!restrictionViewModel.restrictionRequestForm.to.isNullOrBlank() &&
-                !restrictionViewModel.restrictionRequestForm.from.isNullOrBlank()
+            if (!restrictionViewModel.restrictionRequestForm.from.isNullOrBlank() &&
+                !restrictionViewModel.restrictionRequestForm.to.isNullOrBlank()
             ) {
                 searchRestriction()
             } else {
@@ -77,7 +79,7 @@ class RestrictionFormFragment :
             dialog.clickCallBack = {
                 when (type) {
                     AirportChooseType.FROM -> {
-                        if (to.equals(it) || transfer?.split(",")?.contains(it) == true) {
+                        if (to.equals(it) ||  transfer?.containsAirport(it) == true) {
                             differentRouteAlert(it)
                         } else {
                             from = it
@@ -85,7 +87,7 @@ class RestrictionFormFragment :
                         }
                     }
                     AirportChooseType.TO -> {
-                        if (from.equals(it) || transfer?.split(",")?.contains(it) == true) {
+                        if (from.equals(it) || transfer?.containsAirport(it) == true) {
                             differentRouteAlert(it)
                         } else {
                             to = it
@@ -94,7 +96,7 @@ class RestrictionFormFragment :
                     }
                     AirportChooseType.TRANSFER -> {
                         if (from.equals(it) || to.equals(it) ||
-                            transfer?.split(",")?.contains(it) == true
+                            transfer?.containsAirport(it) == true
                         ) {
                             differentRouteAlert(it)
                         } else {
@@ -110,15 +112,15 @@ class RestrictionFormFragment :
         with(restrictionViewModel.restrictionRequestForm) {
             when (type) {
                 AirportChooseType.TO -> {
-                    tvSource.text = ""
+                    tvDestination.deleteText()
                     to = null
                 }
                 AirportChooseType.FROM -> {
-                    tvDestination.text = ""
+                    tvSource.deleteText()
                     from = null
                 }
                 AirportChooseType.TRANSFER -> {
-                    tvTransfer.text = ""
+                    tvTransfer.deleteText()
                     transfer = null
                 }
             }

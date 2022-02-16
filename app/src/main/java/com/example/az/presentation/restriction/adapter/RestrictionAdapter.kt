@@ -1,6 +1,8 @@
 package com.example.az.presentation.restriction.adapter
 
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -70,8 +72,11 @@ class RestrictionAdapter : ListAdapter<RestrictionKotlin , RecyclerView.ViewHold
                     it.covidPassportRequired.booleanToYN() ,
                     it.pcrRequiredForNoneResidents.booleanToYN() ,
                     it.pcrRequiredForResidents.booleanToYN() ,
-                    it.moreInfoUrl
                 )
+                btnInfoUrl.setOnClickListener { _ ->
+                    val intent = Intent(Intent.ACTION_VIEW , Uri.parse(it.moreInfoUrl))
+                    this@ChildViewHolder.itemView.context?.startActivity(intent)
+                }
             } ?: lGeneralRestriction.gone()
 
             model.restrictionsByVaccination?.let {
