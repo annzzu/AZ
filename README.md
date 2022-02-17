@@ -112,7 +112,7 @@ SERVER_URL=http://covid-restrictions-api.noxtton.com/
 
 ### Android projects by me
 - [AZMovie](https://github.com/annzzu/AZMovie) - AZMovie - For  for watching movies and series without any ads.
-
+- [AZ Light](https://github.com/annzzu/AZLight) - AZLight - AZLight is a small android app for connecting esp8266 to turn on and off lights.
 
 ## Questions
 If you have any questions about this projects, please contact me directly at ![GMAIL](https://img.shields.io/badge/Gmail-anaz.zurabashvili@gmail.com-blue.svg?style=flat)
