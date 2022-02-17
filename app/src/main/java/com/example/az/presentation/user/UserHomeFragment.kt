@@ -29,9 +29,9 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun init() {
+        getUserTravelPlans()
         listeners()
         setUserInfo()
-        getUserTravelPlans()
     }
 
     private fun listeners() {
