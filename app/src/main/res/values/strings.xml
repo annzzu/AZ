@@ -50,8 +50,8 @@
     <string name="to_click_to_choose">to\nClick to Choose</string>
     <string name="click_to_choose_long_click">Click to Choose\nLong Click to Delete</string>
     <string name="search">SEARCH</string>
-    <string name="from">from</string>
-    <string name="to">to</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
     <string name="to_x">To %s</string>
     <string name="from_x">From %s</string>
     <string name="transfer_x">Transfer %s</string>

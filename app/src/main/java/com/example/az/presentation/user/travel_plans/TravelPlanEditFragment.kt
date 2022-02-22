@@ -48,8 +48,8 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                     date = it.date
                     travelDate = it.travelDate
                 }
-                tvSource.text = getString(STRINGS.to_x , it.source)
-                tvDestination.text = getString(STRINGS.from_x , it.destination)
+                tvSource.text = getString(STRINGS.from_x , it.source)
+                tvDestination.text = getString(STRINGS.to_x , it.destination)
 
                 tvTransfer.text =
                     if (!it.transfer.isNullOrBlank()) getString(STRINGS.transfer_x , it.transfer)
@@ -69,11 +69,11 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         btnTravelPlanSave.setOnClickListener {
             checkChoose()
         }
-        setOnClickFuns()
-        setOnLongClickFuns()
+        setOnClickFun()
+        setOnLongClickFun()
     }
 
-    private fun setOnClickFuns() = with(binding) {
+    private fun setOnClickFun() = with(binding) {
         cardDate.setOnClickListener {
             openDateDialog()
         }
@@ -91,7 +91,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
         }
     }
 
-    private fun setOnLongClickFuns() = with(binding) {
+    private fun setOnLongClickFun() = with(binding) {
         cardSource.setOnLongClickListener {
             deleteForm(AirportChooseType.FROM)
             true
@@ -111,11 +111,11 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
     private fun deleteForm(type: AirportChooseType) = with(binding) {
         with(travelPlanRequestForm) {
             when (type) {
-                AirportChooseType.TO -> {
+                AirportChooseType.FROM -> {
                     tvSource.deleteText()
                     source = null
                 }
-                AirportChooseType.FROM -> {
+                AirportChooseType.TO -> {
                     tvDestination.deleteText()
                     destination = null
                 }
@@ -259,7 +259,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                             differentRouteAlert(it)
                         } else {
                             source = it
-                            binding.tvSource.text = getString(STRINGS.to_x , it)
+                            binding.tvSource.text = getString(STRINGS.from_x , it)
                         }
                     }
                     AirportChooseType.TO -> {
@@ -268,7 +268,7 @@ class TravelPlanEditFragment : BaseFragment<FragmentTravelPlanEditBinding>(
                             differentRouteAlert(it)
                         } else {
                             destination = it
-                            binding.tvDestination.text = getString(STRINGS.from_x , it)
+                            binding.tvDestination.text = getString(STRINGS.to_x , it)
                         }
                     }
                     AirportChooseType.TRANSFER -> {
