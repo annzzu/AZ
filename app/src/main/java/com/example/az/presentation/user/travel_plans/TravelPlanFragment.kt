@@ -11,8 +11,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentTravelPlanBinding
 import com.example.az.extensions.*
-import com.example.az.domain.model.restriction.RestrictionRequest
-import com.example.az.domain.model.travel_plan.TravelPlan
+import com.example.az.model.restriction.RestrictionRequest
+import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.restriction.adapter.RestrictionAdapter
 import com.example.az.presentation.restriction.RestrictionViewModel

@@ -4,7 +4,7 @@ package com.example.az.presentation.nationality
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.nationality.NationalityRepositoryImpl
-import com.example.az.domain.model.nationality.NationalityResponse
+import com.example.az.model.nationality.NationalityResponse
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

@@ -1,4 +1,4 @@
-package com.example.az.domain.model.vaccine
+package com.example.az.model.vaccine
 
 
 data class VaccineResponse(

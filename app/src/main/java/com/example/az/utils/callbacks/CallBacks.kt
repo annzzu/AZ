@@ -1,6 +1,6 @@
 package com.example.az.utils.callbacks
 
-import com.example.az.domain.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlan
 
 typealias ClickTravelPlan = (travelPlan: TravelPlan) -> Unit
 

@@ -1,7 +1,7 @@
 package com.example.az.data.remote.datasources
 
 import com.example.az.data.remote.services.RestrictionApiService
-import com.example.az.domain.model.restriction.RestrictionRequest
+import com.example.az.model.restriction.RestrictionRequest
 import javax.inject.Inject
 
 

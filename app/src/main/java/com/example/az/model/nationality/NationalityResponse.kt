@@ -1,4 +1,4 @@
-package com.example.az.domain.model.nationality
+package com.example.az.model.nationality
 
 
 data class NationalityResponse(

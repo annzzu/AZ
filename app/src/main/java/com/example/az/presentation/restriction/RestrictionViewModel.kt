@@ -3,7 +3,7 @@ package com.example.az.presentation.restriction
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.restriction.RestrictionRepositoryImpl
-import com.example.az.domain.model.restriction.*
+import com.example.az.model.restriction.*
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

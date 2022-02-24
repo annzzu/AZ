@@ -2,7 +2,7 @@ package com.example.az.data.repository.restriction
 
 import com.example.az.data.local.AuthPrefsManager
 import com.example.az.data.remote.datasources.RestrictionDataSource
-import com.example.az.domain.model.restriction.*
+import com.example.az.model.restriction.*
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
 import kotlinx.coroutines.Dispatchers

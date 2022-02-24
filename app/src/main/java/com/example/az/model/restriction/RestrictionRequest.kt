@@ -1,4 +1,4 @@
-package com.example.az.domain.model.restriction
+package com.example.az.model.restriction
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

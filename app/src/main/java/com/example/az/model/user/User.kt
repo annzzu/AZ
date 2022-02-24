@@ -1,4 +1,4 @@
-package com.example.az.domain.model.user
+package com.example.az.model.user
 
 
 import com.squareup.moshi.Json

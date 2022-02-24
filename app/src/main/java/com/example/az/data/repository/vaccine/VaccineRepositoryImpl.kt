@@ -1,7 +1,7 @@
 package com.example.az.data.repository.vaccine
 
 import com.example.az.data.remote.datasources.VaccineDataSource
-import com.example.az.domain.model.vaccine.VaccineResponse
+import com.example.az.model.vaccine.VaccineResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
 import kotlinx.coroutines.Dispatchers

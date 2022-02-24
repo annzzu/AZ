@@ -4,7 +4,7 @@ package com.example.az.presentation.airport
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.az.data.repository.airport.AirportRepositoryImpl
-import com.example.az.domain.model.airport.AirportResponse
+import com.example.az.model.airport.AirportResponse
 import com.example.az.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

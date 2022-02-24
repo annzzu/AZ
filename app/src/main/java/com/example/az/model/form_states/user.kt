@@ -1,4 +1,4 @@
-package com.example.az.domain.form_states
+package com.example.az.model.form_states
 
 data class UserFormState(
     val emailError: Int? = null ,

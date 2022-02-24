@@ -1,7 +1,7 @@
 package com.example.az.data.repository.nationality
 
 import com.example.az.data.remote.datasources.NationalityDataSource
-import com.example.az.domain.model.nationality.NationalityResponse
+import com.example.az.model.nationality.NationalityResponse
 import com.example.az.utils.Resource
 import com.example.az.utils.handleResponse
 import kotlinx.coroutines.Dispatchers

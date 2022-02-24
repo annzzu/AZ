@@ -2,7 +2,6 @@ package com.example.az.presentation.user
 
 
 import android.os.Build
-import android.util.Log.d
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -10,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.az.databinding.FragmentUserHomeBinding
 import com.example.az.extensions.*
-import com.example.az.domain.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlan
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.user.travel_plans.TravelPlanAdapter
 import com.example.az.utils.Resource

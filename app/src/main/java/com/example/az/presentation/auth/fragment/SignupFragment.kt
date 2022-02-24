@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentSignupBinding
 import com.example.az.extensions.*
-import com.example.az.domain.model.user.User
+import com.example.az.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.presentation.nationality.NationalityFragmentDialog

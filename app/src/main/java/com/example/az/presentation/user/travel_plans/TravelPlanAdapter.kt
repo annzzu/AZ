@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.az.domain.model.travel_plan.TravelPlan
+import com.example.az.model.travel_plan.TravelPlan
 import androidx.recyclerview.widget.ListAdapter
 import com.example.az.databinding.ItemTravelPlanBinding
 import com.example.az.extensions.*

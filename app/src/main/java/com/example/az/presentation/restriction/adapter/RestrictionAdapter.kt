@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.az.databinding.ItemRestrictionBinding
 import com.example.az.databinding.ItemRestrictionExpandedBinding
 import com.example.az.extensions.*
-import com.example.az.domain.model.restriction.RestrictionKotlin
+import com.example.az.model.restriction.RestrictionKotlin
 
 
 class RestrictionAdapter : ListAdapter<RestrictionKotlin , RecyclerView.ViewHolder>(

@@ -1,8 +1,8 @@
 package com.example.az.data.remote.services
 
-import com.example.az.domain.model.travel_plan.TravelPlanRequest
-import com.example.az.domain.model.travel_plan.TravelPlanResponse
-import com.example.az.domain.model.travel_plan.TravelPlanSingleResponse
+import com.example.az.model.travel_plan.TravelPlanRequest
+import com.example.az.model.travel_plan.TravelPlanResponse
+import com.example.az.model.travel_plan.TravelPlanSingleResponse
 import com.example.az.utils.endpoints.ApiEndpoints
 import retrofit2.Response
 import retrofit2.http.*

@@ -1,7 +1,7 @@
 package com.example.az.data.repository.restriction
 
-import com.example.az.domain.model.restriction.RestrictionRequest
-import com.example.az.domain.model.restriction.RestrictionResponse
+import com.example.az.model.restriction.RestrictionRequest
+import com.example.az.model.restriction.RestrictionResponse
 import com.example.az.utils.Resource
 import kotlinx.coroutines.flow.Flow
 

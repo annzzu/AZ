@@ -2,13 +2,12 @@ package com.example.az.presentation.auth.fragment
 
 import android.util.Log.d
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.az.databinding.FragmentLoginBinding
 import com.example.az.extensions.*
-import com.example.az.domain.model.user.User
+import com.example.az.model.user.User
 import com.example.az.presentation.auth.LoginViewModel
 import com.example.az.presentation.base.BaseFragment
 import com.example.az.utils.Resource

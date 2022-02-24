@@ -1,7 +1,7 @@
 package com.example.az.data.remote.datasources
 
 import com.example.az.data.remote.services.TravelPlanApiService
-import com.example.az.domain.model.travel_plan.TravelPlanRequest
+import com.example.az.model.travel_plan.TravelPlanRequest
 import javax.inject.Inject
 
 class TravelPlanDataSource @Inject constructor(private val api: TravelPlanApiService) {

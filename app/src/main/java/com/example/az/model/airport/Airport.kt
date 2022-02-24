@@ -1,4 +1,4 @@
-package com.example.az.domain.model.airport
+package com.example.az.model.airport
 
 data class Airport(
     val city: String? ,
